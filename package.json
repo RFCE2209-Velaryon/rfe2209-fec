@@ -1,0 +1,19 @@
+{
+  "name": "rfe2209-fec",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RFCE2209-Velaryon/rfe2209-fec.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RFCE2209-Velaryon/rfe2209-fec/issues"
+  },
+  "homepage": "https://github.com/RFCE2209-Velaryon/rfe2209-fec#readme"
+}
