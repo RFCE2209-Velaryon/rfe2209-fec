@@ -5,3 +5,5 @@ const Products = () => {
     <h1>Got some stuff in here</h1>
   )
 };
+
+export default Products
