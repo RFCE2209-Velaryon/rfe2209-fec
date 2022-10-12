@@ -2,8 +2,9 @@
   "name": "rfe2209-fec",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
+    "build": "webpack --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/RFCE2209-Velaryon/rfe2209-fec/issues"
   },
-  "homepage": "https://github.com/RFCE2209-Velaryon/rfe2209-fec#readme"
+  "homepage": "https://github.com/RFCE2209-Velaryon/rfe2209-fec#readme",
+  "dependencies": {
+    "jquery": "^3.6.1",
+    "react": "^18.2.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
 }
