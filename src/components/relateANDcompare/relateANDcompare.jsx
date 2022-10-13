@@ -1,9 +1,9 @@
 import React from "react";
 
-const relate = () => {
+const Related = () => {
   return(
-    console.log("relate");
+    <h1>Related Items Component</h1>
   )
 };
 
-export default relate;
+export default Related;
