@@ -8,9 +8,14 @@ exports[`renders correctly 1`] = `
   <h1>
     Related Items Component
   </h1>
-  <h1>
-    Q&A Component
-  </h1>
+  <div>
+    <h1>
+      Q&A Component
+    </h1>
+    <p>
+      Assigned to Diana
+    </p>
+  </div>
   <h1>
     Review Component
   </h1>

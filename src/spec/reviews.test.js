@@ -3,10 +3,17 @@ import React from 'react';
 
 import Reviews from '../components/reviews/reviews.jsx';
 
-it('renders correctly', () => {
-  const tree = renderer
-    .create(<Reviews />)
-    .toJSON();
-    console.log(tree)
-    expect(tree).toMatchSnapshot();
- });
+
+describe("Reviews Component" ,() => {
+
+  // Test 1
+  test('renders correctly', () => {
+    const tree = renderer
+      .create(<Reviews />)
+      .toJSON();
+      console.log(tree)
+      expect(tree).toMatchSnapshot();
+   });
+
+
+});
