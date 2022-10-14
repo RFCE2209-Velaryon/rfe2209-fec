@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<h1>
-  Q&A Component
-</h1>
+<div>
+  <h1>
+    Q&A Component
+  </h1>
+  <p>
+    Assigned to Diana
+  </p>
+</div>
 `;
