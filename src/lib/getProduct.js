@@ -1,4 +1,4 @@
-import API_KEY from '../config.js';
+import { API_KEY } from '../config.js';
 import $ from 'jquery';
 import axios from 'axios';
 
