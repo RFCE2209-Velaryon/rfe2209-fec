@@ -37,10 +37,6 @@ const RelatedCard = (props) => {
     })
   },[]);
 
-  useEffect(()=> {
-    //console.log(displayItems.length);
-  })
-
   let getProductData = (id) => {
     return axios({
       method: 'get',

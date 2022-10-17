@@ -18,10 +18,6 @@ const Related = (props) => {
     }
   },[]);
 
-  useEffect(()=> {
-    //console.log(displayItems.length);
-  })
-
   let relatedHandler = (id) => {
     getRelated(id).then((relRes) => {
       console.log('relatedIDs: ', relRes.data);
@@ -40,7 +36,6 @@ const Related = (props) => {
       <h1>Related Items Component</h1>
       <div style={{display:'flex'}}>
         {related != [] ? related.map((id)=>{return (<RelatedCard productID = {id} />)}) : null}
-
       </div>
     </>
   )
