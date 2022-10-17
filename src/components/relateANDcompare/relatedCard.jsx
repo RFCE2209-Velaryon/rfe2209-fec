@@ -25,7 +25,7 @@ const RelatedCard = (props) => {
               <img style={{height: 200+'px', width: 'auto'}} src={imgSrc()}></img>
               <div>{proData.data.name}</div>
               <div>{proData.data.category}</div>
-              <div>{proData.data.default_price}</div>
+              <div>${proData.data.default_price}</div>
               <div>stars: {stars}</div>
             </div>
           );
