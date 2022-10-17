@@ -1,0 +1,7 @@
+.ratingsAndReviews {
+  display: flex;
+}
+
+.leftReviews, .rightReviews {
+  border: solid 1px black;
+}
