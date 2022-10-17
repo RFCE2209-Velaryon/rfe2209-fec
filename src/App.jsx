@@ -27,14 +27,10 @@ function App () {
 
   return (
     <div>
-<<<<<<< HEAD
       <Product prodID ={product.id}/>
       <Related />
       <QuestionsAndAnswers />
-      <Reviews />
-=======
-      <Reviews product={product} />
->>>>>>> 061c411214fd1ec48a2e64af89493b2f441e03ac
+      <Reviews product={product}/>
     </div>
   )
 }
