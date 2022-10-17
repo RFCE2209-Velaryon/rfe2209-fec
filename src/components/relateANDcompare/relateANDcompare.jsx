@@ -17,7 +17,10 @@ const Related = () => {
         setRelated(relRes.data);
         relRes.data.forEach(rel => {
           itemHolder.push(getProductData(rel).then((proData)=> {
-            return (<><div>{proData.data.name}</div><div>{proData.data.category}</div><div>{proData.data.default_price}</div></>);
+            return getProductStyle(rel).then((styleData) => {
+              return (<div style={{border: 1 + 'px solid black' }}><img src={styleData.data.results[0].photos[0].thumbnail_url}></img><div>{proData.data.name}</div><div>{proData.data.category}</div><div>{proData.data.default_price}</div></div>);
+
+            })
           }));
         })
         Promise.all(itemHolder).then(items=> {
