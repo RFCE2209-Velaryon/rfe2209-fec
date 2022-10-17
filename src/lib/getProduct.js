@@ -1,4 +1,4 @@
-import { API_KEY } from '../config.js';
+import API_KEY from '../config.js';
 import $ from 'jquery';
 import axios from 'axios';
 
@@ -9,7 +9,7 @@ var getProduct = () => {
   return axios({
     method: 'get',
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/'
-  })
+  });
 };
 
 

@@ -27,10 +27,7 @@ function App () {
 
   return (
     <div>
-      <Product />
-      <Related />
-      <QuestionsAndAnswers />
-      <Reviews />
+      <Reviews product={product} />
     </div>
   )
 }
