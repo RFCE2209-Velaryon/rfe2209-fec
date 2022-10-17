@@ -21,9 +21,16 @@ const Related = (props) => {
             return getProductStyle(rel).then((styleData) => {
               return getProductStars(rel).then((starData) => {
                 let stars = setStars(starData.data.ratings);
+                let imgSrc = () => {
+                  if (styleData.data.results[0].photos[0].thumbnail_url) {
+                    return styleData.data.results[0].photos[0].thumbnail_url;
+                  } else {
+                    return 'https://st.depositphotos.com/1987177/3470/v/450/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg'
+                  }
+                }
                 return (
                   <div style={{border: 1 + 'px solid black', width: 'fit-content' }}>
-                    <img style={{height: 200+'px', width: 'auto'}} src={styleData.data.results[0].photos[0].thumbnail_url}></img>
+                    <img style={{height: 200+'px', width: 'auto'}} src={imgSrc()}></img>
                     <div>{proData.data.name}</div>
                     <div>{proData.data.category}</div>
                     <div>{proData.data.default_price}</div>
