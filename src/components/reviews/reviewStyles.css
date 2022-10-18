@@ -5,3 +5,22 @@
 .leftReviews, .rightReviews {
   border: solid 1px black;
 }
+
+.reviewRecommendation::before {
+  background-image: url(./resources/account-check-outline.png);
+  background-size: 22px 22px;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  content:"";
+  vertical-align: text-bottom;
+}
+
+.sellerResponse {
+
+}
+
+.reviewFooter {
+  display: flex;
+  gap: 6px;
+}

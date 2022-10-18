@@ -1,32 +1,32 @@
+// External Libraries
 import React from "react";
-import './reviewStyles.css';
-import API_KEY from '../../config.js';
 import axios from 'axios';
-
+// Styles
+import './reviewStyles.css';
+// Link to API functions
+import API_KEY from '../../config.js';
+import API from './API.js';
 axios.defaults.headers.common['Authorization'] = API_KEY;
+// Subcomponent Imports
+import ReviewList from './ReviewList.jsx';
 
 const Reviews = ({product}) => {
   const [reviews, setReviews] = React.useState('');
+  const [sort, setSort] = React.useState('relevant');
 
-  console.log(`product from reviews component: ${JSON.stringify(product)}`);
+  //console.log(`product from reviews component: ${JSON.stringify(product)}`);
 
-  var getReviews = (page) => {
-    return axios({
-      method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?page=1&count=2&sort=newest&product_id=37311`
-    });
-  };
-
+  // when product changes,
   React.useEffect(() => {
     if(product.hasOwnProperty('id')){
-      getReviews(1)
-      .then((response) => {
-        setReviews(response.data.results);
-        console.log(response.data.results);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+      API.getReviews(1, 20, sort, product.id)
+        .then((response) => {
+          setReviews(response.data.results);
+          console.log(response.data.results);
+        })
+        .catch((err) => {
+          console.log(`error from API.getReviews: ${err}`);
+        })
     }
   }, [product]);
 
@@ -36,7 +36,7 @@ const Reviews = ({product}) => {
         Ratings & Reviews
       </div>
       <div className="rightReviews">
-        filler
+        {Array.isArray(reviews) && <ReviewList reviews={reviews}/>}
       </div>
     </div>
   )
