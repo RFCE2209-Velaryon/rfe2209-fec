@@ -1,18 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import $ from 'jquery';
+import './style.css';
 
-import Reviews from './components/reviews/reviews.jsx';
-import Products from './components/productDetail/productDetail.jsx';
+import App from './App.jsx';
 
-function App () {
-  return (
-    <div>
-      Hello
-      <Products/>
-      <Reviews />
-    </div>
-  )
-}
-
-ReactDOM.render(<App />, document.getElementById('app'));
+const root = ReactDOM.createRoot(document.getElementById('app'))
+root.render(<App />);
