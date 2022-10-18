@@ -20,10 +20,21 @@ const Related = (props) => {
     }
   },[]);
 
+  let getProductData = (id) => {
+    return axios({
+      method: 'get',
+      url: apiurl+'products/'+id
+    })
+  }
+
   let relatedHandler = (id) => {
     getRelated(id).then((relRes) => {
-      console.log('relatedIDs: ', relRes.data);
-      setRelated(relRes.data);
+      getProductData(id).then((proRes) => {
+        console.log('relatedIDs: ', relRes.data);
+        setRelated(relRes.data);
+        setCurProduct({name: proRes.data.name, features: proRes.data.features});
+
+      })
     })
   };
 
