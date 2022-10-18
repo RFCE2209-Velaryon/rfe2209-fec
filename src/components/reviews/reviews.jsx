@@ -19,7 +19,7 @@ const Reviews = ({product}) => {
   // when product changes,
   React.useEffect(() => {
     if(product.hasOwnProperty('id')){
-      API.getReviews(1, 20, sort, product.id)
+      API.getReviews(1, 200, sort, product.id)
         .then((response) => {
           setReviews(response.data.results);
           console.log(response.data.results);

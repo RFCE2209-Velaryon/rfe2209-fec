@@ -39,9 +39,16 @@ const Review = ({review}) => {
       </div>
       <h2>{review.summary}</h2>
       <h4>{review.body}</h4>
-      {review.photos && review.photos.map((photo) => {
-        return <img></img>
-      })}
+      <div className="reviewImagesContainer">
+        {review.photos && review.photos.map((photo, i) => {
+          if(photo.url = 'url') {
+            return;
+          }
+          return(
+            <img className='reviewImage' key={i} src={photo.url}/>
+          )
+        })}
+      </div>
       {review.recommend && <h4 className='reviewRecommendation'>I recommend this product</h4>}
       {review.response && <h4 className='sellerResponse'>{`Response:\n${review.response}`}</h4>}
       <div className="reviewFooter">

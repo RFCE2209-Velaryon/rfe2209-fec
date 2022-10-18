@@ -35,6 +35,11 @@
   gap: 6px;
 }
 
+.reviewImage {
+  height: 100px;
+  width: auto;
+}
+
 .star-rating button {
   background-color: transparent;
   border: none;
