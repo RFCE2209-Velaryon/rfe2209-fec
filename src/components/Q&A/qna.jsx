@@ -38,7 +38,7 @@ const QuestionsAndAnswers = ({prodID}) => {
     <div>
       <h1>Q&A Component</h1>
       <SearchBar />
-      <QuestionList questions={questions} getReq={getReq}/>
+      <QuestionList questions={questions} getReq={getReq} pageCount={pageCount}/>
       <AddQuestion />
     </div>
   )
