@@ -18,7 +18,8 @@ const Reviews = ({product}) => {
   };
 
   React.useEffect(() => {
-    getReviews(1)
+    if(product.hasOwnProperty('id')){
+      getReviews(1)
       .then((response) => {
         setReviews(response.data.results);
         console.log(response.data.results);
@@ -26,7 +27,8 @@ const Reviews = ({product}) => {
       .catch((err) => {
         console.log(err);
       })
-  }, []);
+    }
+  }, [product]);
 
   return(
     <div className="ratingsAndReviews">
