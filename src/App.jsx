@@ -17,8 +17,8 @@ function App () {
     // TODO: make an API call to get one product
     getProduct()
       .then((response) => {
-        setProduct(response.data[0]);
-        console.log(response.data[0]);
+        setProduct(response.data[14]);
+        console.log(response.data[14]);
       })
       .catch((err) => {
         console.log(err);
@@ -27,7 +27,10 @@ function App () {
 
   return (
     <div>
-      <Reviews product={product} />
+      <Product />
+      <Related />
+      <QuestionsAndAnswers prodID={product.id}/>
+      <Reviews />
     </div>
   )
 }
