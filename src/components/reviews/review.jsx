@@ -1,6 +1,6 @@
 import React from 'react';
 import API from './API.js';
-import Rating from '@mui/material/Rating';
+import StarRating from './StarRating.jsx';
 
 const Review = ({review}) => {
   const [reported, setReported] = React.useState(false);
@@ -27,26 +27,19 @@ const Review = ({review}) => {
   return (
     <div className="review">
       <div className="reviewHeader">
-        {/* star rating */}
-        <Rating name="read-only" value={review.rating} readOnly />
+        {review.rating && <StarRating initialRating={review.rating} readOnly={true} />}
         {/* verified purchase star */}
         {/* Username, date */}
       </div>
-      {/* Review Title */}
       <h2>{review.summary}</h2>
-      {/* Review Body */}
       <h4>{review.body}</h4>
-      {/* Recommendation */}
       {review.recommend && <h4 className='reviewRecommendation'>I recommend this product</h4>}
-      {/* Seller Response */}
       {review.response && <h4 className='sellerResponse'>{`Response:\n${review.response}`}</h4>}
       <div className="reviewFooter">
-        {/* Helpful? Yes(x) */}
         <div>Helpful?</div>
         <div onClick={onHelpful}>Yes({review.helpfulness})</div>
         <div>|</div>
         <div onClick={onReport}>Report</div>
-        {/* Report */}
       </div>
     </div>
   )
