@@ -1,10 +1,14 @@
 import React from "react";
-import {useState, useEffect, Image} from "react"
+import {useState, useEffect} from "react"
 
 
 
 
-const CurrentSelectedStyle = () => {
+const CurrentSelectedStyle = ({items}) => {
+  const [productImage, setProductImage] = useState("")
+ console.log(items)
+
+
 
   const styles = {
     logo: {
@@ -17,10 +21,12 @@ const CurrentSelectedStyle = () => {
   };
 
 
-
   return(
     <div>
-      <img src= "https://reactjs.org/logo-og.png" alt="react logo" style={styles.logo}/>
+      {/* {items.map((item)=>{ */}
+         <img src= "https://reactjs.org/logo-og.png" alt="react logo" style={styles.logo}/>
+      {/* })} */}
+
     </div>
 
   )
