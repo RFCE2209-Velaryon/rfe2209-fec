@@ -19,3 +19,5 @@ const CompareModal = (props) => {
     </div>
   );
 }
+
+export default CompareModal
