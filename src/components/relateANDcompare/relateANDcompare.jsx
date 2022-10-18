@@ -7,6 +7,8 @@ const {useState, useEffect} = React;
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const Related = (props) => {
   let [related, setRelated] = useState([]);
+  let [curProduct, setCurProduct] = useState({name:'',features:[]});
+
 
   useEffect(()=>{
     if(props.productID) {
@@ -35,7 +37,7 @@ const Related = (props) => {
     <>
       <h1>Related Items Component</h1>
       <div style={{display:'flex'}}>
-        {related != [] ? related.map((id)=>{return (<RelatedCard productID = {id} />)}) : null}
+        {related != [] ? related.map((id, i)=>{return (<RelatedCard key={i} curProduct={curProduct} productID = {id} />)}) : null}
       </div>
     </>
   )

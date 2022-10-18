@@ -6,10 +6,15 @@ const {useState, useEffect} = React;
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const RelatedCard = (props) => {
   let [displayItems, setDisplayItems] = useState([<div>loading...</div>]);
+  let [comProduct, setComProduct] = useState({name:'',features:['test']});
+  let [modal, setModal] = useState(false);
+  let [allFeatures, setAllFeatures] = useState({});
 
   useEffect(()=>{
     let itemHolder = [];
     itemHolder.push(getProductData(props.productID).then((proData)=> {
+      setComProduct({name: proData.data.name, features: proData.data.features});
+      console.log('features: ', proData.data.features);
       return getProductStyle(props.productID).then((styleData) => {
         return getProductStars(props.productID).then((starData) => {
           let stars = setStars(starData.data.ratings);
@@ -21,8 +26,11 @@ const RelatedCard = (props) => {
             }
           }
           return (
-            <div style={{border: 1 + 'px solid black', width: 'fit-content' }}>
-              <img style={{height: 200+'px', width: 'auto'}} src={imgSrc()}></img>
+            <div style={{border: 1 + 'px solid black', width: 250+'px', height: 300+'px', margin: 5+'px' }}>
+              <div style={{position:'relative'}}>
+                <button onClick={(e) => {getAllFeatures(props.curProduct, comProduct)}}style={{position: 'absolute', right: 1+'px', top: 1+'px'}}>&#9733;</button>
+              </div>
+              <img style={{height: 200+'px', width: 100+'%'}} src={imgSrc()}></img>
               <div>{proData.data.name}</div>
               <div>{proData.data.category}</div>
               <div>${proData.data.default_price}</div>
@@ -36,6 +44,10 @@ const RelatedCard = (props) => {
       setDisplayItems(items);
     })
   },[]);
+
+  useEffect(()=> {
+    console.log('allFeatures: ', allFeatures);
+  },[allFeatures])
 
   let getProductData = (id) => {
     return axios({
@@ -63,16 +75,34 @@ const RelatedCard = (props) => {
     let count = 0;
     let total = 0;
     keys.forEach(key => {
-      count += Number(starData[key])
+      count += Number(starData[key]);
       total += (Number(starData[key]) * key);
     });
     return (Math.round((total / count)*4)/4);
   }
 
+  let getAllFeatures = (pageProduct, cardProduct) => {
+    let comparedFeatures = {};
+    console.log(cardProduct);
+    pageProduct.features.forEach(feat => {
+      comparedFeatures[feat.feature] = [feat.value];
+    });
+    cardProduct.features.forEach(feat => {
+      if(comparedFeatures[feat.feature]) {
+        comparedFeatures[feat.feature][1] = feat.value;
+      } else {
+        comparedFeatures[feat.feature] = [];
+        comparedFeatures[feat.feature] = feat.value;
+      }
+    });
+    setAllFeatures(comparedFeatures);
+
+  }
+
   return(
     <>
       <div>
-        {displayItems.map((item)=>{return (<div>{item}</div>)})}
+        {displayItems.map((item, i)=>{return (<div key={i} >{item}</div>)})}
       </div>
     </>
   )

@@ -8,12 +8,14 @@ const CompareModal = (props) => {
     <div>
       <div>
         <div>Comparing:</div>
-        <div>props.curProductName</div>
-        <div>props.comProductName</div>
+        <div>{props.curProductName}</div>
+        <div>{props.comProductName}</div>
       </div>
       <div>
         <div>
-          props.allFeatures.map
+          {props.allFeatures.map(()=> {
+            return (<div>test</div>);
+          })}
         </div>
       </div>
     </div>
