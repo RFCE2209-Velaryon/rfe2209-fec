@@ -1,4 +1,6 @@
 import React from 'react';
+import { format, parseISO } from "date-fns";
+
 import API from './API.js';
 import StarRating from './StarRating.jsx';
 
@@ -28,11 +30,18 @@ const Review = ({review}) => {
     <div className="review">
       <div className="reviewHeader">
         {review.rating && <StarRating initialRating={review.rating} readOnly={true} />}
-        {/* verified purchase star */}
-        {/* Username, date */}
+        <div className='reviewUser'>
+          {/* verified purchase star */}
+          {review.reviewer_name && <div>{review.reviewer_name}</div>}
+          <div>-</div>
+          {review.date && <div>{format(parseISO(review.date), 'MMMM d, yyyy')}</div>}
+        </div>
       </div>
       <h2>{review.summary}</h2>
       <h4>{review.body}</h4>
+      {review.photos && review.photos.map((photo) => {
+        return <img></img>
+      })}
       {review.recommend && <h4 className='reviewRecommendation'>I recommend this product</h4>}
       {review.response && <h4 className='sellerResponse'>{`Response:\n${review.response}`}</h4>}
       <div className="reviewFooter">

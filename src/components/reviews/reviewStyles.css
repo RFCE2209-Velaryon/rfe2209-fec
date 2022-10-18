@@ -20,6 +20,16 @@
 
 }
 
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reviewUser {
+  display: flex;
+  gap: 6px;
+}
+
 .reviewFooter {
   display: flex;
   gap: 6px;
