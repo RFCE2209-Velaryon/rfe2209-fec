@@ -4,11 +4,11 @@ import {useState, useEffect} from "react"
 
 
 
-const CurrentSelectedStyle = ({items, image, setImage, didClick, setDidClick}) => {
+const ImageThumbnail= ({items, image, setImage, didClick, setDidClick}) => {
 
 
 
- const display = ()=> {
+ const displayThumb = ()=> {
   if(image.split('').length === 0){
     setImage(items.photos[0].url)
   }
@@ -18,7 +18,7 @@ const CurrentSelectedStyle = ({items, image, setImage, didClick, setDidClick}) =
 
 
  useEffect(()=>{
-  display()
+  displayThumb()
  })
 
 
@@ -26,7 +26,6 @@ const CurrentSelectedStyle = ({items, image, setImage, didClick, setDidClick}) =
     logo: {
       height: 100,
       width: 100,
-      borderRadius:150,
       borderWidth: 5,
       borderColor:'white',
     }
@@ -36,15 +35,15 @@ const CurrentSelectedStyle = ({items, image, setImage, didClick, setDidClick}) =
   return(
     <div>
          {items.photos.map((item)=>{
-          return  <img src={item.url}  style={styles.logo} onClick={()=>(
+          return  <ul>
+              <img src={item.url}  style={styles.logo} onClick={()=>(
             setImage(item.url), setDidClick(true)
           )}/>
+          </ul>
     })}
-
-
     </div>
 
   )
 };
 
-export default CurrentSelectedStyle;
+export default ImageThumbnail;
