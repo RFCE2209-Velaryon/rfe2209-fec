@@ -1,11 +1,10 @@
 Review Component
-- Popup Image Modals
 - Verified Purchase Icon
+- Show more with Review Body
 
 Reviews Component
 - Review Count
 - Sort Dropdown
-- More Reviews
 - Add a review
 
 Ratings Component

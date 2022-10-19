@@ -13,30 +13,56 @@ import ReviewList from './ReviewList.jsx';
 const Reviews = ({product}) => {
   const [reviews, setReviews] = React.useState('');
   const [sort, setSort] = React.useState('relevant');
+  const [reviewsShown, setReviewsShown] = React.useState(2);
+  const [ratings, setRatings] = React.useState('');
+  const [characteristics, setCharacteristics] = React.useState('');
 
   //console.log(`product from reviews component: ${JSON.stringify(product)}`);
 
   // when product changes,
   React.useEffect(() => {
     if(product.hasOwnProperty('id')){
-      API.getReviews(1, 200, sort, product.id)
-        .then((response) => {
-          setReviews(response.data.results);
-          console.log(response.data.results);
+      API.getReviewMeta(product.id)
+        .then((metaData) => {
+          setRatings(metaData.data.ratings);
+          setCharacteristics(metaData.data.characteristics);
+          let totalReviews = 0;
+          for(const key in metaData.data.ratings) {
+            totalReviews += Number(metaData.data.ratings[key]);
+          }
+          //console.log(`totalreviews: ${totalReviews}`);
+          API.getReviews(1, totalReviews, 'relevant', product.id)
+            .then((reviews) => {
+              setReviews(reviews.data.results);
+              console.log(reviews.data.results);
+            })
+            .catch((err) => {
+              console.log(`error from API.getReviews: ${err}`);
+            })
         })
         .catch((err) => {
-          console.log(`error from API.getReviews: ${err}`);
+          console.log(`error from API.getReviewMeta: ${err}`);
         })
     }
   }, [product]);
+
+  function addReviews() {
+    setReviewsShown(reviewsShown + 2);
+  }
 
   return(
     <div className="ratingsAndReviews">
       <div className="leftReviews">
         Ratings & Reviews
+        {/* overall rating & stars */}
+        {/* rating breakdown */}
+        {/* characteristic breakdown */}
       </div>
       <div className="rightReviews">
-        {Array.isArray(reviews) && <ReviewList reviews={reviews}/>}
+        {/* total reviews, sorted by dropdown */}
+        {Array.isArray(reviews) && <ReviewList reviews={reviews.slice(0, reviewsShown)}/>}
+        {Array.isArray(reviews) && (reviewsShown < reviews.length) && <div onClick={addReviews}>More Reviews</div>}
+        {/* add review button */}
       </div>
     </div>
   )

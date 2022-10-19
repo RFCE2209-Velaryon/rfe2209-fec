@@ -1,9 +1,15 @@
 .ratingsAndReviews {
   display: flex;
+  max-height: 100vh;
 }
 
 .leftReviews, .rightReviews {
   border: solid 1px black;
+}
+
+.reviewList {
+  overflow: scroll;
+  max-height: 95vh;
 }
 
 .reviewRecommendation::before {
@@ -35,11 +41,49 @@
   gap: 6px;
 }
 
-.reviewImage {
+.modalImageThumbnail {
   height: 100px;
   width: auto;
 }
 
+.modalImage {
+  max-width: 90vw;
+  height: auto;
+}
+
+.grayModalBackground {
+  position: fixed;
+  /* fill the screen */
+  height: 100vh;
+  width: 100vw;
+  /* center/create background */
+  left: 0;
+  top: 0;
+  background-color: rgba(100, 100, 100, 0.852);
+  /* center image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2vmin;
+}
+
+.closeModalImage {
+  height: 5vmin;
+  width: 5vmin;
+  background-color: rgb(168, 168, 168);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3vmin;
+}
+
+.reviewImagesContainer {
+  display: flex;
+}
+
+/* Star Rating Styling */
 .star-rating button {
   background-color: transparent;
   border: none;

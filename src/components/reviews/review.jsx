@@ -3,6 +3,8 @@ import { format, parseISO } from "date-fns";
 
 import API from './API.js';
 import StarRating from './StarRating.jsx';
+import ImgModal from './ImgModal.jsx';
+import ReviewBody from './ReviewBody.jsx';
 
 const Review = ({review}) => {
   const [reported, setReported] = React.useState(false);
@@ -38,14 +40,11 @@ const Review = ({review}) => {
         </div>
       </div>
       <h2>{review.summary}</h2>
-      <h4>{review.body}</h4>
+      <ReviewBody body={review.body}/>
       <div className="reviewImagesContainer">
         {review.photos && review.photos.map((photo, i) => {
-          if(photo.url = 'url') {
-            return;
-          }
           return(
-            <img className='reviewImage' key={i} src={photo.url}/>
+            <ImgModal key={i} photo={photo}/>
           )
         })}
       </div>
