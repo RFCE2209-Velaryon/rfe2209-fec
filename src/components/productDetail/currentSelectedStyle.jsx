@@ -4,6 +4,7 @@ import {useState, useEffect} from "react"
 
 
 
+
 const CurrentSelectedStyle = ({items, image, setImage, didClick, setDidClick}) => {
 
 
@@ -22,21 +23,13 @@ const CurrentSelectedStyle = ({items, image, setImage, didClick, setDidClick}) =
  })
 
 
-  const styles = {
-    logo: {
-      height: 100,
-      width: 100,
-      borderRadius:150,
-      borderWidth: 5,
-      borderColor:'white',
-    }
-  };
+
 
 
   return(
-    <div>
+    <div className="c-thumbnail" >
          {items.photos.map((item)=>{
-          return  <img src={item.url}  style={styles.logo} onClick={()=>(
+          return  <img  className="circle-thumbnail" src={item.url}   onClick={()=>(
             setImage(item.url), setDidClick(true)
           )}/>
     })}
