@@ -34,13 +34,13 @@ const [didClick, setDidClick] = useState(true)
 
 
   return(
-    <div>
+    <section>
     <h1>Product Detail Component</h1>
     {item[0] && <ImageGallery items={item[0]}image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick}/>}
     {item[0] && <CurrentSelectedStyle items={item[0]} image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick}/>}
     {item[0] && <ImageThumbnail items={item[0]} image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick}/>}
     {item[0] && <ItemSelectors items={item[0]} />}
-    </div>
+    </section>
   )
 };
 
