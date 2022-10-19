@@ -27,10 +27,10 @@ function App () {
 
   return (
     <div>
-      <Product />
+      <Product prodID ={product.id}/>
       <Related />
       <QuestionsAndAnswers prodID={product.id}/>
-      <Reviews />
+      <Reviews product={product}/>
     </div>
   )
 }
