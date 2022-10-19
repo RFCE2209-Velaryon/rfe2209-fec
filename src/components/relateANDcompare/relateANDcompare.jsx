@@ -59,6 +59,10 @@ const Related = (props) => {
     if (cardsCarousel.scrollWidth > cardsCarousel.clientWidth) {
       setNeedsScrolling(true);
       arrowCheck(cardsCarousel);
+    } else {
+      setNeedsScrolling(false);
+      setNeedsScrollLeft(false);
+      setNeedsScrollRight(false);
     }
   }
 
@@ -72,6 +76,8 @@ const Related = (props) => {
       setNeedsScrollLeft(false);
     }
   }
+
+  window.addEventListener("resize", scrollCheck);
   return(
     <>
       <h1>Related Items Component</h1>
