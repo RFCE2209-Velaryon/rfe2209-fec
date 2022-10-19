@@ -5,10 +5,13 @@ import RelatedCard from './relatedCard.jsx'
 
 const {useState, useEffect} = React;
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
+const scollNumber = 262;
 const Related = (props) => {
   let [related, setRelated] = useState([]);
   let [curProduct, setCurProduct] = useState({name:'',features:[]});
-
+  let [needsScrolling, setNeedsScrolling] = useState(false);
+  let [needsScrollRight, setNeedsScrollRight] = useState(false);
+  let [needsScrollLeft, setNeedsScrollLeft] = useState(false);
 
   useEffect(()=>{
     if(props.productID) {
@@ -44,10 +47,45 @@ const Related = (props) => {
       url: apiurl+'products/'+id+'/related'
     });
   }
+
+  let scroll = (scrollAmount) => {
+    let cardsCarousel = document.getElementsByClassName('relatedCards')[0];
+    cardsCarousel.scrollLeft += scrollAmount;
+    arrowCheck(cardsCarousel);
+  }
+
+  let scrollCheck = () => {
+    let cardsCarousel = document.getElementsByClassName('relatedCards')[0];
+    if (cardsCarousel.scrollWidth > cardsCarousel.clientWidth) {
+      setNeedsScrolling(true);
+      arrowCheck(cardsCarousel);
+    }
+  }
+
+  let arrowCheck = (doc) => {
+    setNeedsScrollLeft(true);
+    setNeedsScrollRight(true);
+    if(doc.scrollLeft === (doc.scrollWidth - doc.clientWidth)) {
+      setNeedsScrollRight(false);
+    }
+    if (doc.scrollLeft === 0) {
+      setNeedsScrollLeft(false);
+    }
+  }
   return(
     <>
       <h1>Related Items Component</h1>
-      <div style={{display:'flex'}}>
+      {needsScrollLeft ? (
+        <div style={{position:'relative', paddingLeft: 10+'px', top: 125+'px'}}>
+          <button onClick = {(e)=>{scroll(scollNumber*-1)}} style={{fontSize: 2+'rem', position:'absolute',left:1+'%'}}>&#60;</button>
+        </div>
+      ): null}
+      {needsScrollRight ? (
+        <div style={{position:'relative', paddingRight: 10+'px', top: 125+'px'}}>
+          <button onClick = {(e)=>{scroll(scollNumber)}} style={{fontSize: 2+'rem', position:'absolute',right:1+'%'}}>&#62;</button>
+        </div>
+      ): null}
+      <div className='relatedCards' onLoad={()=>scrollCheck()} style={{display:'flex', overflowX: 'hidden',}}>
         {related != [] ? related.map((id, i)=>{return (<RelatedCard key={i} curProduct={curProduct} productID = {id} />)}) : null}
       </div>
     </>

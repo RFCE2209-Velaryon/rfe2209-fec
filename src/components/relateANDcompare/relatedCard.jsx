@@ -20,7 +20,7 @@ const RelatedCard = (props) => {
           let stars = setStars(starData.data.ratings);
           let imgSrc = () => {
             if (styleData.data.results[0].photos[0].thumbnail_url) {
-              return styleData.data.results[0].photos[0].thumbnail_url;
+              return styleData.data.results[0].photos[0].url;
             } else {
               return 'https://st.depositphotos.com/1987177/3470/v/450/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg'
             }
