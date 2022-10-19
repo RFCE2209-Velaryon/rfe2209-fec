@@ -2,6 +2,8 @@ import React from "react";
 import getProduct from '../../lib/getProduct.js';
 import axios from 'axios';
 import CompareModal from './compareModal.jsx';
+import $ from 'jquery';
+
 
 const {useState, useEffect} = React;
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
@@ -107,7 +109,10 @@ const RelatedCard = (props) => {
   }
 
   let toggleModal = () => {
-    setModal((prevModal)=> !prevModal);
+    $('body').toggleClass('stop-scrolling');
+    setModal((prevModal)=> {
+      return !prevModal
+    });
   }
 
   return(
