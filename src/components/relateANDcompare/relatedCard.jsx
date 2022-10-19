@@ -28,7 +28,7 @@ const RelatedCard = (props) => {
             }
           }
           return (
-            <div style={{border: 1 + 'px solid black', width: 250+'px', height: 300+'px', margin: 5+'px' }}>
+            <div style={{border: 1 + 'px solid black', width: 250+'px', height: 300+'px', margin: 5+'px'}}>
               <div style={{position:'relative'}}>
                 <button onClick={(e) => {toggleModal()}}style={{position: 'absolute', right: 1+'px', top: 1+'px'}}>&#9733;</button>
               </div>
@@ -36,7 +36,7 @@ const RelatedCard = (props) => {
               <div>{proData.data.name}</div>
               <div>{proData.data.category}</div>
               <div>${proData.data.default_price}</div>
-              <div>stars: {stars}</div>
+              <div style={{position: 'relative'}}><div style={{zIndex:1, width: 200+'px', height: 25+'px', position:'absolute'}}><img style={{width: '100%', height: '100%'}}src={'https://drive.google.com/uc?export=view&id=1ubX7q_pi7hyS9w2cHCc7gau33lt7B3SR'}></img></div><div style={{zIndex:0, width: ((stars/5)*200)+'px', height: 25+'px', position:'absolute', backgroundColor:'yellow'}}></div></div>
             </div>
           );
         })

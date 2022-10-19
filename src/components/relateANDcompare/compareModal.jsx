@@ -10,7 +10,7 @@ const CompareModal = (props) => {
         <table>
           <tr style ={{alignItems: 'center', justifyContent: 'center'}}>
             <th style={{textAlign: 'center', width:135+'px'}}>{null}</th>
-            <th style={{textAlign: 'center', width:135+'px'}}>Comparing:</th>
+            <th style={{textAlign: 'center', width:135+'px'}}>Comparing</th>
             <th style={{textAlign: 'center', width:135+'px'}}>{null}</th>
           </tr>
           <tr>
