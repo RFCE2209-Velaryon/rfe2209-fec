@@ -88,9 +88,12 @@ const RelatedCard = (props) => {
     let comparedFeatures = {};
 
     pageProduct.features.forEach(feat => {
+
+      if(feat.value === null) feat.value = <>&#10003;</>;
       comparedFeatures[feat.feature] = [feat.value];
     });
     cardProduct.features.forEach(feat => {
+      if(feat.value === null) feat.value = <>&#10003;</>;
       if(comparedFeatures[feat.feature]) {
         comparedFeatures[feat.feature][1] = feat.value;
       } else {
