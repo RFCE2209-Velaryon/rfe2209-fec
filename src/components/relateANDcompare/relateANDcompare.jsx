@@ -6,6 +6,7 @@ import RelatedCard from './relatedCard.jsx'
 const {useState, useEffect} = React;
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const scollNumber = 262;
+let timeout = null;
 const Related = (props) => {
   let [related, setRelated] = useState([]);
   let [curProduct, setCurProduct] = useState({name:'',features:[]});
@@ -77,7 +78,13 @@ const Related = (props) => {
     }
   }
 
-  window.addEventListener("resize", scrollCheck);
+  window.addEventListener("resize", ()=>{
+
+    clearTimeout(timeout);
+    timeout = setTimeout(()=>{
+      scrollCheck()
+    },300);
+  });
   return(
     <>
       <h1>Related Items Component</h1>
