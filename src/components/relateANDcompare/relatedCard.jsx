@@ -49,10 +49,6 @@ const RelatedCard = (props) => {
     console.log('allFeatures: ', JSON.stringify(allFeatures));
   },[allFeatures]);
 
-  useEffect(()=> {
-    console.log('modal: ', modal);
-  },[modal]);
-
   let getProductData = (id) => {
     return axios({
       method: 'get',
@@ -86,6 +82,7 @@ const RelatedCard = (props) => {
   }
 
   let getAllFeatures = (pageProduct, cardProduct) => {
+    setComProduct(cardProduct);
     let comparedFeatures = {};
 
     pageProduct.features.forEach(feat => {
@@ -102,7 +99,6 @@ const RelatedCard = (props) => {
 
     let featuresArray = [];
     let feats = Object.keys(comparedFeatures);
-    console.log(JSON.stringify(comparedFeatures));
     feats.forEach(feat=> {
       featuresArray.push([comparedFeatures[feat][0], feat, comparedFeatures[feat][1]]);
     })
@@ -111,7 +107,6 @@ const RelatedCard = (props) => {
   }
 
   let toggleModal = () => {
-    console.log('clicked star');
     setModal((prevModal)=> !prevModal);
   }
 
@@ -120,7 +115,7 @@ const RelatedCard = (props) => {
       {displayItems.map((item, i)=>{return (
         <div key={i} >
           {item}
-          {modal ? <div style={{position: 'relative'}}><CompareModal style={{position: 'absolute', top: 0, left:0}} curProduct={props.curProduct} comProduct ={comProduct} allFeatures={allFeatures}/> </div> : <div></div>}
+          {modal ? <CompareModal onClick={(e) => {toggleModal()}} curProduct={props.curProduct} comProduct ={comProduct} allFeatures={allFeatures}/> : null}
         </div>
       )})}
 
