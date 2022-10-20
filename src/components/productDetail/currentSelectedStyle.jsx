@@ -9,6 +9,7 @@ const CurrentSelectedStyle = ({items, image, setImage, didClick, setDidClick}) =
 
 
 
+
  const display = ()=> {
   if(image.split('').length === 0){
     setImage(items.photos[0].url)
@@ -28,8 +29,8 @@ const CurrentSelectedStyle = ({items, image, setImage, didClick, setDidClick}) =
 
   return(
     <div className="c-thumbnail" >
-         {items.photos.map((item)=>{
-          return  <img  className="circle-thumbnail" src={item.url}   onClick={()=>(
+         {items.photos.map((item, i)=>{
+          return  <img key={i} className="circle-thumbnail" src={item.url}   onClick={()=>(
             setImage(item.url), setDidClick(true)
           )}/>
     })}
