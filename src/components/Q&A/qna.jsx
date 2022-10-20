@@ -9,7 +9,7 @@ const QuestionsAndAnswers = ({prodID}) => {
     if (prodID) {
       getQs(prodID, 1, 4)
         .then((response) => {
-          // console.log('original: ', response.data.results);
+          console.log('original: ', response.data.results);
           var questionList = [];
           response.data.results.forEach((item) => {
             questionList.push([item.question_id, item.question_body, item.question_helpfulness]);
@@ -18,7 +18,7 @@ const QuestionsAndAnswers = ({prodID}) => {
         })
         .catch((error) => console.log('error at getQs:', error));
     }
-  }, []);
+  }, [prodID]);
   const getQs = (prodID, pageCount, qCount) => {
     return axios.get(`${apiurl}qa/questions`, {
       params: {
