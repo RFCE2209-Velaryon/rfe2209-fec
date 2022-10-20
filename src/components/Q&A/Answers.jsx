@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import Answer from "./Answer.jsx"
+
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const Answers = ({qid}) => {
   const [answers, setAnswers] = useState([]);
+  const [refresh, setRefresh] = useState(false);
   const getAs = (qID, pageCount, aCount) => {
     return axios.get(`${apiurl}qa/questions/${qID}/answers`, {
       params: {
@@ -17,6 +20,7 @@ const Answers = ({qid}) => {
     var storage = [];
     getAs(qid, 1, 2)
       .then((response) => {
+        // console.log(qid, response.data.results);
         response.data.results.forEach((item) => {
           if (item.photos !== []) {
             var images = [];
@@ -33,23 +37,13 @@ const Answers = ({qid}) => {
         setAnswers(storage);
       })
       .catch((err) => console.log(err));
-  }, [qid]);
+  }, [qid, refresh]);
 
   return(
     <div>
-      {answers.map((answer) => {
-        var months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-        var date = answer[5].slice(0, 10).split('-');
-        date[1] = months[Number(date[1])-1];
-        var date = `${date[1]} ${date[2]}, ${date[0]}`;
-          return(
-            <div key={answer[1]}>
-              <div>{answer[2]}</div>
-              <div>by {answer[4]}, {date} | Helpful? ({answer[3]})</div>
-              <br></br>
-            </div>
-          )
-      })}
+      {answers.map((answer) =>
+        <Answer key={answer[1]} answer={answer} refresh={refresh} setRefresh={setRefresh}/>
+      )}
     </div>
   )
 }
