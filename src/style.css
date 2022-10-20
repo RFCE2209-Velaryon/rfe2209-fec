@@ -7,3 +7,8 @@ body {
   margin: inherit;
   color: black;
 }
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
