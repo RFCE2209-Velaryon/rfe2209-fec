@@ -170,9 +170,31 @@
   width: 80%;
   background-color: #e0e0e0;
 }
-
 .progress-bar-fill {
   display: block;
   height: 18px;
   background-color: #363636;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  border-radius: 100%;
+  padding: 4px;
+}
+
+.filter::after {
+  background-image: url(./resources/close-circle-outline.png);
+  background-size: 14px 14px;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  content:"";
+  vertical-align: text-bottom;
 }

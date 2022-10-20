@@ -19,6 +19,7 @@ const Reviews = ({product}) => {
   const [ratings, setRatings] = React.useState(null);
   const [characteristics, setCharacteristics] = React.useState(null);
   const [recommended, setRecommended] = React.useState(null);
+  const [filters, setFilters] = React.useState({1: false, 2: false, 3: false, 4: false, 5: false});
 
   //console.log(`product from reviews component: ${JSON.stringify(product)}`);
 
@@ -30,6 +31,7 @@ const Reviews = ({product}) => {
           setRatings(metaData.data.ratings);
           setCharacteristics(metaData.data.characteristics);
           setRecommended(metaData.data.recommended);
+          setFilters({1: false, 2: false, 3: false, 4: false, 5: false});
           let totalReviews = 0;
           for(const key in metaData.data.ratings) {
             totalReviews += Number(metaData.data.ratings[key]);
@@ -38,7 +40,7 @@ const Reviews = ({product}) => {
           API.getReviews(1, totalReviews, sort, product.id)
             .then((reviews) => {
               setReviews(reviews.data.results);
-              console.log(`metadata retrieved: ${JSON.stringify(metaData.data)}`)
+              //console.log(`metadata retrieved: ${JSON.stringify(metaData.data)}`)
               //console.log(`reviews retrieved: ${JSON.stringify(reviews.data.results)}`);
             })
             .catch((err) => {
@@ -75,6 +77,40 @@ const Reviews = ({product}) => {
     return largest;
   }
 
+  function filterByRating(e) {
+    if(!filters[Number(e.target.innerHTML.substr(0, 1))]) {
+      let newFilters = Object.assign({}, filters);
+      newFilters[Number(e.target.innerHTML.substr(0, 1))] = true;
+      setFilters(newFilters);
+    }
+  }
+
+  function unFilterByRating(e) {
+    if(filters[Number(e.target.innerHTML.substr(0, 1))]) {
+      let newFilters = Object.assign({}, filters);
+      newFilters[Number(e.target.innerHTML.substr(0, 1))] = false;
+      setFilters(newFilters);
+    }
+  }
+
+  function filtered() {
+    let filtersApplied = false;
+    Object.keys(filters).forEach(key => {
+      filtersApplied = filters[key] || filtersApplied;
+    });
+    return filtersApplied;
+  }
+
+  function getAvailableReviews() {
+    if(!filtered()) {
+      return reviews;
+    } else {
+      return reviews.filter(review => {
+        return filters[review.rating];
+      });
+    }
+  }
+
   return(
     <div className="ratingsAndReviews">
       <div className="leftReviews">
@@ -88,7 +124,7 @@ const Reviews = ({product}) => {
           {[5, 4, 3, 2, 1].map(index => {
             return (
             <div className='ratingBreakdown' key={index}>
-              <h4>{`${index} stars`}</h4>
+              <h4 onClick={filterByRating}>{`${index} stars`}</h4>
               <div className="progress-bar">
                 <div className="progress-bar-fill" style={{width: `${(ratings[index]/getRatingsOfMostCommonRating())*100}%`}}></div>
               </div>
@@ -96,18 +132,26 @@ const Reviews = ({product}) => {
             )
           })}
         </div>}
+        <div className='filters'>
+          {Object.keys(filters).map(key => {
+            if(filters[key]) {
+              return <div onClick={unFilterByRating} className='filter'>{key}</div>
+            }
+          })}
+          {filtered() && <div className='filter' onClick={() => {setFilters({1: false, 2: false, 3: false, 4: false, 5: false})}}>All</div>}
+        </div>
         {/* characteristic breakdown */}
       </div>
       <div className="rightReviews">
         {Array.isArray(reviews) && <div>
           <div className='reviewCount'>
-            <h1>{`${reviews.length} reviews, sorted by`}</h1>
+            <h1>{`${getAvailableReviews().length} reviews, sorted by`}</h1>
             <DropDown cb={setSort} choices={[{label: 'Relevance', value: 'relevant'},
                                 {label: 'Helpfulness', value: 'helpful'},
                                 {label: 'Date', value: 'newest'}]}/>
           </div>
-          <ReviewList reviews={reviews.slice(0, reviewsShown)}/>
-          {(reviewsShown < reviews.length) && <div onClick={addReviews}>More Reviews</div>}
+          <ReviewList reviews={getAvailableReviews().slice(0, reviewsShown)}/>
+          {(reviewsShown < getAvailableReviews().length) && <div onClick={addReviews}>More Reviews</div>}
         </div>
         }
         {/* add review button */}
