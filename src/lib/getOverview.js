@@ -4,17 +4,15 @@ import axios from 'axios';
 
 axios.defaults.headers.common['Authorization'] = API_KEY;
 
-var getProduct = () => {
+
+
+var getOverview = () => {
   // TODO
   return axios({
     method: 'get',
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/',
-    params: {
-      page: 1,
-      count: 20
-    }
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/'
   })
 };
 
 
-export default getProduct;
+export default getOverview;
