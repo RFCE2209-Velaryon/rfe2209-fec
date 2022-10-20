@@ -33,10 +33,10 @@ const ImageThumbnail= ({items, image, setImage, didClick, setDidClick}) => {
 
 
   return(
-    <div class="thumbnail">
+    <div className="thumbnail">
          {items.photos.map((item)=>{
-          return  <ul>
-              <img className="square-thumbnail" src={item.url}  style={styles.logo} onClick={()=>(
+          return  <ul key={item.url}>
+              <img   className="square-thumbnail" src={item.url}  style={styles.logo} onClick={()=>(
             setImage(item.url), setDidClick(true)
           )}/>
 

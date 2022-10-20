@@ -7,7 +7,7 @@ import {useState, useEffect} from "react"
 const ItemSelectors = ({items, prod}) => {
   const [size, setSize] = useState([])
   const [quantity, setQuantity] = useState([])
-  console.log(size, quantity)
+
 
 
   const getSize = () => {
@@ -29,15 +29,15 @@ const ItemSelectors = ({items, prod}) => {
     <div>
       <select  id="seletedList">
       <option >Select Size</option>
-      {size.map((sizes)=>{
-       return <option >{sizes}</option>
+      {size.map((sizes,i)=>{
+       return <option key={i}>{sizes}</option>
       })}
        </select>
 
        <select name="selectedQty" id="seletedQty">
       <option>--Qty-</option>
       {quantity.map((qtys)=>{
-       return <option >{qtys}</option>
+       return <option key={qtys}>{qtys}</option>
       })}
        </select>
 
