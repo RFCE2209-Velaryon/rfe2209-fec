@@ -17,7 +17,7 @@ const Reviews = ({product}) => {
   const [sort, setSort] = React.useState('relevant');
   const [reviewsShown, setReviewsShown] = React.useState(2);
   const [ratings, setRatings] = React.useState(null);
-  const [characteristics, setCharacteristics] = React.useState('');
+  const [characteristics, setCharacteristics] = React.useState(null);
   const [recommended, setRecommended] = React.useState(null);
 
   //console.log(`product from reviews component: ${JSON.stringify(product)}`);
@@ -65,6 +65,16 @@ const Reviews = ({product}) => {
     return (Math.floor((total / totalRatings) * 10)) / 10;
   }
 
+  function getRatingsOfMostCommonRating() {
+    let largest = 0;
+    for(const key in ratings) {
+      if(Number(ratings[key]) > largest) {
+        largest = ratings[key];
+      }
+    }
+    return largest;
+  }
+
   return(
     <div className="ratingsAndReviews">
       <div className="leftReviews">
@@ -74,7 +84,18 @@ const Reviews = ({product}) => {
           <StarRating initialRating={averageStarRating()} readOnly={true}/>
         </div>}
         {recommended && <h4>{`${Math.round((recommended.true / (Number(recommended.true) + Number(recommended.false))) * 100)}% of reviewers recommend this product`}</h4>}
-        {/* rating breakdown */}
+        {ratings && <div className='ratingBreakdownList'>
+          {[5, 4, 3, 2, 1].map(index => {
+            return (
+            <div className='ratingBreakdown' key={index}>
+              <h4>{`${index} stars`}</h4>
+              <div className="progress-bar">
+                <div className="progress-bar-fill" style={{width: `${(ratings[index]/getRatingsOfMostCommonRating())*100}%`}}></div>
+              </div>
+            </div>
+            )
+          })}
+        </div>}
         {/* characteristic breakdown */}
       </div>
       <div className="rightReviews">

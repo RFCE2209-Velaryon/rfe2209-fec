@@ -156,3 +156,23 @@
 .icon.open {
   transform: rotate(90deg);
 }
+
+.ratingBreakdown {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  justify-content: space-around;
+}
+
+/* progress bar styling */
+.progress-bar {
+  height: 18px;
+  width: 80%;
+  background-color: #e0e0e0;
+}
+
+.progress-bar-fill {
+  display: block;
+  height: 18px;
+  background-color: #363636;
+}
