@@ -5,5 +5,10 @@
 
 body {
   margin: inherit;
-  color: red;
+  color: black;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
 }
