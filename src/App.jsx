@@ -17,8 +17,8 @@ function App () {
     // TODO: make an API call to get one product
     getProduct()
       .then((response) => {
-        setProduct(response.data[14]);
-        console.log(response.data[14]);
+        setProduct(response.data[0]);
+        console.log(response.data[0]);
       })
       .catch((err) => {
         console.log(err);
