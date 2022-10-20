@@ -21,18 +21,27 @@ const RelatedCard = (props) => {
           getAllFeatures(props.curProduct, {'name': proData.data.name, 'features': proData.data.features})
           let stars = setStars(starData.data.ratings);
           let imgSrc = () => {
-            if (styleData.data.results[0].photos[0].thumbnail_url) {
+            if (styleData.data.results[0].photos[0].url) {
               return styleData.data.results[0].photos[0].url;
             } else {
               return 'https://st.depositphotos.com/1987177/3470/v/450/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg'
             }
           }
           return (
-            <div style={{border: 1 + 'px solid black', width: 250+'px', height: 300+'px', margin: 5+'px'}}>
-              <div style={{position:'relative'}}>
-                <button onClick={(e) => {toggleModal()}}style={{position: 'absolute', right: 1+'px', top: 1+'px'}}>&#9733;</button>
+            <div style={{border: 1 + 'px solid black', width: 250+'px', height: 300+'px', margin: 5+'px', backgroundColor:'white'}}>
+              {
+                props.isRelated ?
+                  <div style={{position:'relative'}}>
+                    <button onClick={(e) => {toggleModal()}}style={{position: 'absolute', right: 1+'px', top: 1+'px'}}>&#9733;</button>
+                  </div>:
+                  <div style={{position:'relative'}}>
+                    <button onClick={(e) => {removeOutfit()}}style={{position: 'absolute', right: 1+'px', top: 1+'px'}}>&#10008;</button>
+                  </div>
+
+              }
+              <div style={{height: 200+'px', backgroundColor: 'black'}}>
+                <img style={{height: '100%', width: '100%', objectFit: 'contain'}} src={imgSrc()}></img>
               </div>
-              <img style={{height: 200+'px', width: 100+'%'}} src={imgSrc()}></img>
               <div>{proData.data.name}</div>
               <div>{proData.data.category}</div>
               <div>${proData.data.default_price}</div>
@@ -46,10 +55,6 @@ const RelatedCard = (props) => {
       setDisplayItems(items);
     })
   },[]);
-
-  useEffect(()=> {
-    console.log('allFeatures: ', JSON.stringify(allFeatures));
-  },[allFeatures]);
 
   let getProductData = (id) => {
     return axios({
@@ -116,6 +121,10 @@ const RelatedCard = (props) => {
     setModal((prevModal)=> {
       return !prevModal
     });
+  }
+
+  let removeOutfit = () => {
+    console.log('remove outfit');
   }
 
   return(
