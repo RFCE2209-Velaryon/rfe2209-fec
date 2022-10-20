@@ -4,28 +4,36 @@ import {useState, useEffect} from "react"
 
 
 
-const CurrentSelectedStyle = ({items}) => {
-  const [productImage, setProductImage] = useState("")
- console.log(items)
+
+const CurrentSelectedStyle = ({items, image, setImage, didClick, setDidClick}) => {
 
 
 
-  const styles = {
-    logo: {
-      height: 50,
-      width: 50,
-      borderRadius:150,
-      borderWidth: 5,
-      borderColor:'white',
-    }
-  };
+ const display = ()=> {
+  if(image.split('').length === 0){
+    setImage(items.photos[0].url)
+  }
+
+
+ }
+
+
+ useEffect(()=>{
+  display()
+ })
+
+
+
 
 
   return(
-    <div>
-      {/* {items.map((item)=>{ */}
-         <img src= "https://reactjs.org/logo-og.png" alt="react logo" style={styles.logo}/>
-      {/* })} */}
+    <div className="c-thumbnail" >
+         {items.photos.map((item)=>{
+          return  <img  className="circle-thumbnail" src={item.url}   onClick={()=>(
+            setImage(item.url), setDidClick(true)
+          )}/>
+    })}
+
 
     </div>
 
