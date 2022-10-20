@@ -9,13 +9,16 @@ import API from './API.js';
 axios.defaults.headers.common['Authorization'] = API_KEY;
 // Subcomponent Imports
 import ReviewList from './ReviewList.jsx';
+import DropDown from './DropDown.jsx';
+import StarRating from './StarRating.jsx';
 
 const Reviews = ({product}) => {
   const [reviews, setReviews] = React.useState('');
   const [sort, setSort] = React.useState('relevant');
   const [reviewsShown, setReviewsShown] = React.useState(2);
-  const [ratings, setRatings] = React.useState('');
+  const [ratings, setRatings] = React.useState(null);
   const [characteristics, setCharacteristics] = React.useState('');
+  const [recommended, setRecommended] = React.useState(null);
 
   //console.log(`product from reviews component: ${JSON.stringify(product)}`);
 
@@ -26,15 +29,17 @@ const Reviews = ({product}) => {
         .then((metaData) => {
           setRatings(metaData.data.ratings);
           setCharacteristics(metaData.data.characteristics);
+          setRecommended(metaData.data.recommended);
           let totalReviews = 0;
           for(const key in metaData.data.ratings) {
             totalReviews += Number(metaData.data.ratings[key]);
           }
           //console.log(`totalreviews: ${totalReviews}`);
-          API.getReviews(1, totalReviews, 'relevant', product.id)
+          API.getReviews(1, totalReviews, sort, product.id)
             .then((reviews) => {
               setReviews(reviews.data.results);
-              console.log(reviews.data.results);
+              console.log(`metadata retrieved: ${JSON.stringify(metaData.data)}`)
+              //console.log(`reviews retrieved: ${JSON.stringify(reviews.data.results)}`);
             })
             .catch((err) => {
               console.log(`error from API.getReviews: ${err}`);
@@ -44,24 +49,46 @@ const Reviews = ({product}) => {
           console.log(`error from API.getReviewMeta: ${err}`);
         })
     }
-  }, [product]);
+  }, [product, sort]);
 
   function addReviews() {
     setReviewsShown(reviewsShown + 2);
   }
 
+  function averageStarRating() {
+    let total = 0;
+    let totalRatings = 0;
+    for(const key in ratings) {
+      totalRatings += Number(ratings[key]);
+      total += Number(ratings[key]) * Number(key);
+    }
+    return (Math.floor((total / totalRatings) * 10)) / 10;
+  }
+
   return(
     <div className="ratingsAndReviews">
       <div className="leftReviews">
-        Ratings & Reviews
-        {/* overall rating & stars */}
+        <h2>Ratings & Reviews</h2>
+        {ratings && <div className='averageRating'>
+          <h1>{averageStarRating()}</h1>
+          <StarRating initialRating={averageStarRating()} readOnly={true}/>
+        </div>}
+        {recommended && <h4>{`${Math.round((recommended.true / (Number(recommended.true) + Number(recommended.false))) * 100)}% of reviewers recommend this product`}</h4>}
         {/* rating breakdown */}
         {/* characteristic breakdown */}
       </div>
       <div className="rightReviews">
-        {/* total reviews, sorted by dropdown */}
-        {Array.isArray(reviews) && <ReviewList reviews={reviews.slice(0, reviewsShown)}/>}
-        {Array.isArray(reviews) && (reviewsShown < reviews.length) && <div onClick={addReviews}>More Reviews</div>}
+        {Array.isArray(reviews) && <div>
+          <div className='reviewCount'>
+            <h1>{`${reviews.length} reviews, sorted by`}</h1>
+            <DropDown cb={setSort} choices={[{label: 'Relevance', value: 'relevant'},
+                                {label: 'Helpfulness', value: 'helpful'},
+                                {label: 'Date', value: 'newest'}]}/>
+          </div>
+          <ReviewList reviews={reviews.slice(0, reviewsShown)}/>
+          {(reviewsShown < reviews.length) && <div onClick={addReviews}>More Reviews</div>}
+        </div>
+        }
         {/* add review button */}
       </div>
     </div>

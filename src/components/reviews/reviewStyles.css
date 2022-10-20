@@ -9,8 +9,16 @@
 
 .reviewList {
   overflow: scroll;
-  max-height: 95vh;
+  max-height: 90vh;
 }
+
+.averageRating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+}
+
 
 .reviewRecommendation::before {
   background-image: url(./resources/account-check-outline.png);
@@ -95,4 +103,56 @@
 }
 .star-rating .off {
   color: #ccc;
+}
+
+
+.reviewCount {
+  display: flex;
+  gap: 6px;
+  height: 80px;
+}
+/* DropDown Menu Styling */
+.dropdown {
+  padding: 0px 10px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.1);
+  background-color: rgb(221, 221, 221);
+}
+.dropdown-header {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dropdown-body {
+  border-top: 1px solid #E5E8EC;
+  background-color: white;
+  display: none;
+  position: relative;
+}
+.dropdown-body.open {
+  display: block;
+}
+.dropdown-item {
+  padding: 10px;
+}
+.dropdown-item:hover {
+  cursor: pointer;
+}
+.dropdown-item-dot {
+  opacity: 0;
+  color: #91A5BE;
+  transition: all .2s ease-in-out;
+}
+.dropdown-item-dot.selected {
+  opacity: 1;
+}
+.icon {
+  font-size: 13px;
+  color: #91A5BE;
+  transform: rotate(0deg);
+  transition: all .2s ease-in-out;
+}
+.icon.open {
+  transform: rotate(90deg);
 }
