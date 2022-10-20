@@ -102,7 +102,7 @@ const Related = (props) => {
       <div className='relatedCards' onLoad={()=>scrollCheck()} style={{display:'flex', overflowX: 'hidden',}}>
         {related != [] ? related.map((id, i)=>{return (<RelatedCard key={i} curProduct={curProduct} productID = {id} isRelated={true} />)}) : null}
       </div>
-      {related ? <Outfit productID={[37313]}/> : null}
+      {props.productID ? <Outfit productID={props.productID}/> : null}
     </>
   )
 };
