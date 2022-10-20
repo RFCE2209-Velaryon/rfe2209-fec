@@ -3,6 +3,7 @@ import React from 'react';
 const StarRating = ({initialRating, readOnly}) => {
   const [rating, setRating] = React.useState(initialRating);
   const [hover, setHover] = React.useState(0);
+
   return (
     <div className="star-rating">
       {[...Array(5)].map((star, index) => {
