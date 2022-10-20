@@ -124,7 +124,7 @@ const RelatedCard = (props) => {
   }
 
   let removeOutfit = () => {
-    console.log('remove outfit');
+    props.removeOutfitID(props.cardKey);
   }
 
   return(

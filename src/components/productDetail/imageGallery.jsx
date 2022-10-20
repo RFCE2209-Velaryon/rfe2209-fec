@@ -9,7 +9,7 @@ const [imageArray, setImageArray] = useState([])
 const [nextImage, setNextImage] = useState(0)
 const [zoom, setZoom] = useState(false)
 const [magnifiy, setMagnify] = useState({width: '600px'})
-console.log(magnifiy)
+
 
 
 const isZoomed = () => {
