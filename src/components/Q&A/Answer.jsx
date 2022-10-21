@@ -38,8 +38,9 @@ const Answer = ({answer, refresh, setRefresh}) => {
     <div key={answer[1]}>
       <div>{answer[2]}</div>
       <div>
-        {`by ${answer[4]}, ${date} | Helpful? `}
-        {/* {(answer[4] === 'Seller') ? {`by ${<b>{answer[4]}</b>}, ${date} | Helpful? `} : {`by ${answer[4]}, ${date} | Helpful? `}} */}
+        {`by `}
+        {answer[4] === 'Seller' ? <b>{answer[4]}</b>: answer[4]}
+        {`, ${date} | Helpful? `}
         {help ? <u>Yes</u> : <u onClick={() => {helpHandler(answer[1])}}>Yes</u>}
         {` (${answer[3]}) | `}
         {report ? <u>Reported</u> : <u onClick={() => {reportHandler(answer[1])}}>Report</u>}
