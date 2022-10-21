@@ -39,7 +39,7 @@ useEffect(()=>{
 
 
   return(
-    <div>
+    <div >
 
       {didClick ? <img src={image} className="main-image" style={magnifiy}/> :
        <img src={imageArray[nextImage]} className="main-image" alt="thumbnail" style={magnifiy}/>}

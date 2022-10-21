@@ -27,14 +27,14 @@ const ItemSelectors = ({items, prod}) => {
 
   return(
     <div>
-      <select  id="seletedList">
+      <select  className="select">
       <option >Select Size</option>
       {size.map((sizes,i)=>{
        return <option key={i}>{sizes}</option>
       })}
        </select>
 
-       <select name="selectedQty" id="seletedQty">
+       <select className="select">
       <option>--Qty-</option>
       {quantity.map((qtys)=>{
        return <option key={qtys}>{qtys}</option>
@@ -42,7 +42,7 @@ const ItemSelectors = ({items, prod}) => {
        </select>
 
 
-       <select name="cart" id="cart">
+       <select className="select">
       <option>--Add to cart--</option>
       <option>1</option>
        </select>
