@@ -40,7 +40,7 @@ const [didClick, setDidClick] = useState(true)
     <h2>Product Sloagan: {prod.slogan}</h2>
     <h2>Description</h2>
     <h4>{prod.description}</h4>
-    {item[0] && <CurrentSelectedStyle items={item[0]} image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick}/>}
+    {item[0] && <CurrentSelectedStyle items={item[0]} image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick} prod={prod}/>}
     {item[0] && <ImageThumbnail items={item[0]} image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick}/>}
     {item[0] && <ItemSelectors items={item[0]}  prod={prod}/>}
     </section>
