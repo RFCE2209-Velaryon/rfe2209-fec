@@ -15,6 +15,22 @@ const Outfit = (props) => {
   let [needsScrollRight, setNeedsScrollRight] = useState(false);
   let [needsScrollLeft, setNeedsScrollLeft] = useState(false);
 
+  useEffect(()=> {
+    if(document.cookie) {
+      let cookieObject = {};
+      let cookies = document.cookie.split(';');
+      cookies.forEach(cookie => {
+        let cook = cookie.split('=');
+        cookieObject[cook[0]] = cook[1];
+      })
+      if(cookieObject.outfitIDs) {
+        setOutfitID({ids: JSON.parse(cookieObject.outfitIDs)});
+      }
+    } else {
+      console.log('no cookies')
+    }
+  },[]);
+
   let getProductData = (id) => {
     return axios({
       method: 'get',
@@ -25,7 +41,6 @@ const Outfit = (props) => {
   let relatedHandler = (id) => {
     getRelated(id).then((relRes) => {
       getProductData(id).then((proRes) => {
-        console.log('relatedIDs: ', relRes.data);
         setRelated(relRes.data);
         setCurProduct({name: proRes.data.name, features: proRes.data.features});
 
@@ -38,6 +53,10 @@ const Outfit = (props) => {
       setOutfitID( prev => {
         let newfit = prev.ids
         newfit.push(id);
+        let date = new Date();
+        date.setHours(date.getHours() + 24);
+        let expires = 'expires='+date.toUTCString();
+        document.cookie = 'outfitIDs='+JSON.stringify(newfit)+';' + expires +'; path=/';
         return ({ids: newfit})
       });
     }
@@ -47,6 +66,10 @@ const Outfit = (props) => {
     setOutfitID( prev => {
       let newfit = prev.ids
       newfit.splice(id,1);
+      let date = new Date();
+      date.setHours(date.getHours() + 24);
+      let expires = 'expires='+date.toUTCString();
+      document.cookie = 'outfitIDs='+JSON.stringify(newfit)+';' + expires +'; path=/';
       return ({ids: newfit})
     });
 
@@ -109,8 +132,9 @@ const Outfit = (props) => {
         </div>
       ): null}
       <div className='outfitCards' onLoad={()=>scrollCheck()}>
-        <div className='addOutfitWrapper' onClick={(e)=> {setOutfitIDs(props.productID)}}>
-          <div className='addOutfitText' >&#43;</div>
+        <div className='cardWrapper' style={{backgroundColor:'gray'}} onClick={(e)=> {setOutfitIDs(props.productID)}}>
+          <div className='addOutfitText'>Add to Outfit</div>
+          <div className='addOutfitIcon' >&#43;</div>
         </div>
         {outfitID.ids ? (outfitID.ids.map((id, i)=>{return (<RelatedCard key={i} setProduct={props.setProduct} removeOutfitID={removeOutfitID} cardKey={i} curProduct={curProduct} productID = {id} isRelated={false} />)})) : <div>outfitID not found</div>}
       </div>

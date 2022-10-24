@@ -88,8 +88,15 @@
   background-color: gray;
 }
 
-.addOutfitText {
+.addOutfitIcon {
   width: 250px;
   font-size: 10rem;
   text-align: center;
+}
+
+.addOutfitText {
+  width: 250px;
+  font-size: 2rem;
+  text-align: center;
+  padding-top: 30px;
 }

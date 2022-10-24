@@ -16,7 +16,6 @@ const Related = (props) => {
   let [needsScrollLeft, setNeedsScrollLeft] = useState(false);
 
   useEffect(()=>{
-    console.log(props.product.id);
     if(props.product.id) {
       relatedHandler(props.product.id);
     } else {
@@ -36,7 +35,6 @@ const Related = (props) => {
   let relatedHandler = (id) => {
     getRelated(id).then((relRes) => {
       getProductData(id).then((proRes) => {
-        console.log('relatedIDs: ', relRes.data);
         setRelated({ids: relRes.data});
         setCurProduct({name: proRes.data.name, features: proRes.data.features});
       })
