@@ -9,21 +9,22 @@ const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const scollNumber = 262;
 let timeout = null;
 const Related = (props) => {
-  let [related, setRelated] = useState([]);
+  let [related, setRelated] = useState({ids: []});
   let [curProduct, setCurProduct] = useState({name:'',features:[]});
   let [needsScrolling, setNeedsScrolling] = useState(false);
   let [needsScrollRight, setNeedsScrollRight] = useState(false);
   let [needsScrollLeft, setNeedsScrollLeft] = useState(false);
 
   useEffect(()=>{
-    if(props.productID) {
-      relatedHandler(props.productID);
+    console.log(props.product.id);
+    if(props.product.id) {
+      relatedHandler(props.product.id);
     } else {
       getProduct().then(res => {
         relatedHandler(res.data[0].id)
       });
     }
-  },[]);
+  },[props.product]);
 
   let getProductData = (id) => {
     return axios({
@@ -35,10 +36,9 @@ const Related = (props) => {
   let relatedHandler = (id) => {
     getRelated(id).then((relRes) => {
       getProductData(id).then((proRes) => {
-        //console.log('relatedIDs: ', relRes.data);
-        setRelated(relRes.data);
+        console.log('relatedIDs: ', relRes.data);
+        setRelated({ids: relRes.data});
         setCurProduct({name: proRes.data.name, features: proRes.data.features});
-
       })
     })
   };
@@ -71,7 +71,7 @@ const Related = (props) => {
   let arrowCheck = (doc) => {
     setNeedsScrollLeft(true);
     setNeedsScrollRight(true);
-    if(doc.scrollLeft === (doc.scrollWidth - doc.clientWidth)) {
+    if(Math.round(doc.scrollLeft) >= (doc.scrollWidth - doc.clientWidth)) {
       setNeedsScrollRight(false);
     }
     if (doc.scrollLeft === 0) {
@@ -90,19 +90,19 @@ const Related = (props) => {
     <>
       <h1>Related Items Component</h1>
       {needsScrollLeft ? (
-        <div style={{position:'relative', paddingLeft: 10+'px', top: 125+'px'}}>
-          <button onClick = {(e)=>{scroll(scollNumber*-1)}} style={{fontSize: 2+'rem', position:'absolute',left:1+'%'}}>&#60;</button>
+        <div className='scrollLeft relative'>
+          <button className='scrollBtn left' onClick = {(e)=>{scroll(scollNumber*-1)}}> &#60; </button>
         </div>
       ): null}
       {needsScrollRight ? (
-        <div style={{position:'relative', paddingRight: 10+'px', top: 125+'px'}}>
-          <button onClick = {(e)=>{scroll(scollNumber)}} style={{fontSize: 2+'rem', position:'absolute',right:1+'%'}}>&#62;</button>
+        <div className='scrollRight relative'>
+          <button className='scrollBtn right' onClick = {(e)=>{scroll(scollNumber)}}> &#62; </button>
         </div>
       ): null}
-      <div className='relatedCards' onLoad={()=>scrollCheck()} style={{display:'flex', overflowX: 'hidden',}}>
-        {related != [] ? related.map((id, i)=>{return (<RelatedCard key={i} curProduct={curProduct} productID = {id} isRelated={true} />)}) : null}
+      <div className='relatedCards' onLoad={()=>scrollCheck()}>
+        {related.ids != [] ? related.ids.map((id, i)=>{return (<RelatedCard key={i} setProduct={props.setProduct} curProduct={curProduct} productID = {id} isRelated={true} />)}) : null}
       </div>
-      {props.productID ? <Outfit productID={props.productID}/> : null}
+      {props.product.id ? <Outfit setProduct={props.setProduct} productID={props.product.id}/> : null}
     </>
   )
 };

@@ -34,11 +34,13 @@ const Outfit = (props) => {
   };
 
   let setOutfitIDs = (id) => {
-    setOutfitID( prev => {
-      let newfit = prev.ids
-      newfit.push(id);
-      return ({ids: newfit})
-    });
+    if(!outfitID.ids.includes(id)){
+      setOutfitID( prev => {
+        let newfit = prev.ids
+        newfit.push(id);
+        return ({ids: newfit})
+      });
+    }
   }
 
   let removeOutfitID = (id) => {
@@ -78,7 +80,7 @@ const Outfit = (props) => {
   let arrowCheck = (doc) => {
     setNeedsScrollLeft(true);
     setNeedsScrollRight(true);
-    if(doc.scrollLeft === (doc.scrollWidth - doc.clientWidth)) {
+    if(Math.round(doc.scrollLeft) >= (doc.scrollWidth - doc.clientWidth)) {
       setNeedsScrollRight(false);
     }
     if (doc.scrollLeft === 0) {
@@ -97,20 +99,20 @@ const Outfit = (props) => {
     <>
       <h1>yourOutfit</h1>
       {needsScrollLeft ? (
-        <div style={{position:'relative', paddingLeft: 10+'px', top: 125+'px'}}>
-          <button onClick = {(e)=>{scroll(scollNumber*-1)}} style={{fontSize: 2+'rem', position:'absolute',left:1+'%'}}>&#60;</button>
+        <div className='scrollLeft relative'>
+          <button className='scrollBtn left' onClick = {(e)=>{scroll(scollNumber*-1)}}>&#60;</button>
         </div>
       ): null}
       {needsScrollRight ? (
-        <div style={{position:'relative', paddingRight: 10+'px', top: 125+'px'}}>
-          <button onClick = {(e)=>{scroll(scollNumber)}} style={{fontSize: 2+'rem', position:'absolute',right:1+'%'}}>&#62;</button>
+        <div className='scrollRight relative'>
+          <button className='scrollBtn right' onClick = {(e)=>{scroll(scollNumber)}}>&#62;</button>
         </div>
       ): null}
-      <div className='outfitCards' onLoad={()=>scrollCheck()} style={{display:'flex', overflowX: 'hidden',}}>
-        <div onClick={(e)=> {setOutfitIDs(props.productID)}} style={{display:'block', border: 1 + 'px solid black', width: '250px', height: '300px', margin: 5+'px', backgroundColor:'gray'}}>
-          <div style={{width: '250px', fontSize:'10rem', textAlign: 'center'}}>&#43;</div>
+      <div className='outfitCards' onLoad={()=>scrollCheck()}>
+        <div className='addOutfitWrapper' onClick={(e)=> {setOutfitIDs(props.productID)}}>
+          <div className='addOutfitText' >&#43;</div>
         </div>
-        {outfitID.ids ? (outfitID.ids.map((id, i)=>{return (<RelatedCard key={i} removeOutfitID={removeOutfitID} cardKey={i} curProduct={curProduct} productID = {id} isRelated={false} />)})) : <div>outfitID not found</div>}
+        {outfitID.ids ? (outfitID.ids.map((id, i)=>{return (<RelatedCard key={i} setProduct={props.setProduct} removeOutfitID={removeOutfitID} cardKey={i} curProduct={curProduct} productID = {id} isRelated={false} />)})) : <div>outfitID not found</div>}
       </div>
     </>
   )
