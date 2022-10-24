@@ -29,7 +29,6 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
       var storage = [];
       getQs(prodID, 1, totalQs < 4 ? 4 : totalQs)
       .then((response) => {
-          console.log(response.data.results);
           response.data.results.forEach((item) => {
             var count = 0;
             for (var a in item.answers) {
