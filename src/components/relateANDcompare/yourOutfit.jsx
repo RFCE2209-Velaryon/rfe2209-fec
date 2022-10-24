@@ -10,16 +10,24 @@ let timeout = null;
 const Outfit = (props) => {
   let [related, setRelated] = useState([]);
   let [curProduct, setCurProduct] = useState({name:'',features:[]});
-  let [outfitID, setOutfitID] = useState([]);
+  let [outfitID, setOutfitID] = useState({ids:[]});
   let [needsScrolling, setNeedsScrolling] = useState(false);
   let [needsScrollRight, setNeedsScrollRight] = useState(false);
   let [needsScrollLeft, setNeedsScrollLeft] = useState(false);
 
-  useEffect(()=>{
-    if(props.productID) {
-      setOutfitIDs(props.productID);
+  useEffect(()=> {
+    if(document.cookie) {
+      let cookieObject = {};
+      let cookies = document.cookie.split(';');
+      cookies.forEach(cookie => {
+        let cook = cookie.split('=');
+        cookieObject[cook[0]] = cook[1];
+      })
+      if(cookieObject.outfitIDs) {
+        setOutfitID({ids: JSON.parse(cookieObject.outfitIDs)});
+      }
     } else {
-      console.log('productID missing');
+      console.log('no cookies')
     }
   },[]);
 
@@ -33,7 +41,6 @@ const Outfit = (props) => {
   let relatedHandler = (id) => {
     getRelated(id).then((relRes) => {
       getProductData(id).then((proRes) => {
-        console.log('relatedIDs: ', relRes.data);
         setRelated(relRes.data);
         setCurProduct({name: proRes.data.name, features: proRes.data.features});
 
@@ -41,8 +48,31 @@ const Outfit = (props) => {
     })
   };
 
-  let setOutfitIDs = (ids) => {
-    setOutfitID(ids);
+  let setOutfitIDs = (id) => {
+    if(!outfitID.ids.includes(id)){
+      setOutfitID( prev => {
+        let newfit = prev.ids
+        newfit.push(id);
+        let date = new Date();
+        date.setHours(date.getHours() + 24);
+        let expires = 'expires='+date.toUTCString();
+        document.cookie = 'outfitIDs='+JSON.stringify(newfit)+';' + expires +'; path=/';
+        return ({ids: newfit})
+      });
+    }
+  }
+
+  let removeOutfitID = (id) => {
+    setOutfitID( prev => {
+      let newfit = prev.ids
+      newfit.splice(id,1);
+      let date = new Date();
+      date.setHours(date.getHours() + 24);
+      let expires = 'expires='+date.toUTCString();
+      document.cookie = 'outfitIDs='+JSON.stringify(newfit)+';' + expires +'; path=/';
+      return ({ids: newfit})
+    });
+
   }
 
   let getRelated = (id) => {
@@ -73,7 +103,7 @@ const Outfit = (props) => {
   let arrowCheck = (doc) => {
     setNeedsScrollLeft(true);
     setNeedsScrollRight(true);
-    if(doc.scrollLeft === (doc.scrollWidth - doc.clientWidth)) {
+    if(Math.round(doc.scrollLeft) >= (doc.scrollWidth - doc.clientWidth)) {
       setNeedsScrollRight(false);
     }
     if (doc.scrollLeft === 0) {
@@ -92,20 +122,21 @@ const Outfit = (props) => {
     <>
       <h1>yourOutfit</h1>
       {needsScrollLeft ? (
-        <div style={{position:'relative', paddingLeft: 10+'px', top: 125+'px'}}>
-          <button onClick = {(e)=>{scroll(scollNumber*-1)}} style={{fontSize: 2+'rem', position:'absolute',left:1+'%'}}>&#60;</button>
+        <div className='scrollLeft relative'>
+          <button className='scrollBtn left' onClick = {(e)=>{scroll(scollNumber*-1)}}>&#60;</button>
         </div>
       ): null}
       {needsScrollRight ? (
-        <div style={{position:'relative', paddingRight: 10+'px', top: 125+'px'}}>
-          <button onClick = {(e)=>{scroll(scollNumber)}} style={{fontSize: 2+'rem', position:'absolute',right:1+'%'}}>&#62;</button>
+        <div className='scrollRight relative'>
+          <button className='scrollBtn right' onClick = {(e)=>{scroll(scollNumber)}}>&#62;</button>
         </div>
       ): null}
-      <div className='outfitCards' onLoad={()=>scrollCheck()} style={{display:'flex', overflowX: 'hidden',}}>
-        <div style={{border: 1 + 'px solid black', width: 250+'px', height: 300+'px', margin: 5+'px', backgroundColor:'gray'}}>
-          <div style={{fontSize:'10rem', textAlign: 'center'}}>&#43;</div>
+      <div className='outfitCards' onLoad={()=>scrollCheck()}>
+        <div className='cardWrapper' style={{backgroundColor:'gray'}} onClick={(e)=> {setOutfitIDs(props.productID)}}>
+          <div className='addOutfitText'>Add to Outfit</div>
+          <div className='addOutfitIcon' >&#43;</div>
         </div>
-        {outfitID != [] ? outfitID.map((id, i)=>{return (<RelatedCard key={i} curProduct={curProduct} productID = {id} isRelated={false} />)}) : <div>outfit</div>}
+        {outfitID.ids ? (outfitID.ids.map((id, i)=>{return (<RelatedCard key={i} setProduct={props.setProduct} removeOutfitID={removeOutfitID} cardKey={i} curProduct={curProduct} productID = {id} isRelated={false} />)})) : <div>outfitID not found</div>}
       </div>
     </>
   )

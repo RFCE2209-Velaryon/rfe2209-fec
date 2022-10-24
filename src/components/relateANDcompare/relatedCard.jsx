@@ -3,11 +3,13 @@ import getProduct from '../../lib/getProduct.js';
 import axios from 'axios';
 import CompareModal from './compareModal.jsx';
 import $ from 'jquery';
+import './relateStyle.css';
 
 
 const {useState, useEffect} = React;
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const RelatedCard = (props) => {
+  let cardProduct = {};
   let [displayItems, setDisplayItems] = useState([<div>loading...</div>]);
   let [comProduct, setComProduct] = useState({name:'',features:['test']});
   let [modal, setModal] = useState(false);
@@ -16,6 +18,7 @@ const RelatedCard = (props) => {
   useEffect(()=>{
     let itemHolder = [];
     itemHolder.push(getProductData(props.productID).then((proData)=> {
+      cardProduct = proData.data;
       return getProductStyle(props.productID).then((styleData) => {
         return getProductStars(props.productID).then((starData) => {
           getAllFeatures(props.curProduct, {'name': proData.data.name, 'features': proData.data.features})
@@ -28,24 +31,34 @@ const RelatedCard = (props) => {
             }
           }
           return (
-            <div style={{border: 1 + 'px solid black', width: 250+'px', height: 300+'px', margin: 5+'px', backgroundColor:'white'}}>
+            <div className='cardWrapper'>
               {
                 props.isRelated ?
-                  <div style={{position:'relative'}}>
-                    <button onClick={(e) => {toggleModal()}}style={{position: 'absolute', right: 1+'px', top: 1+'px'}}>&#9733;</button>
+                  <div className='relative'>
+                    <button className='cardBtn' onClick={(e) => {toggleModal()}}>&#9733;</button>
                   </div>:
-                  <div style={{position:'relative'}}>
-                    <button onClick={(e) => {removeOutfit()}}style={{position: 'absolute', right: 1+'px', top: 1+'px'}}>&#10008;</button>
+                  <div className='relative'>
+                    <button className='cardBtn' onClick={(e) => {removeOutfit()}}>&#10008;</button>
                   </div>
 
               }
-              <div style={{height: 200+'px', backgroundColor: 'black'}}>
-                <img style={{height: '100%', width: '100%', objectFit: 'contain'}} src={imgSrc()}></img>
+              <div onClick={(e)=> {changeProduct()}}>
+                <div className='cardImgWrapper'>
+                  <img className='cardImg' src={imgSrc()}></img>
+                </div>
+                <div>{proData.data.name}</div>
+                <div>{proData.data.category}</div>
+                <div>${proData.data.default_price}</div>
+                <div className='relative'>
+                  <div className='starsWrapper'>
+                    <img className='stars' src={'https://drive.google.com/uc?export=view&id=1dqWztl66gPr7gtT743hfwlmT-mpedUBU'}></img>
+                  </div>
+                  <div className='starsFill'>
+                  </div>
+                  <div className='starsFill' style={{width: ((stars/5)*175)+'px', backgroundColor:'yellow'}}>
+                  </div>
+                </div>
               </div>
-              <div>{proData.data.name}</div>
-              <div>{proData.data.category}</div>
-              <div>${proData.data.default_price}</div>
-              <div style={{position: 'relative'}}><div style={{zIndex:1, width: 200+'px', height: 25+'px', position:'absolute'}}><img style={{width: '100%', height: '100%'}}src={'https://drive.google.com/uc?export=view&id=1ubX7q_pi7hyS9w2cHCc7gau33lt7B3SR'}></img></div><div style={{zIndex:0, width: ((stars/5)*200)+'px', height: 25+'px', position:'absolute', backgroundColor:'yellow'}}></div></div>
             </div>
           );
         })
@@ -54,7 +67,7 @@ const RelatedCard = (props) => {
     Promise.all(itemHolder).then(items=> {
       setDisplayItems(items);
     })
-  },[]);
+  },[props.productID]);
 
   let getProductData = (id) => {
     return axios({
@@ -124,7 +137,12 @@ const RelatedCard = (props) => {
   }
 
   let removeOutfit = () => {
-    console.log('remove outfit');
+    props.removeOutfitID(props.cardKey);
+  }
+
+  let changeProduct = () => {
+    console.log('settingproduct: ', cardProduct);
+    props.setProduct(cardProduct);
   }
 
   return(

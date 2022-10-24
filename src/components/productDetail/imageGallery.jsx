@@ -9,7 +9,7 @@ const [imageArray, setImageArray] = useState([])
 const [nextImage, setNextImage] = useState(0)
 const [zoom, setZoom] = useState(false)
 const [magnifiy, setMagnify] = useState({width: '600px'})
-console.log(magnifiy)
+
 
 
 const isZoomed = () => {
@@ -39,7 +39,7 @@ useEffect(()=>{
 
 
   return(
-    <div>
+    <div >
 
       {didClick ? <img src={image} className="main-image" style={magnifiy}/> :
        <img src={imageArray[nextImage]} className="main-image" alt="thumbnail" style={magnifiy}/>}

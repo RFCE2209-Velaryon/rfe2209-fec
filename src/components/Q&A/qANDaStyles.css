@@ -1,0 +1,41 @@
+.questions-list {
+  overflow: scroll;
+  max-height: 80vh;
+  margin: 10px;
+}
+
+.seeMoreAnswers {
+  overflow: scroll;
+  max-height: 40vh;
+}
+
+.q-modal{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.q-modal-content{
+  width: 500px;
+  background-color: #fff;
+}
+
+.q-modal-header, .q-modal-footer{
+  padding: 10px;
+}
+
+.q-modal-title, .q-modal-subtitle{
+  margin: 0;
+}
+
+.q-modal-body{
+  padding: 10px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}

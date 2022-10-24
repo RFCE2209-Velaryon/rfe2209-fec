@@ -25,10 +25,15 @@ function App () {
       })
   }, []);
 
+  React.useEffect(() => {
+    // TODO: make an API call to get one product
+    console.log('product: ', JSON.stringify(product))
+  }, [product]);
+
   return (
     <div>
       <Product prodID ={product.id} prod={product}/>
-      <Related />
+      <Related product = {product} setProduct={setProduct}/>
       <QuestionsAndAnswers prodID={product.id}/>
       <Reviews product={product}/>
     </div>
