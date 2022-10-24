@@ -1,6 +1,8 @@
 import React from 'react';
 
-const StarRating = ({initialRating, readOnly}) => {
+const StarRating = ({initialRating, readOnly, cb}) => {
+
+
   const [rating, setRating] = React.useState(initialRating);
   const [hover, setHover] = React.useState(0);
 
@@ -16,6 +18,9 @@ const StarRating = ({initialRating, readOnly}) => {
             onClick={() => {
               if(!readOnly) {
                 setRating(index);
+                if(cb) {
+                  cb(index);
+                }
               }
             }}
             onMouseEnter={() => {
