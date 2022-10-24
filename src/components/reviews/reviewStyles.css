@@ -1,0 +1,244 @@
+.ratingsAndReviews {
+  display: flex;
+  max-height: 100vh;
+}
+
+.leftReviews, .rightReviews {
+  border: solid 1px black;
+}
+
+.reviewList {
+  overflow: scroll;
+  max-height: 90vh;
+}
+
+.averageRating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+}
+
+
+.reviewRecommendation::before {
+  background-image: url(./resources/account-check-outline.png);
+  background-size: 22px 22px;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  content:"";
+  vertical-align: text-bottom;
+}
+
+.sellerResponse {
+
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reviewUser {
+  display: flex;
+  gap: 6px;
+}
+
+.reviewFooter {
+  display: flex;
+  gap: 6px;
+}
+
+.modalImageThumbnail {
+  height: 100px;
+  width: auto;
+}
+
+.modalImage {
+  max-width: 90vw;
+  height: auto;
+}
+
+.grayModalBackground {
+  position: fixed;
+  /* fill the screen */
+  height: 100vh;
+  width: 100vw;
+  /* center/create background */
+  left: 0;
+  top: 0;
+  background-color: rgba(100, 100, 100, 0.852);
+  /* center image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2vmin;
+}
+
+.closeModalImage {
+  height: 5vmin;
+  width: 5vmin;
+  background-color: rgb(168, 168, 168);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3vmin;
+}
+
+.reviewImagesContainer {
+  display: flex;
+}
+
+/* Star Rating Styling */
+.star-rating button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.star-rating .on {
+  color: #000;
+}
+.star-rating .off {
+  color: #ccc;
+}
+
+
+.reviewCount {
+  display: flex;
+  gap: 6px;
+  height: 80px;
+}
+/* DropDown Menu Styling */
+.dropdown {
+  padding: 0px 10px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.1);
+  background-color: rgb(221, 221, 221);
+}
+.dropdown-header {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dropdown-body {
+  border-top: 1px solid #E5E8EC;
+  background-color: white;
+  display: none;
+  position: relative;
+}
+.dropdown-body.open {
+  display: block;
+}
+.dropdown-item {
+  padding: 10px;
+}
+.dropdown-item:hover {
+  cursor: pointer;
+}
+.dropdown-item-dot {
+  opacity: 0;
+  color: #91A5BE;
+  transition: all .2s ease-in-out;
+}
+.dropdown-item-dot.selected {
+  opacity: 1;
+}
+.icon {
+  font-size: 13px;
+  color: #91A5BE;
+  transform: rotate(0deg);
+  transition: all .2s ease-in-out;
+}
+.icon.open {
+  transform: rotate(90deg);
+}
+
+.ratingBreakdown {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  justify-content: space-around;
+}
+
+.ratingBreakdownLabel {
+  text-decoration: underline;
+}
+
+/* progress bar styling */
+.progress-bar {
+  height: 18px;
+  width: 80%;
+  background-color: #e0e0e0;
+}
+.progress-bar-fill {
+  display: block;
+  height: 18px;
+  background-color: #363636;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  border-radius: 100%;
+  padding: 4px;
+}
+
+.filter::after {
+  background-image: url(./resources/close-circle-outline.png);
+  background-size: 14px 14px;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  content:"";
+  vertical-align: text-bottom;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  margin-right: 15px;
+  width: 15rem;
+  height: 7px;
+  background: rgb(200, 200, 200);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #363636;
+  background: url(./resources/triangle.png);
+  transform: rotate(180deg);
+  background-size: 22px 22px;
+  height: 22px;
+  width: 22px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+input[type=range]::-webkit-slider-runnable-track  {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+.rangeLabelContainer {
+  width: 15rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rightReviewsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}

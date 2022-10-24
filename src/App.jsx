@@ -18,7 +18,7 @@ function App () {
     getProduct()
       .then((response) => {
         setProduct(response.data[0]);
-        console.log(response.data[0]);
+        //console.log(response.data[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -32,7 +32,6 @@ function App () {
 
   return (
     <div>
-      <Product prodID ={product.id} prod={product}/>
       <Related product = {product} setProduct={setProduct}/>
       <QuestionsAndAnswers prodID={product.id}/>
       <Reviews product={product}/>
