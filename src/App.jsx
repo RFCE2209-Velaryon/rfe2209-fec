@@ -32,7 +32,6 @@ function App () {
 
   return (
     <div>
-      <Product prodID ={product.id} prod={product}/>
       <Related product = {product} setProduct={setProduct}/>
       <QuestionsAndAnswers prodID={product.id}/>
       <Reviews product={product}/>
