@@ -1,0 +1,84 @@
+.circle-thumbnail {
+    height: 100px;
+    width: 100px;
+    border-radius:100%;
+    border: solid 5px white,
+};
+
+.square-thumbnail {
+  height: 100px;
+  width: 100px;
+  border-width: 5px;
+  border-color:white;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.main-image {
+  position: relative;
+  order: 1;
+  height: auto;
+}
+
+
+.carousel-button {
+  position: absolute;
+  Z-index: 2;
+  background: none;
+  border: none;
+  font-size: 3rem;
+  top: 30%;
+  left: 15%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255, .5);
+  border-radius: .25rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  background-color: rgba(0,0,0,.1)
+
+}
+
+.carousel-button:hover,
+.carousel-button:focus {
+  color:white;
+  background-color: rgba(0,0,0,.2);
+}
+
+
+
+.carousel-button:focus {
+  outline: 1px solid black;
+}
+
+.carousel-button.previous {
+  left: 1rem;
+}
+
+.carousel-button.next {
+  right: 1rem;
+}
+
+.thumbnail {
+  position: absolute;
+}
+
+.zoom-button {
+  position: absolute;
+  Z-index: 2;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  left: 45%;
+  color: rgba(255,255,255, .5);
+  border-radius: .25rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  background-color: rgba(0,0,0,.1)
+
+}
+.c-thumbnail {
+
+}
