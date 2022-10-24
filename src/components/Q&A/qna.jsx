@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Questions from "./Questions.jsx";
 import SearchBar from "./SearchBar.jsx";
+import QuestionModal from "./QuestionModal.jsx";
+import './qANDaStyles.css';
+
 
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
-const QuestionsAndAnswers = ({prodID}) => {
+const QuestionsAndAnswers = ({prodID, prodName}) => {
+  const [QModal, setQModal] = useState(false);
   const [totalQs, setTotalQs] = useState(4);
   const [showButton, setShowButton] = useState(false);
   const [questions, setQuestions] = useState([]);
-  // const [filtered, setFiltered] = useState(); //might need to change later
+  const [filtered, setFiltered] = useState([]);
   const [refreshQ, setRefreshQ] = useState(false);
   const getQs = (prodID, pageCount, qCount) => {
     return axios.get(`${apiurl}qa/questions`, {
@@ -24,7 +28,8 @@ const QuestionsAndAnswers = ({prodID}) => {
     if (prodID) {
       var storage = [];
       getQs(prodID, 1, totalQs < 4 ? 4 : totalQs)
-        .then((response) => {
+      .then((response) => {
+          console.log(response.data.results);
           response.data.results.forEach((item) => {
             var count = 0;
             for (var a in item.answers) {
@@ -72,22 +77,21 @@ const QuestionsAndAnswers = ({prodID}) => {
   return(
     <div>
       <h1>Q&A Component</h1>
-      {/* <SearchBar questions={questions} setFiltered={setFiltered}/> */}
-      <div>
-        {questions.length > 0 ? questions.map((question, index)=>
+      <SearchBar questions={questions} setFiltered={setFiltered}/>
+      <div className="questions-list">
+        {filtered.length > 0 ? filtered.map((question, index)=>
           <div key={index}>
-            <Questions key={question[0]} question={question} refreshQ={refreshQ} setRefreshQ={setRefreshQ} totalQs={totalQs}/>
+            <Questions key={question[0]} question={question} refreshQ={refreshQ} setRefreshQ={setRefreshQ} prodName={prodName}/>
             <br></br>
           </div>
         ) : null}
         {showButton ? <button onClick={()=> {moreQuestions()}}>More Answered Questions</button> : null}
       </div>
-      {/* add more questions */}
+      <button onClick={() => setQModal(true)}>Add a Question +</button>
+      {QModal && <QuestionModal prodID={prodID} prodName={prodName} setQModal={setQModal} refreshQ={refreshQ} setRefreshQ={setRefreshQ}/>}
     </div>
   )
 };
-
-//onClick of button > append 2 more questions to our list
 
 
 export default QuestionsAndAnswers;

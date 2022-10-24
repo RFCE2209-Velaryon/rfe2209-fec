@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Answers from "./Answers.jsx";
+import AnswerModal from "./AnswerModal.jsx";
+import './qANDaStyles.css';
+
 
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
-const Questions = ({question, refreshQ, setRefreshQ, totalQs}) => {
+const Questions = ({question, refreshQ, setRefreshQ, prodName}) => {
+  const [AModal, setAModal] = useState(false);
   const [Qhelp, setQHelp] = useState(false);
   const [Qreport, setQReport] = useState(false);
   const [seeMore, setSeeMore] = useState(false);
@@ -44,9 +48,10 @@ const Questions = ({question, refreshQ, setRefreshQ, totalQs}) => {
         {` (${question[2]}) | `}
         {Qreport ? <u>Reported</u> : <u onClick={() => {QreportHandler(question[0])}}>Report</u>}
         {` | `}
-        {<u>Add Answer</u>}
+        {<u onClick={() => setAModal(true)}>Add Answer</u>}
+        {AModal && <AnswerModal prodName={prodName} qBody={question[1]} qID={question[0]} setAModal={setAModal} refreshQ={refreshQ} setRefreshQ={setRefreshQ}/>}
 
-        <div>{question[3] ? 'A:' : null}
+        <div className="seeMoreAnswers">{question[3] ? 'A:' : null}
           <Answers qid={question[0]} atotal={question[3]} seeMore={seeMore} setMoreAnswers={setMoreAnswers}/>
         </div>
         {moreAnswers ? (seeMore ? <u onClick={() => toggleSeeMore()}>Collapse answers</u> : <u onClick={() => {toggleSeeMore()}}>See more answers</u>) : null}
