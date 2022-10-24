@@ -25,6 +25,11 @@ const Related = (props) => {
     }
   },[props.product]);
 
+  useEffect(()=>{
+    console.log('related IDS: ',related.ids)
+  },[related]);
+
+
   let getProductData = (id) => {
     return axios({
       method: 'get',
@@ -98,7 +103,12 @@ const Related = (props) => {
         </div>
       ): null}
       <div className='relatedCards' onLoad={()=>scrollCheck()}>
-        {related.ids != [] ? related.ids.map((id, i)=>{return (<RelatedCard key={i} setProduct={props.setProduct} curProduct={curProduct} productID = {id} isRelated={true} />)}) : null}
+        {related.ids.length>0 ? related.ids.map((id, i)=>{
+          return (<RelatedCard key={i} setProduct={props.setProduct} curProduct={curProduct} productID = {id} isRelated={true} />)}) :
+          <div className='cardWrapper' style={{backgroundColor:'gray'}}>
+            <div className='addOutfitText'>No Related Items</div>
+            <div className='addOutfitIcon' >&#9785;</div>
+          </div>}
       </div>
       {props.product.id ? <Outfit setProduct={props.setProduct} productID={props.product.id}/> : null}
     </>
