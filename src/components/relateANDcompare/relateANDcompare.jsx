@@ -91,7 +91,7 @@ const Related = (props) => {
   });
   return(
     <>
-      <h1>Related Items Component</h1>
+      <h1>Related Items</h1>
       {needsScrollLeft ? (
         <div className='scrollLeft relative'>
           <button className='scrollBtn left' onClick = {(e)=>{scroll(scollNumber*-1)}}> &#60; </button>
