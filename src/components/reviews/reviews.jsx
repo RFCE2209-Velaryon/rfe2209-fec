@@ -41,8 +41,8 @@ const Reviews = ({product}) => {
           API.getReviews(1, totalReviews, sort, product.id)
             .then((reviews) => {
               setReviews(reviews.data.results);
-              console.log(`metadata retrieved: ${JSON.stringify(metaData.data.characteristics)}`)
-              //console.log(`reviews retrieved: ${JSON.stringify(reviews.data.results)}`);
+              console.log(`metadata retrieved: ${JSON.stringify(metaData.data)}`)
+              console.log(`reviews retrieved: ${JSON.stringify(reviews.data.results)}`);
             })
             .catch((err) => {
               console.log(`error from API.getReviews: ${err}`);

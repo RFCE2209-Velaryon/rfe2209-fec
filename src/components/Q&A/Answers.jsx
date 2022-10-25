@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import Answer from "./Answer.jsx"
+import "./qANDaStyles.css";
 
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const Answers = ({qid, atotal, seeMore, setMoreAnswers}) => {
