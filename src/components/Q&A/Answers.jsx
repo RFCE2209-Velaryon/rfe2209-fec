@@ -8,9 +8,11 @@ const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const Answers = ({qid, atotal, seeMore, setMoreAnswers}) => {
   const [answers, setAnswers] = useState([]);
   const [refresh, setRefresh] = useState(false);
+
   const getAs = (qID, pageCount, aCount) => {
-    return axios.get(`${apiurl}qa/questions/${qID}/answers`, {
+    return axios.get('/qa/questions/answers', {
       params: {
+        qid: qID,
         page: pageCount,
         count: aCount
       }
@@ -24,7 +26,7 @@ const Answers = ({qid, atotal, seeMore, setMoreAnswers}) => {
     }
     getAs(qid, 1, seeMore ? atotal : 2)
     .then((response) => {
-      response.data.results.forEach((item) => {
+      response.data.forEach((item) => {
         if (item.photos !== []) {
           var images = [];
           item.photos.forEach((photo) => {

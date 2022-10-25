@@ -14,8 +14,9 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
   const [questions, setQuestions] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [refreshQ, setRefreshQ] = useState(false);
+
   const getQs = (prodID, pageCount, qCount) => {
-    return axios.get(`${apiurl}qa/questions`, {
+    return axios.get('/qa/questions', {
       params: {
         product_id: prodID,
         page: pageCount,
@@ -25,13 +26,12 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
   };
 
   useEffect(() => {
-    console.log('1:', prodID);
     if (prodID) {
       var storage = [];
       setTotalQs(4);
       getQs(prodID, 1, 4)
       .then((response) => {
-          response.data.results.forEach((item) => {
+          response.data.forEach((item) => {
             var count = 0;
             for (var a in item.answers) {
               count++;
@@ -46,7 +46,7 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
         .then((response) => {
           getQs(prodID, 1, totalQs+1)
           .then((response) => {
-              if (response.data.results.length > totalQs) {
+              if (response.data.length > totalQs) {
                 setShowButton(true);
               } else {
                 setShowButton(false);
@@ -58,12 +58,11 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
   }, [prodID]);
 
   useEffect(() => {
-    console.log('2:', prodID);
     if (prodID) {
       var storage = [];
       getQs(prodID, 1, totalQs < 4 ? 4 : totalQs)
       .then((response) => {
-          response.data.results.forEach((item) => {
+          response.data.forEach((item) => {
             var count = 0;
             for (var a in item.answers) {
               count++;
@@ -78,7 +77,7 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
         .then((response) => {
           getQs(prodID, 1, totalQs+1)
           .then((response) => {
-              if (response.data.results.length > totalQs) {
+              if (response.data.length > totalQs) {
                 setShowButton(true);
               } else {
                 setShowButton(false);
@@ -93,7 +92,7 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
   const moreQuestions = () => {
     getQs(prodID, 1, totalQs+2)
       .then((response) => {
-        var newQs = response.data.results.slice(totalQs);
+        var newQs = response.data.slice(totalQs);
         newQs = newQs.map((q) => {
           var count = 0;
           for (var a in q.answers) {

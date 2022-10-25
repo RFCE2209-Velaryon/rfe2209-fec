@@ -13,15 +13,13 @@ const QuestionModal = ({prodID, prodName, setQModal, refreshQ, setRefreshQ}) => 
       valid = true;
     }
     if (valid) {
-      console.log(prodID);
-      axios.post(`${apiurl}qa/questions`, {
+      return axios.post('/qa/questions', {
         "body": question,
         "name": nickname,
         "email": email,
         "product_id": prodID
       })
         .then((response) => {
-          console.log(response);
           setRefreshQ(!refreshQ);
           setQModal(false);
         })
