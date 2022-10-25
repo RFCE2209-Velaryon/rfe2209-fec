@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './qANDaStyles.css';
-import imagekit from '../../config.js';
+// import imagekit from '../../config.js';
+// import ReactFileReader from 'react-file-reader';
 
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const AnswerModal = ({prodName, qBody, qID, setAModal, refreshQ, setRefreshQ}) => {
@@ -18,15 +19,16 @@ const AnswerModal = ({prodName, qBody, qID, setAModal, refreshQ, setRefreshQ}) =
     }
   }, [images]);
 
-  const base64 = (file) => {
-    let reader = new FileReader();
-    reader.readAsDataURL(file)
-      .then((response) => {console.log(response)})
-      .catch((error) => {console.log(error)});
-  };
+  // const base64 = (file) => {
+  //   let reader = new FileReader();
+  //   reader.readAsDataURL(file)
+  //     .then((response) => {console.log(response)})
+  //     .catch((error) => {console.log(error)});
+  // };
 
   const handleImages = (file) => {
-    base64(file);
+    console.log(file.toBase64);
+    // base64(file);
     // imagekit.upload({
     //   file: base64,
     //   fileName: `${file.name}`,

@@ -74,19 +74,20 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
   };
 
   return(
-    <div>
-      <h1>Q&A Component</h1>
+    <div className="main">
+      <h1 className="title">Q&A Component</h1>
       <SearchBar questions={questions} setFiltered={setFiltered}/>
       <div className="questions-list">
         {filtered.length > 0 ? filtered.map((question, index)=>
-          <div key={index}>
+          <div className="questions" key={index}>
             <Questions key={question[0]} question={question} refreshQ={refreshQ} setRefreshQ={setRefreshQ} prodName={prodName}/>
-            <br></br>
           </div>
         ) : null}
-        {showButton ? <button onClick={()=> {moreQuestions()}}>More Answered Questions</button> : null}
       </div>
-      <button onClick={() => setQModal(true)}>Add a Question +</button>
+      <div className="footer">
+        {showButton ? <button className="buttons" onClick={()=> {moreQuestions()}}>MORE ANSWERED QUESTIONS</button> : null}
+        <button className="buttons" onClick={() => setQModal(true)}>ADD A QUESTION +</button>
+      </div>
       {QModal && <QuestionModal prodID={prodID} prodName={prodName} setQModal={setQModal} refreshQ={refreshQ} setRefreshQ={setRefreshQ}/>}
     </div>
   )

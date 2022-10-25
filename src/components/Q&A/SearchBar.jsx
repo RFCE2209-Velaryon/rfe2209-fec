@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./qANDaStyles.css";
 
 const SearchBar = ({questions, setFiltered}) => {
   const [search, setSearch] = useState('');
@@ -11,8 +12,9 @@ const SearchBar = ({questions, setFiltered}) => {
     }
   }, [questions, search]);
   return(
-    <form>
-      <input onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Have a question? Search for answer..."></input>
+    <form className="searchbar">
+      <input className="searchInput" onChange={(e) => setSearch(e.target.value)} type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."></input>
+      <div><i></i></div>
     </form>
   )
 };
