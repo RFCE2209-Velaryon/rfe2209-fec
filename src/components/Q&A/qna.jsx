@@ -25,6 +25,40 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
   };
 
   useEffect(() => {
+    console.log('1:', prodID);
+    if (prodID) {
+      var storage = [];
+      setTotalQs(4);
+      getQs(prodID, 1, 4)
+      .then((response) => {
+          response.data.results.forEach((item) => {
+            var count = 0;
+            for (var a in item.answers) {
+              count++;
+            }
+            storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
+          });
+        })
+        .then((response) => {
+          setTotalQs(storage.length);
+          setQuestions(storage);
+        })
+        .then((response) => {
+          getQs(prodID, 1, totalQs+1)
+          .then((response) => {
+              if (response.data.results.length > totalQs) {
+                setShowButton(true);
+              } else {
+                setShowButton(false);
+              }
+            })
+        })
+        .catch((error) => console.log('error at getQs:', error));
+    }
+  }, [prodID]);
+
+  useEffect(() => {
+    console.log('2:', prodID);
     if (prodID) {
       var storage = [];
       getQs(prodID, 1, totalQs < 4 ? 4 : totalQs)
@@ -53,7 +87,7 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
         })
         .catch((error) => console.log('error at getQs:', error));
     }
-  }, [prodID, refreshQ]);
+  }, [refreshQ]);
 
 
   const moreQuestions = () => {
