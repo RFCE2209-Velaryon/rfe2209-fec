@@ -18,16 +18,20 @@ function App () {
     getProduct()
       .then((response) => {
         setProduct(response.data[0]);
-        console.log(response.data[0]);
+        //console.log(response.data[0]);
       })
       .catch((err) => {
         console.log(err);
       })
   }, []);
 
+  React.useEffect(() => {
+    // TODO: make an API call to get one product
+    //console.log('product: ', JSON.stringify(product))
+  }, [product]);
+
   return (
     <div>
-      <Product prodID ={product.id} prod={product}/>
       <Related productID = {product.id}/>
       <QuestionsAndAnswers prodID={product.id}/>
       <Reviews product={product}/>
