@@ -1,0 +1,14 @@
+Review Component
+- Verified Purchase Icon
+- Show more with Review Body
+
+Reviews Component
+- Review Count
+- Sort Dropdown
+- Add a review
+
+Ratings Component
+- General Rating
+- % of recommenders
+- Rating Breakdown
+- Characteristic Breakdown
