@@ -12,7 +12,7 @@
 .thumbnailWrapper {
   position: absolute;
   left: 2vw;
-  max-height: 75vw;
+  max-height: 85vh;
   overflow-y: hidden;
 }
 
@@ -25,6 +25,6 @@
 
 .galleryWrapper {
   width: 65vw;
-  height: 75vw;
+  height: 85vh;
   display:flex;
 }
