@@ -10,7 +10,7 @@ const AnswerModal = ({prodName, qBody, qID, setAModal, refreshQ, setRefreshQ}) =
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [images, setImages] = useState([]);
-  // const [imageURLs, setImageURLs] = useState([]);
+  const [imageURLs, setImageURLs] = useState([]);
   const [imagesButton, setImagesButton] = useState(true);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const AnswerModal = ({prodName, qBody, qID, setAModal, refreshQ, setRefreshQ}) =
   // };
 
   const handleImages = (file) => {
-    console.log(file.toBase64);
+    // console.log(file.toBase64);
     // base64(file);
     // imagekit.upload({
     //   file: base64,
@@ -39,7 +39,7 @@ const AnswerModal = ({prodName, qBody, qID, setAModal, refreshQ, setRefreshQ}) =
     //   .catch((err) => {
     //     console.log(err);
     //   })
-    // setImages([...images, file]);
+    setImages([...images, file]);
     // var imageURL = imagekit.url({
     //   path: "/default-image.jpg", //filename
     //   urlEndpoint: "https://ik.imagekit.io/dchong0123/",
@@ -48,8 +48,18 @@ const AnswerModal = ({prodName, qBody, qID, setAModal, refreshQ, setRefreshQ}) =
     //     "width": "400"
     //   }]
     // });
-    // setImageURLs([...imageURLs, URL.createObjectURL(file)]);
+    setImageURLs([...imageURLs, URL.createObjectURL(file)]);
   };
+
+  const AddAnswer = () => {
+    return axios.post('/qa/questions/answers', {
+      qid: qID,
+      body: answer,
+      name: nickname,
+      email: email,
+      photos: imageURLs
+    })
+  }
 
   const handleSubmit = () => {
     var valid = false;
@@ -57,16 +67,10 @@ const AnswerModal = ({prodName, qBody, qID, setAModal, refreshQ, setRefreshQ}) =
       valid = true;
     }
     if (valid) {
-      axios.post(`${apiurl}qa/questions/${qID}/answers`, {
-        body: answer,
-        name: nickname,
-        email: email,
-        photos: imageURLs
-      })
+      AddAnswer()
         .then((response) => {
           setRefreshQ(!refreshQ);
           setAModal(false);
-          console.log(response);
         })
         .catch((err) => {
           console.log('error in handleSubmit: ', err)
@@ -119,7 +123,7 @@ const AnswerModal = ({prodName, qBody, qID, setAModal, refreshQ, setRefreshQ}) =
             {images.length !== 0 && images.map((file) =>
               {return(
                   <div key={file.name}>
-                    {/* <img alt={file.name} width="250px" src={URL.createObjectURL(file)} /> */}
+                    <img alt={file.name} width="250px" src={URL.createObjectURL(file)} />
                     {/*
                     1. convert uploaded file to base64
                     2. create account on image kit

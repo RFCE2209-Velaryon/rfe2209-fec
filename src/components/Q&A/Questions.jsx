@@ -14,7 +14,11 @@ const Questions = ({question, refreshQ, setRefreshQ, prodName}) => {
   const [moreAnswers, setMoreAnswers] = useState(true);
 
   const QhelpHandler = (qid) => {
-    return axios.put(`${apiurl}qa/questions/${qid}/helpful`)
+    return axios.put('/qa/questions/helpful', null, {
+      params: {
+        qid: qid
+      }
+    })
       .then((response) => {
         setQHelp(!Qhelp);
         setRefreshQ(!refreshQ);
@@ -25,7 +29,11 @@ const Questions = ({question, refreshQ, setRefreshQ, prodName}) => {
   };
 
   const QreportHandler = (qid) => {
-    return axios.put(`${apiurl}qa/questions/${qid}/report`)
+    return axios.put('/qa/questions/report', null, {
+      params: {
+        qid: qid
+      }
+    })
       .then((response) => {
         setQReport(!Qreport);
       })

@@ -33,7 +33,7 @@ function App () {
   return (
     <div>
       <Related product = {product} setProduct={setProduct}/>
-      <QuestionsAndAnswers prodID={product.id}/>
+      {product.id && <QuestionsAndAnswers prodID={product.id} prodName={product.name}/>}
       <Reviews product={product}/>
     </div>
   )
