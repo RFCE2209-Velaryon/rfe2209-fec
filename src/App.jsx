@@ -29,7 +29,7 @@ function App () {
     <div>
       <Product prodID ={product.id} prod={product}/>
       <Related productID = {product.id}/>
-      <QuestionsAndAnswers prodID={product.id}/>
+      <QuestionsAndAnswers prodID={product.id} prodName={product.name}/>
       <Reviews product={product}/>
     </div>
   )
