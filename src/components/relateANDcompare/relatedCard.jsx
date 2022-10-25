@@ -46,6 +46,8 @@ const RelatedCard = (props) => {
                 <div className='cardImgWrapper'>
                   <img className='cardImg' src={imgSrc()}></img>
                 </div>
+              </div>
+              <div>
                 <div>{proData.data.name}</div>
                 <div>{proData.data.category}</div>
                 <div>${proData.data.default_price}</div>
