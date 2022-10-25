@@ -75,7 +75,7 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
 
   return(
     <div className="main">
-      <h1 className="title">Q&A Component</h1>
+      <h1 className="title">Questions & Answers</h1>
       <SearchBar questions={questions} setFiltered={setFiltered}/>
       <div className="questions-list">
         {filtered.length > 0 ? filtered.map((question, index)=>
