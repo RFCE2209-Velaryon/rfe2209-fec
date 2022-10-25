@@ -2,12 +2,12 @@ import React from 'react';
 
 import StarRating from './StarRating.jsx';
 
-const AddAReview = ({productName, setAddingAReview, characteristics}) => {
-  const [review, setReview] = React.useState({name: '', body: '', recommend: false, summary: '', Overall: 0});
+const AddAReview = ({product, setAddingAReview, characteristics}) => {
+  const [review, setReview] = React.useState({name: '', body: '', recommend: false, summary: '', Overall: 0, email: ''});
 
   React.useEffect(() => {
     let temp = {};
-    characteristics.forEach(characteristic => {
+    Object.keys(characteristics).forEach(characteristic => {
       temp[characteristic] = 0;
     });
     setReview({...temp, ... review});
@@ -21,13 +21,22 @@ const AddAReview = ({productName, setAddingAReview, characteristics}) => {
       let tempNewReview = {...review};
       tempNewReview.name = e.target.value;
       setReview(tempNewReview);
-      console.log(review);
     } else if(e.target.id === 'reviewBody') {
-      console.log('review body');
+      let tempNewReview = {...review};
+      tempNewReview.body = e.target.value;
+      setReview(tempNewReview);
     } else if(e.target.id === 'recommended') {
-      console.log('review recommended');
+      let tempNewReview = {...review};
+      tempNewReview.recommend = !tempNewReview.recommend;
+      setReview(tempNewReview);
     } else if(e.target.id === 'reviewSummary') {
-      console.log('review summary');
+      let tempNewReview = {...review};
+      tempNewReview.summary = e.target.value;
+      setReview(tempNewReview);
+    } else if(e.target.id === 'reviewEmail') {
+      let tempNewReview = {...review};
+      tempNewReview.email = e.target.value;
+      setReview(tempNewReview);
     } else {
       //console.log('other');
     }
@@ -39,41 +48,72 @@ const AddAReview = ({productName, setAddingAReview, characteristics}) => {
     setReview(tempNewReview);
   }
 
+  function handleSubmit () {
+    // check to make sure inputs are all valid
+
+    // check that email is formatted correctly
+    // check that body is the correct size
+    // check that summary is the right size
+    // check that all ratings have a star
+
+    let temp = {};
+    Object.keys(characteristics).forEach(characteristic => {
+      temp[characteristics[characteristic].id] = review[characteristic];
+    });
+
+    console.log(`/reviews/?product_id=${product.id}&rating=${review.Overall}&summary=${review.summary}&body=${review.body}&recommend=${review.recommend}&name=${review.name}&email=${review.email}&photos=${'TODO'}&characteristics=${JSON.stringify(temp)}`);
+    // axios({
+    //   method: 'post',
+    //   url: `/reviews/?product_id=${product.id}&rating=${review.Overall}&summary=${review.summary}&body=${review.body}&recommend=${review.recommend}&name=${review.name}&email=${}&photos=${}&characteristics=${}`
+    // });
+    //setAddingAReview(false);
+  }
+
   return (
     <div className="addAReviewForm">
-        <h2>Write a review about your {productName}</h2>
-        <div onClick={handleChange} className='row'>
+      <div className='reviewRow'>
+        <h2>Write a review about your {product.name}</h2>
+      </div>
+
+        <div onClick={handleChange} className='reviewRow'>
           <h3>Overall Rating:</h3>
           <StarRating cb={(num) => onStarUpdate(num, 'Overall')} initialRating={0}/>
         </div>
-        {characteristics.map((characteristic, i) => {
+        {Object.keys(characteristics).map((characteristic, i) => {
           return (
-            <div onClick={handleChange} className='row' key={i}>
+            <div onClick={handleChange} className='reviewRow' key={i}>
               <h3>{characteristic}:</h3>
               <StarRating cb={(num) => onStarUpdate(num, characteristic)} initialRating={0}/>
             </div>
           )
         })}
-        <div className='row'>
+        <div className='reviewRow'>
           <h4>Would you recommend this product?</h4>
           <input onChange={handleChange} type='checkbox' id='recommended'></input>
         </div>
-        <div>
+        <div className='reviewRow'>
           <h4>Summary</h4>
           <input onChange={handleChange} type='text' id='reviewSummary' placeholder='Best Purchase Ever!'></input>
         </div>
-        <div>
+        <div className='reviewRow'>
           <h4>Body</h4>
           <input onChange={handleChange} type='textarea' id='reviewBody' placeholder='Why did you like the product or not?'></input>
           <div>{(250 - review.body.length) > 0 ? (250 - review.body.length): 0}</div>
         </div>
         <div>0-5 images</div>
-        <div className='row'>
+        <div className='reviewRow'>
           <h4>Username</h4>
           <input onChange={handleChange} type='text' id='reviewName' placeholder='Johnson11'></input>
         </div>
+        <div className='reviewRow'>
+          <h4>Email</h4>
+          <input onChange={handleChange} type='text' id='reviewEmail' placeholder='johnson11@gmail.com'></input>
+        </div>
         {/* 'For privacy reasons, do not use your full name or email address' */}
-        <div onClick={() => setAddingAReview(false)} className="reviewFormButton">X</div>
+        <div className='row'>
+          <div onClick={handleSubmit} className="reviewFormButton">Submit</div>
+          <div onClick={() => setAddingAReview(false)} className="reviewFormButton">Cancel</div>
+        </div>
     </div>
   )
 }

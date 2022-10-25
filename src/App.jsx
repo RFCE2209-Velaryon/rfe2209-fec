@@ -32,11 +32,6 @@ function App () {
 
   return (
     <div>
-<<<<<<< HEAD
-=======
-      <Related product = {product} setProduct={setProduct}/>
-      <QuestionsAndAnswers prodID={product.id}/>
->>>>>>> main
       <Reviews product={product}/>
     </div>
   )

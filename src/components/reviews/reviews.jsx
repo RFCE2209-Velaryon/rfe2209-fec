@@ -43,13 +43,8 @@ const Reviews = ({product}) => {
           API.getReviews(1, totalReviews, sort, product.id)
             .then((reviews) => {
               setReviews(reviews.data.results);
-<<<<<<< HEAD
-              //console.log(`metadata retrieved: ${JSON.stringify(metaData.data.characteristics)}`)
+              console.log(`metadata retrieved: ${JSON.stringify(metaData.data.characteristics)}`)
               //console.log(`reviews retrieved: ${JSON.stringify(reviews.data.results)}`);
-=======
-              console.log(`metadata retrieved: ${JSON.stringify(metaData.data)}`)
-              console.log(`reviews retrieved: ${JSON.stringify(reviews.data.results)}`);
->>>>>>> main
             })
             .catch((err) => {
               console.log(`error from API.getReviews: ${err}`);
@@ -149,7 +144,7 @@ const Reviews = ({product}) => {
         }
         {/* add review button */}
       </div>
-      {addingAReview && <AddAReview productName={product.name} characteristics={Object.keys(characteristics)} setAddingAReview={setAddingAReview}/>}
+      {addingAReview && <AddAReview product={product} characteristics={characteristics} setAddingAReview={setAddingAReview}/>}
     </div>
   )
 };
