@@ -25,8 +25,18 @@ function App () {
       })
   }, []);
 
+  React.useEffect(() => {
+    // TODO: make an API call to get one product
+    //console.log('product: ', JSON.stringify(product))
+  }, [product]);
+
   return (
     <div>
+<<<<<<< HEAD
+=======
+      <Related product = {product} setProduct={setProduct}/>
+      <QuestionsAndAnswers prodID={product.id}/>
+>>>>>>> main
       <Reviews product={product}/>
     </div>
   )

@@ -15,7 +15,7 @@ const [item, setItem] = useState([])
 const [allProds, setAllProds] = useState([])
 const [image, setImage] = useState('')
 const [didClick, setDidClick] = useState(true)
-console.log(prod)
+
 
   const getItem = () => {
    return  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${prodID}/styles`)
@@ -40,7 +40,7 @@ console.log(prod)
     <h2>Product Sloagan: {prod.slogan}</h2>
     <h2>Description</h2>
     <h4>{prod.description}</h4>
-    {item[0] && <CurrentSelectedStyle items={item[0]} image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick}/>}
+    {item[0] && <CurrentSelectedStyle items={item[0]} image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick} prod={prod}/>}
     {item[0] && <ImageThumbnail items={item[0]} image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick}/>}
     {item[0] && <ItemSelectors items={item[0]}  prod={prod}/>}
     </section>
