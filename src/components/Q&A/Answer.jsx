@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import './qANDaStyles.css';
+
 
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const Answer = ({answer, refresh, setRefresh}) => {
@@ -35,7 +37,7 @@ const Answer = ({answer, refresh, setRefresh}) => {
   };
 
   return(
-    <div key={answer[1]}>
+    <div className="answers" key={answer[1]}>
       <div>{answer[2]}</div>
       <div>
         {`by `}
@@ -45,10 +47,9 @@ const Answer = ({answer, refresh, setRefresh}) => {
         {` (${answer[3]}) | `}
         {report ? <u>Reported</u> : <u onClick={() => {reportHandler(answer[1])}}>Report</u>}
       </div>
-      <div>
-        {answer[6] ? answer[6].map((image, index) => {return (<img key={index} src={image} width="125" height="100"/>)}) : null}
-      </div>
-      <br></br>
+      <span className = "flexDisplay">
+        {answer[6] ? answer[6].map((image, index) => {return (<img className = "images" key={index} src={image} width="125" height="100"/>)}) : null}
+      </span>
     </div>
   )
 };
