@@ -68,6 +68,7 @@
 .relatedCards, .outfitCards{
   display: flex;
   overflow-x: hidden;
+  cursor: grab;
 }
 
 .left {
@@ -99,4 +100,9 @@
   font-size: 2rem;
   text-align: center;
   padding-top: 30px;
+}
+
+.modalBtn {
+  position: absolute;
+  bottom: 1px;
 }
