@@ -47,11 +47,11 @@ const RelatedCard = (props) => {
                   <img className='cardImg' src={imgSrc()}></img>
                 </div>
               </div>
-              <div>
-                <div>{proData.data.name}</div>
-                <div>{proData.data.category}</div>
-                <div>${proData.data.default_price}</div>
-                <div className='relative'>
+              <div className='cardDetailWrapper'>
+                <div className='cardDetail'>{proData.data.name}</div>
+                <div className='cardDetail'>{proData.data.category}</div>
+                <div className='cardDetail'>${proData.data.default_price}</div>
+                <div className='cardDetail relative'>
                   <div className='starsWrapper'>
                     <img className='stars' src={'https://drive.google.com/uc?export=view&id=1dqWztl66gPr7gtT743hfwlmT-mpedUBU'}></img>
                   </div>

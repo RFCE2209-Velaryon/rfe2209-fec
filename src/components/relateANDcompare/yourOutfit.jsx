@@ -159,7 +159,7 @@ const Outfit = (props) => {
         </div>
       ): null}
       <div className='outfitCards' onLoad={()=>{scrollCheck(); sliderSetup();}}>
-        <div className='cardWrapper' style={{backgroundColor:'gray'}} onClick={(e)=> {setOutfitIDs(props.productID)}}>
+        <div className='cardWrapper' style={{backgroundColor:'#ccfffd'}} onClick={(e)=> {setOutfitIDs(props.productID)}}>
           <div className='addOutfitText'>Add to Outfit</div>
           <div className='addOutfitIcon' >&#43;</div>
         </div>
