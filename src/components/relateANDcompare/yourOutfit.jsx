@@ -120,7 +120,7 @@ const Outfit = (props) => {
   });
   return(
     <>
-      <h1>yourOutfit</h1>
+      <h1>Your Outfit</h1>
       {needsScrollLeft ? (
         <div className='scrollLeft relative'>
           <button className='scrollBtn left' onClick = {(e)=>{scroll(scollNumber*-1)}}>&#60;</button>

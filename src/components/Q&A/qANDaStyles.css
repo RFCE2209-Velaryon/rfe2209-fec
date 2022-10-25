@@ -1,12 +1,80 @@
+.main {
+  margin: 15px;
+}
+.title, .footer {
+  margin: 10px;
+}
+
+.searchbar {
+  display: flex;
+  justify-content: center;
+}
+
+.searchInput {
+  width: 100em;
+  height: 3em;
+  font-size: 1em;
+  margin: 10px;
+  background-image: url('./search.png');
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+  background-size: 1.5em 1.5em;
+  padding-left: 1em;
+}
+
 .questions-list {
   overflow: scroll;
-  max-height: 80vh;
+  max-height: 72vh;
   margin: 10px;
+}
+
+.questions {
+  margin-bottom: 20px;
 }
 
 .seeMoreAnswers {
   overflow: scroll;
-  max-height: 40vh;
+  max-height: 44vh;
+  flex: 98%;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.answersList {
+  margin: 10px;
+}
+
+.answers {
+  margin-bottom: 12px;
+}
+
+.flexDisplay {
+  display: flex;
+}
+
+.flexQ {
+  flex: 50%;
+  margin-bottom: 10px;
+}
+
+.flexO {
+  flex: 50%;
+  text-align: right;
+  padding-right: 15px;
+}
+
+.flexA {
+  flex: 2%;
+}
+
+.images {
+  margin: 5px;
+}
+
+.buttons {
+  margin-right: 10px;
+  font-size: 1em;
+  height: 2.5em;
 }
 
 .q-modal{

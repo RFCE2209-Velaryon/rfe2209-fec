@@ -40,21 +40,26 @@ const Questions = ({question, refreshQ, setRefreshQ, prodName}) => {
 
   return(
     <div>
-      <div key={question[0]}>
-        <b>Q: {question[1]}</b>
-
-        {` Helpful? `}
-        {Qhelp ? <u>Yes</u> : <u onClick={() => {QhelpHandler(question[0])}}>Yes</u>}
-        {` (${question[2]}) | `}
-        {Qreport ? <u>Reported</u> : <u onClick={() => {QreportHandler(question[0])}}>Report</u>}
-        {` | `}
-        {<u onClick={() => setAModal(true)}>Add Answer</u>}
-        {AModal && <AnswerModal prodName={prodName} qBody={question[1]} qID={question[0]} setAModal={setAModal} refreshQ={refreshQ} setRefreshQ={setRefreshQ}/>}
-
-        <div className="seeMoreAnswers">{question[3] ? 'A:' : null}
-          <Answers qid={question[0]} atotal={question[3]} seeMore={seeMore} setMoreAnswers={setMoreAnswers}/>
+      <div className="flexDisplay">
+        <div className="flexQ" key={question[0]}>
+          <b>Q: {question[1]}</b>
         </div>
-        {moreAnswers ? (seeMore ? <u onClick={() => toggleSeeMore()}>Collapse answers</u> : <u onClick={() => {toggleSeeMore()}}>See more answers</u>) : null}
+        <div className="flexO">
+          {` Helpful? `}
+          {Qhelp ? <u>Yes</u> : <u onClick={() => {QhelpHandler(question[0])}}>Yes</u>}
+          {` (${question[2]}) | `}
+          {Qreport ? <u>Reported</u> : <u onClick={() => {QreportHandler(question[0])}}>Report</u>}
+          {` | `}
+          {<u onClick={() => setAModal(true)}>Add Answer</u>}
+        </div>
+      </div>
+      {AModal && <AnswerModal prodName={prodName} qBody={question[1]} qID={question[0]} setAModal={setAModal} refreshQ={refreshQ} setRefreshQ={setRefreshQ}/>}
+      <div className="flexDisplay">
+        <div className="flexA">{question[3] ? 'A:' : null}</div>
+        <div className="seeMoreAnswers">
+          <Answers qid={question[0]} atotal={question[3]} seeMore={seeMore} setMoreAnswers={setMoreAnswers}/>
+          {moreAnswers ? (seeMore ? <u onClick={() => toggleSeeMore()}>Collapse answers</u> : <u onClick={() => {toggleSeeMore()}}>See more answers</u>) : null}
+        </div>
       </div>
     </div>
   )
