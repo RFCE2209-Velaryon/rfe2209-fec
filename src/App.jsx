@@ -6,6 +6,7 @@ import QuestionsAndAnswers from './components/Q&A/qna.jsx';
 import Related from './components/relateANDcompare/relateANDcompare.jsx';
 import Reviews from './components/reviews/reviews.jsx';
 import Products from './components/productDetail/productDetail.jsx';
+import ProductDetail from './components/productDetailAttempt/productDetail.jsx'
 
 import getProduct from './lib/getProduct.js';
 
@@ -32,6 +33,7 @@ function App () {
 
   return (
     <div>
+      <ProductDetail product = {product}/>
       <Related product = {product} setProduct={setProduct}/>
       <QuestionsAndAnswers prodID={product.id}/>
       <Reviews product={product}/>

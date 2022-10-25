@@ -1,0 +1,30 @@
+.thumbnailMain {
+
+  height: 100px;
+  width: 100px;
+  border-radius:100%;
+  border: solid 5px #97d1cf;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+}
+
+.thumbnailWrapper {
+  position: absolute;
+  left: 2vw;
+  max-height: 75vw;
+  overflow-y: hidden;
+}
+
+.mainImg {
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+}
+
+.galleryWrapper {
+  width: 65vw;
+  height: 75vw;
+  display:flex;
+}
