@@ -106,3 +106,52 @@
   position: absolute;
   bottom: 1px;
 }
+
+.modalWrapper {
+  background-color: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  position:fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContent {
+  background-color: #eeffff;
+  position:relative;
+  width: 405px;
+  height: 200px;
+  border: 1px solid black;
+  overflow-y:auto;
+}
+
+table {
+  border-spacing: 0;
+}
+
+thead {
+  position:sticky;
+  top:0;
+  background-color:#ccfffd;
+}
+
+tr {
+  align-items: center;
+  justify-content: center;
+}
+
+th {
+  text-align: center;
+  width:135px;
+}
+
+td {
+  text-align: center;
+  width:135px;
+  height:40px;
+}
