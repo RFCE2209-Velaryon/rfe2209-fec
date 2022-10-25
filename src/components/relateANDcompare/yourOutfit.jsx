@@ -7,6 +7,9 @@ const {useState, useEffect} = React;
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const scollNumber = 262;
 let timeout = null;
+let mouseDown = false;
+let startX, scrollLeft, slider;
+
 const Outfit = (props) => {
   let [related, setRelated] = useState([]);
   let [curProduct, setCurProduct] = useState({name:'',features:[]});
@@ -111,6 +114,30 @@ const Outfit = (props) => {
     }
   }
 
+  let sliderSetup = () => {
+    slider = document.getElementsByClassName('outfitCards')[0];
+    slider.addEventListener('mousemove', (e)=> {
+      e.preventDefault();
+      if(!mouseDown) {return;}
+      const x = e.pageX - slider.offsetLeft;
+      const scoll = x - startX;
+      slider.scrollLeft = scrollLeft - scoll;
+    })
+    slider.addEventListener('mousedown', startDragging, false);
+    slider.addEventListener('mouseup', stopDragging, false);
+    slider.addEventListener('mouseleave', stopDragging, false);
+  }
+
+  let startDragging = (e) => {
+    mouseDown = true;
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  }
+  let stopDragging = (e) => {
+    mouseDown = false;
+    scrollCheck()
+  }
+
   window.addEventListener("resize", ()=>{
 
     clearTimeout(timeout);
@@ -131,7 +158,7 @@ const Outfit = (props) => {
           <button className='scrollBtn right' onClick = {(e)=>{scroll(scollNumber)}}>&#62;</button>
         </div>
       ): null}
-      <div className='outfitCards' onLoad={()=>scrollCheck()}>
+      <div className='outfitCards' onLoad={()=>{scrollCheck(); sliderSetup();}}>
         <div className='cardWrapper' style={{backgroundColor:'gray'}} onClick={(e)=> {setOutfitIDs(props.productID)}}>
           <div className='addOutfitText'>Add to Outfit</div>
           <div className='addOutfitIcon' >&#43;</div>
