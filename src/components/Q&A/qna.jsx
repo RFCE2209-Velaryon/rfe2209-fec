@@ -31,23 +31,27 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
       var test;
       getQs(prodID, 1, 4*30)
         .then((response) => {
-          response.data.forEach((item) => {
-            if (storage.length !== 4) {
-              var count = 0;
-              for (var a in item.answers) {
-                count++;
-              }
-              storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
-              setShowButton(false);
-            }
-            else if (test === undefined) {
-              test = item.question_id;
-              if (test === undefined) {
+          console.log(response.data);
+          if (response.data !== []) {
+            response.data.forEach((item) => {
+              if (storage.length !== 4) {
+                var count = 0;
+                for (var a in item.answers) {
+                  count++;
+                }
+                storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
                 setShowButton(false);
-              } else {
-                setShowButton(true);
               }
-          }});
+              else if (test === undefined) {
+                test = item.question_id;
+                if (test === undefined) {
+                  setShowButton(false);
+                } else {
+                  setShowButton(true);
+                }
+              }
+            });
+          }
           setTotalQs(storage.length);
           setQuestions(storage);
         })
@@ -61,24 +65,27 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
       var test;
       getQs(prodID, 1, (totalQs*30))
         .then((response) => {
-          response.data.forEach((item) => {
-            if (storage.length !== totalQs) {
-              var count = 0;
-              for (var a in item.answers) {
-                count++;
-              }
-              storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
-              setShowButton(false);
-            }
-            else if (test === undefined) {
-              test = item.question_id;
-              if (test === undefined) {
+          console.log(response.data);
+          if (response.data !== []) {
+            response.data.forEach((item) => {
+              if (storage.length !== totalQs) {
+                var count = 0;
+                for (var a in item.answers) {
+                  count++;
+                }
+                storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
                 setShowButton(false);
-              } else {
-                setShowButton(true);
               }
-            }
-          });
+              else if (test === undefined) {
+                test = item.question_id;
+                if (test === undefined) {
+                  setShowButton(false);
+                } else {
+                  setShowButton(true);
+                }
+              }
+            });
+          }
           setTotalQs(storage.length);
           setQuestions(storage);
         })
@@ -92,15 +99,18 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
     var test;
     getQs(prodID, 1, (totalQs+2)*30)
       .then((response) => {
-        response.data.forEach((item) => {
-          if (storage.length !== (totalQs+2)) {
-            var count=0;
-            for (var a in item.answers) {
-              count++;
+        console.log(response.data);
+        if (response.data !== []) {
+          response.data.forEach((item) => {
+            if (storage.length !== (totalQs+2)) {
+              var count=0;
+              for (var a in item.answers) {
+                count++;
+              }
+              storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
             }
-            storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
-          }
-        });
+          });
+        }
         var newQs = storage.slice(totalQs);
         setQuestions([...questions, ...newQs]);
         setTotalQs(storage.length);
