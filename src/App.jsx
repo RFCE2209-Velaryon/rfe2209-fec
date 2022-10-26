@@ -32,12 +32,9 @@ function App () {
 
   return (
     <div>
-<<<<<<< HEAD
       <ProductDetail product ={product}/>
       <Related product = {product} setProduct={setProduct}/>
       {product.id && <QuestionsAndAnswers prodID={product.id} prodName={product.name}/>}
-=======
->>>>>>> reviews
       <Reviews product={product}/>
     </div>
   )
