@@ -64,6 +64,7 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
       var test;
       getQs(prodID, 1, (totalQs*30))
         .then((response) => {
+          console.log('i refreshed');
           if (response.data !== []) {
             response.data.forEach((item) => {
               if (storage.length !== totalQs) {
