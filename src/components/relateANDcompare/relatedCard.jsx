@@ -47,11 +47,11 @@ const RelatedCard = (props) => {
                   <img className='cardImg' src={imgSrc()}></img>
                 </div>
               </div>
-              <div className='cardDetailWrapper'>
-                <div className='cardDetail'>{proData.data.name}</div>
-                <div className='cardDetail'>{proData.data.category}</div>
-                <div className='cardDetail'>${proData.data.default_price}</div>
-                <div className='cardDetail relative'>
+              <div>
+                <div>{proData.data.name}</div>
+                <div>{proData.data.category}</div>
+                <div>${proData.data.default_price}</div>
+                <div className='relative'>
                   <div className='starsWrapper'>
                     <img className='stars' src={'https://drive.google.com/uc?export=view&id=1dqWztl66gPr7gtT743hfwlmT-mpedUBU'}></img>
                   </div>
@@ -74,24 +74,22 @@ const RelatedCard = (props) => {
   let getProductData = (id) => {
     return axios({
       method: 'get',
-      url: '/related',
-      params: {api:apiurl+'products/'+id}
+      url: apiurl+'products/'+id
     })
   }
 
   let getProductStyle = (id) => {
     return axios({
       method: 'get',
-      url: '/related',
-      params: {api:apiurl+'products/'+id+'/styles'}
+      url: apiurl+'products/'+id+'/styles'
     })
   }
 
   let getProductStars = (id) => {
     return axios({
       method: 'get',
-      url: '/related',
-      params: {api:apiurl+'reviews/meta', param:{product_id: id}}
+      url: apiurl+'reviews/meta',
+      params: {product_id: id}
     })
   }
   let setStars = (starData) => {
