@@ -8,6 +8,7 @@ import './qANDaStyles.css';
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const Questions = ({question, refreshQ, setRefreshQ, prodName}) => {
   const [AModal, setAModal] = useState(false);
+  const [atotal, setAtotal] = useState(question[3]);
   const [Qhelp, setQHelp] = useState(false);
   const [Qreport, setQReport] = useState(false);
   const [seeMore, setSeeMore] = useState(false);
@@ -61,7 +62,7 @@ const Questions = ({question, refreshQ, setRefreshQ, prodName}) => {
           {<u onClick={() => setAModal(true)}>Add Answer</u>}
         </div>
       </div>
-      {AModal && <AnswerModal prodName={prodName} qBody={question[1]} qID={question[0]} setAModal={setAModal} refreshQ={refreshQ} setRefreshQ={setRefreshQ}/>}
+      {AModal && <AnswerModal prodName={prodName} qBody={question[1]} qID={question[0]} setAModal={setAModal} refreshQ={refreshQ} setRefreshQ={setRefreshQ} atotal={atotal} setAtotal={setAtotal}/>}
       <div className="flexDisplay">
         <div className="flexA">{question[3] ? 'A:' : null}</div>
         <div className="seeMoreAnswers">

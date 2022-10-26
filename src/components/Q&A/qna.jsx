@@ -31,26 +31,26 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
       var test;
       getQs(prodID, 1, 4*30)
         .then((response) => {
-          response.data.forEach((item) => {
-            if (storage.length < 4) {
-              var count = 0;
-              for (var a in item.answers) {
-                count++;
-              }
-              storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
-            }
-            if (test === undefined) {
-              test = item.question_id;
-              if (test === undefined) {
+          if (response.data !== []) {
+            response.data.forEach((item) => {
+              if (storage.length !== 4) {
+                var count = 0;
+                for (var a in item.answers) {
+                  count++;
+                }
+                storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
                 setShowButton(false);
-              } else {
-                setShowButton(true);
               }
-            }
-          });
-          storage = storage.sort((a, b) => {
-            return b[2]-a[2] || a[0]-b[0];
-          });
+              else if (test === undefined) {
+                test = item.question_id;
+                if (test === undefined) {
+                  setShowButton(false);
+                } else {
+                  setShowButton(true);
+                }
+              }
+            });
+          }
           setTotalQs(storage.length);
           setQuestions(storage);
         })
@@ -64,26 +64,26 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
       var test;
       getQs(prodID, 1, (totalQs*30))
         .then((response) => {
-          response.data.forEach((item) => {
-            if (storage.length < totalQs) {
-              var count = 0;
-              for (var a in item.answers) {
-                count++;
-              }
-              storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
-            }
-            if (test === undefined) {
-              test = item.question_id;
-              if (test === undefined) {
+          if (response.data !== []) {
+            response.data.forEach((item) => {
+              if (storage.length !== totalQs) {
+                var count = 0;
+                for (var a in item.answers) {
+                  count++;
+                }
+                storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
                 setShowButton(false);
-              } else {
-                setShowButton(true);
               }
-            }
-          });
-          storage = storage.sort((a, b) => {
-            return b[2]-a[2] || a[0]-b[0];
-          });
+              else if (test === undefined) {
+                test = item.question_id;
+                if (test === undefined) {
+                  setShowButton(false);
+                } else {
+                  setShowButton(true);
+                }
+              }
+            });
+          }
           setTotalQs(storage.length);
           setQuestions(storage);
         })
@@ -97,22 +97,21 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
     var test;
     getQs(prodID, 1, (totalQs+2)*30)
       .then((response) => {
-        response.data.forEach((item) => {
-          if (storage.length < (totalQs+2)) {
-            var count=0;
-            for (var a in item.answers) {
-              count++;
+        if (response.data !== []) {
+          response.data.forEach((item) => {
+            if (storage.length !== (totalQs+2)) {
+              var count=0;
+              for (var a in item.answers) {
+                count++;
+              }
+              storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
             }
-            storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
-          }
-        });
-        storage = storage.sort((a, b) => {
-          return b[2]-a[2] || a[0]-b[0];
-        });
+          });
+        }
         var newQs = storage.slice(totalQs);
         setQuestions([...questions, ...newQs]);
+        setTotalQs(storage.length);
         setRefreshQ(!refreshQ);
-        setTotalQs(totalQs+2); //might need to swap with refresh?
       });
   };
 
@@ -131,7 +130,7 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
         {showButton ? <button className="buttons" onClick={()=> {moreQuestions()}}>MORE ANSWERED QUESTIONS</button> : null}
         <button className="buttons" onClick={() => setQModal(true)}>ADD A QUESTION +</button>
       </div>
-      {QModal && <QuestionModal prodID={prodID} prodName={prodName} setQModal={setQModal} refreshQ={refreshQ} setRefreshQ={setRefreshQ}/>}
+      {QModal && <QuestionModal prodID={prodID} prodName={prodName} setQModal={setQModal} refreshQ={refreshQ} setRefreshQ={setRefreshQ} totalQs={totalQs} setTotalQs={setTotalQs}/>}
     </div>
   )
 };
