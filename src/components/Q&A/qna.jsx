@@ -28,30 +28,31 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
   useEffect(() => {
     if (prodID) {
       var storage = [];
-      setTotalQs(4);
-      getQs(prodID, 1, 4)
-      .then((response) => {
-          response.data.forEach((item) => {
-            var count = 0;
-            for (var a in item.answers) {
-              count++;
-            }
-            storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
-          });
-        })
+      var test;
+      getQs(prodID, 1, 4*30)
         .then((response) => {
+          response.data.forEach((item) => {
+            if (storage.length < 4) {
+              var count = 0;
+              for (var a in item.answers) {
+                count++;
+              }
+              storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
+            }
+            if (test === undefined) {
+              test = item.question_id;
+              if (test === undefined) {
+                setShowButton(false);
+              } else {
+                setShowButton(true);
+              }
+            }
+          });
+          storage = storage.sort((a, b) => {
+            return b[2]-a[2] || a[0]-b[0];
+          });
           setTotalQs(storage.length);
           setQuestions(storage);
-        })
-        .then((response) => {
-          getQs(prodID, 1, totalQs+1)
-          .then((response) => {
-              if (response.data.length > totalQs) {
-                setShowButton(true);
-              } else {
-                setShowButton(false);
-              }
-            })
         })
         .catch((error) => console.log('error at getQs:', error));
     }
@@ -60,29 +61,31 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
   useEffect(() => {
     if (prodID) {
       var storage = [];
-      getQs(prodID, 1, totalQs < 4 ? 4 : totalQs)
-      .then((response) => {
-          response.data.forEach((item) => {
-            var count = 0;
-            for (var a in item.answers) {
-              count++;
-            }
-            storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
-          });
-        })
+      var test;
+      getQs(prodID, 1, (totalQs*30))
         .then((response) => {
+          response.data.forEach((item) => {
+            if (storage.length < totalQs) {
+              var count = 0;
+              for (var a in item.answers) {
+                count++;
+              }
+              storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
+            }
+            if (test === undefined) {
+              test = item.question_id;
+              if (test === undefined) {
+                setShowButton(false);
+              } else {
+                setShowButton(true);
+              }
+            }
+          });
+          storage = storage.sort((a, b) => {
+            return b[2]-a[2] || a[0]-b[0];
+          });
           setTotalQs(storage.length);
           setQuestions(storage);
-        })
-        .then((response) => {
-          getQs(prodID, 1, totalQs+1)
-          .then((response) => {
-              if (response.data.length > totalQs) {
-                setShowButton(true);
-              } else {
-                setShowButton(false);
-              }
-            })
         })
         .catch((error) => console.log('error at getQs:', error));
     }
@@ -90,19 +93,26 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
 
 
   const moreQuestions = () => {
-    getQs(prodID, 1, totalQs+2)
+    var storage = [];
+    var test;
+    getQs(prodID, 1, (totalQs+2)*30)
       .then((response) => {
-        var newQs = response.data.slice(totalQs);
-        newQs = newQs.map((q) => {
-          var count = 0;
-          for (var a in q.answers) {
-            count++;
+        response.data.forEach((item) => {
+          if (storage.length < (totalQs+2)) {
+            var count=0;
+            for (var a in item.answers) {
+              count++;
+            }
+            storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
           }
-          return ([q.question_id, q.question_body, q.question_helpfulness, count])
         });
+        storage = storage.sort((a, b) => {
+          return b[2]-a[2] || a[0]-b[0];
+        });
+        var newQs = storage.slice(totalQs);
         setQuestions([...questions, ...newQs]);
         setRefreshQ(!refreshQ);
-        setTotalQs(totalQs+2);
+        setTotalQs(totalQs+2); //might need to swap with refresh?
       });
   };
 

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './qANDaStyles.css';
-// import imagekit from '../../config.js';
-// import ReactFileReader from 'react-file-reader';
 
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const AnswerModal = ({prodName, qBody, qID, setAModal, refreshQ, setRefreshQ}) => {
