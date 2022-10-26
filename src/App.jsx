@@ -32,10 +32,10 @@ function App () {
 
   return (
     <div>
-      {/* <ProductDetail product ={product}/> */}
-      {/* <Related product = {product} setProduct={setProduct}/> */}
+      <ProductDetail product ={product}/>
+      <Related product = {product} setProduct={setProduct}/>
       {product.id && <QuestionsAndAnswers prodID={product.id} prodName={product.name}/>}
-      {/* <Reviews product={product}/> */}
+      <Reviews product={product}/>
     </div>
   )
 }
