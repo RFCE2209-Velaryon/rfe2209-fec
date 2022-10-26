@@ -313,7 +313,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar API_KEY = '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';\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (API_KEY);\n\n//# sourceURL=webpack://rfe2209-fec/./src/config.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar API_KEY = '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';\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (API_KEY);\n\n//# sourceURL=webpack://rfe2209-fec/./src/config.js?");
 
 /***/ }),
 
