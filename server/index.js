@@ -1,5 +1,5 @@
 const axios = require('axios');
-const API_KEY = require('../config.js');
+const API_KEY = require('../api.js');
 axios.defaults.headers.common['Authorization'] = API_KEY;
 
 const path = require("path")
