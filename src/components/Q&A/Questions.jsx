@@ -8,13 +8,20 @@ import './qANDaStyles.css';
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const Questions = ({question, refreshQ, setRefreshQ, prodName}) => {
   const [AModal, setAModal] = useState(false);
+  const [atotal, setAtotal] = useState(question[3]);
   const [Qhelp, setQHelp] = useState(false);
   const [Qreport, setQReport] = useState(false);
   const [seeMore, setSeeMore] = useState(false);
   const [moreAnswers, setMoreAnswers] = useState(true);
 
+  useEffect(() => {}, [atotal])
+
   const QhelpHandler = (qid) => {
-    return axios.put(`${apiurl}qa/questions/${qid}/helpful`)
+    return axios.put('/qa/questions/helpful', null, {
+      params: {
+        qid: qid
+      }
+    })
       .then((response) => {
         setQHelp(!Qhelp);
         setRefreshQ(!refreshQ);
@@ -25,7 +32,11 @@ const Questions = ({question, refreshQ, setRefreshQ, prodName}) => {
   };
 
   const QreportHandler = (qid) => {
-    return axios.put(`${apiurl}qa/questions/${qid}/report`)
+    return axios.put('/qa/questions/report', null, {
+      params: {
+        qid: qid
+      }
+    })
       .then((response) => {
         setQReport(!Qreport);
       })
@@ -53,11 +64,11 @@ const Questions = ({question, refreshQ, setRefreshQ, prodName}) => {
           {<u onClick={() => setAModal(true)}>Add Answer</u>}
         </div>
       </div>
-      {AModal && <AnswerModal prodName={prodName} qBody={question[1]} qID={question[0]} setAModal={setAModal} refreshQ={refreshQ} setRefreshQ={setRefreshQ}/>}
+      {AModal && <AnswerModal prodName={prodName} qBody={question[1]} qID={question[0]} setAModal={setAModal} atotal={atotal} setAtotal={setAtotal}/>}
       <div className="flexDisplay">
-        <div className="flexA">{question[3] ? 'A:' : null}</div>
+        <div className="flexA">{atotal ? 'A:' : null}</div>
         <div className="seeMoreAnswers">
-          <Answers qid={question[0]} atotal={question[3]} seeMore={seeMore} setMoreAnswers={setMoreAnswers}/>
+          <Answers qid={question[0]} atotal={atotal} seeMore={seeMore} setMoreAnswers={setMoreAnswers}/>
           {moreAnswers ? (seeMore ? <u onClick={() => toggleSeeMore()}>Collapse answers</u> : <u onClick={() => {toggleSeeMore()}}>See more answers</u>) : null}
         </div>
       </div>

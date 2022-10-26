@@ -6,7 +6,7 @@ import QuestionsAndAnswers from './components/Q&A/qna.jsx';
 import Related from './components/relateANDcompare/relateANDcompare.jsx';
 import Reviews from './components/reviews/reviews.jsx';
 import Products from './components/productDetail/productDetail.jsx';
-
+import ProductDetail from './components/productDetailAttempt/productDetail.jsx'
 import getProduct from './lib/getProduct.js';
 
 function App () {
@@ -32,8 +32,9 @@ function App () {
 
   return (
     <div>
-      <Related productID = {product.id}/>
-      <QuestionsAndAnswers prodID={product.id}/>
+      <ProductDetail product ={product}/>
+      <Related product = {product} setProduct={setProduct}/>
+      {product.id && <QuestionsAndAnswers prodID={product.id} prodName={product.name}/>}
       <Reviews product={product}/>
     </div>
   )

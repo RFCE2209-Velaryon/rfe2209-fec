@@ -14,8 +14,9 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
   const [questions, setQuestions] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [refreshQ, setRefreshQ] = useState(false);
+
   const getQs = (prodID, pageCount, qCount) => {
-    return axios.get(`${apiurl}qa/questions`, {
+    return axios.get('/qa/questions', {
       params: {
         product_id: prodID,
         page: pageCount,
@@ -27,49 +28,91 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
   useEffect(() => {
     if (prodID) {
       var storage = [];
-      getQs(prodID, 1, totalQs < 4 ? 4 : totalQs)
-      .then((response) => {
-          response.data.results.forEach((item) => {
-            var count = 0;
-            for (var a in item.answers) {
-              count++;
-            }
-            storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
-          });
-        })
+      var test;
+      getQs(prodID, 1, 4*30)
         .then((response) => {
+          if (response.data !== []) {
+            response.data.forEach((item) => {
+              if (storage.length !== 4) {
+                var count = 0;
+                for (var a in item.answers) {
+                  count++;
+                }
+                storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
+                setShowButton(false);
+              }
+              else if (test === undefined) {
+                test = item.question_id;
+                if (test === undefined) {
+                  setShowButton(false);
+                } else {
+                  setShowButton(true);
+                }
+              }
+            });
+          }
           setTotalQs(storage.length);
           setQuestions(storage);
         })
+        .catch((error) => console.log('error at getQs:', error));
+    }
+  }, [prodID]);
+
+  useEffect(() => {
+    if (prodID) {
+      var storage = [];
+      var test;
+      getQs(prodID, 1, (totalQs*30))
         .then((response) => {
-          getQs(prodID, 1, totalQs+1)
-          .then((response) => {
-              if (response.data.results.length > totalQs) {
-                setShowButton(true);
-              } else {
+          console.log('i refreshed');
+          if (response.data !== []) {
+            response.data.forEach((item) => {
+              if (storage.length !== totalQs) {
+                var count = 0;
+                for (var a in item.answers) {
+                  count++;
+                }
+                storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
                 setShowButton(false);
               }
-            })
+              else if (test === undefined) {
+                test = item.question_id;
+                if (test === undefined) {
+                  setShowButton(false);
+                } else {
+                  setShowButton(true);
+                }
+              }
+            });
+          }
+          setTotalQs(storage.length);
+          setQuestions(storage);
         })
         .catch((error) => console.log('error at getQs:', error));
     }
-  }, [prodID, refreshQ]);
+  }, [refreshQ]);
 
 
   const moreQuestions = () => {
-    getQs(prodID, 1, totalQs+2)
+    var storage = [];
+    var test;
+    getQs(prodID, 1, (totalQs+2)*30)
       .then((response) => {
-        var newQs = response.data.results.slice(totalQs);
-        newQs = newQs.map((q) => {
-          var count = 0;
-          for (var a in q.answers) {
-            count++;
-          }
-          return ([q.question_id, q.question_body, q.question_helpfulness, count])
-        });
+        if (response.data !== []) {
+          response.data.forEach((item) => {
+            if (storage.length !== (totalQs+2)) {
+              var count=0;
+              for (var a in item.answers) {
+                count++;
+              }
+              storage.push([item.question_id, item.question_body, item.question_helpfulness, count]);
+            }
+          });
+        }
+        var newQs = storage.slice(totalQs);
         setQuestions([...questions, ...newQs]);
+        setTotalQs(storage.length);
         setRefreshQ(!refreshQ);
-        setTotalQs(totalQs+2);
       });
   };
 
@@ -88,7 +131,7 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
         {showButton ? <button className="buttons" onClick={()=> {moreQuestions()}}>MORE ANSWERED QUESTIONS</button> : null}
         <button className="buttons" onClick={() => setQModal(true)}>ADD A QUESTION +</button>
       </div>
-      {QModal && <QuestionModal prodID={prodID} prodName={prodName} setQModal={setQModal} refreshQ={refreshQ} setRefreshQ={setRefreshQ}/>}
+      {QModal && <QuestionModal prodID={prodID} prodName={prodName} setQModal={setQModal} refreshQ={refreshQ} setRefreshQ={setRefreshQ} totalQs={totalQs} setTotalQs={setTotalQs}/>}
     </div>
   )
 };

@@ -3,7 +3,7 @@ import axios from "axios";
 import './qANDaStyles.css';
 
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
-const QuestionModal = ({prodID, prodName, setQModal, refreshQ, setRefreshQ}) => {
+const QuestionModal = ({prodID, prodName, setQModal, refreshQ, setRefreshQ, totalQs, setTotalQs}) => {
   const [question, setQuestion] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
@@ -13,15 +13,16 @@ const QuestionModal = ({prodID, prodName, setQModal, refreshQ, setRefreshQ}) => 
       valid = true;
     }
     if (valid) {
-      console.log(prodID);
-      axios.post(`${apiurl}qa/questions`, {
+      return axios.post('/qa/questions', {
         "body": question,
         "name": nickname,
         "email": email,
         "product_id": prodID
       })
         .then((response) => {
-          console.log(response);
+          if (totalQs < 4) {
+            setTotalQs(totalQs+1);
+          }
           setRefreshQ(!refreshQ);
           setQModal(false);
         })

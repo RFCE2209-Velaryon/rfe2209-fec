@@ -14,7 +14,11 @@ const Answer = ({answer, refresh, setRefresh}) => {
   const [report, setReport] = useState(false);
 
   const helpHandler = (aid) => {
-    return axios.put(`${apiurl}qa/answers/${aid}/helpful`)
+    return axios.put('/qa/answers/helpful', null, {
+      params: {
+        aid: aid
+      }
+    })
       .then((response) => {
         setHelp(!help);
       })
@@ -27,7 +31,11 @@ const Answer = ({answer, refresh, setRefresh}) => {
   };
 
   const reportHandler = (aid) => {
-    return axios.put(`${apiurl}qa/answers/${aid}/report`)
+    return axios.put('/qa/answers/report', null, {
+      params: {
+        aid: aid
+      }
+    })
       .then((response) => {
         setReport(!report);
       })

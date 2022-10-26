@@ -1,0 +1,51 @@
+.thumbnailMain {
+
+  max-height: 10vh;
+  max-width: 10vw;
+  border-radius:1%;
+  border: solid .25em #97d1cf;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 1vw;
+
+}
+
+.thumbnailWrapper {
+  position: absolute;
+  left: 2vw;
+  max-height: 85vh;
+  overflow-y: hidden;
+}
+
+.mainImg {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.mainImgWrapper {
+  position: relative;
+  display:flex;
+  min-width:50vw;
+}
+
+.galleryWrapper {
+  width: 65vw;
+  height: 85vh;
+  display:flex;
+  background-color: black;
+  position: relative;
+}
+
+.productDetailWrapper {
+display: flex;
+}
+
+.detailWrapper {
+  width:100%;
+  min-width: 20vw;
+}
+
+.infoWrapper {
+  position: relative;
+}

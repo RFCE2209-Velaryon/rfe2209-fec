@@ -17,6 +17,7 @@ const Outfit = (props) => {
   let [needsScrolling, setNeedsScrolling] = useState(false);
   let [needsScrollRight, setNeedsScrollRight] = useState(false);
   let [needsScrollLeft, setNeedsScrollLeft] = useState(false);
+  let [imgSrc, setImgSrc] = useState('https://st.depositphotos.com/1987177/3470/v/450/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg')
 
   useEffect(()=> {
     if(document.cookie) {
@@ -81,7 +82,8 @@ const Outfit = (props) => {
   let getRelated = (id) => {
     return axios({
       method: 'get',
-      url: apiurl+'products/'+id+'/related'
+      url: '/related',
+      params: {api:apiurl+'products/'+id+'/related'}
     });
   }
 
@@ -138,6 +140,24 @@ const Outfit = (props) => {
     scrollCheck()
   }
 
+  let getProductStyle = () => {
+    return axios({
+      method: 'get',
+      url: '/related',
+      params: {api:apiurl+'products/'+props.productID+'/styles'}
+    })
+  }
+
+  let getImgSrc = () => {
+    return getProductStyle().then(styleData=> {
+      if (styleData.data.results[0].photos[0].url) {
+        return styleData.data.results[0].photos[0].url;
+      } else {
+        return 'https://st.depositphotos.com/1987177/3470/v/450/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg'
+      }
+    });
+  }
+
   window.addEventListener("resize", ()=>{
 
     clearTimeout(timeout);
@@ -159,7 +179,7 @@ const Outfit = (props) => {
         </div>
       ): null}
       <div className='outfitCards' onLoad={()=>{scrollCheck(); sliderSetup();}}>
-        <div className='cardWrapper' style={{backgroundColor:'gray'}} onClick={(e)=> {setOutfitIDs(props.productID)}}>
+        <div className='cardWrapper' style={{backgroundColor:'#ccfffd'}} onClick={(e)=> {setOutfitIDs(props.productID)}}>
           <div className='addOutfitText'>Add to Outfit</div>
           <div className='addOutfitIcon' >&#43;</div>
         </div>
