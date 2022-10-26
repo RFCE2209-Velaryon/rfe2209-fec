@@ -36,19 +36,14 @@ const Related = (props) => {
   let getProductData = (id) => {
     return axios({
       method: 'get',
-      url: '/related',
-      params: {api:apiurl+'products/'+id}
-    });
+      url: apiurl+'products/'+id
+    })
   }
 
   let relatedHandler = (id) => {
     getRelated(id).then((relRes) => {
       getProductData(id).then((proRes) => {
-        let rid = [];
-        relRes.data.forEach(relID=> {
-          if(!rid.includes(relID)) rid.push(relID);
-        })
-        setRelated({ids: rid});
+        setRelated({ids: relRes.data});
         setCurProduct({name: proRes.data.name, features: proRes.data.features});
       })
     })
@@ -57,8 +52,7 @@ const Related = (props) => {
   let getRelated = (id) => {
     return axios({
       method: 'get',
-      url: '/related',
-      params: {api:apiurl+'products/'+id+'/related'}
+      url: apiurl+'products/'+id+'/related'
     });
   }
 
@@ -138,7 +132,7 @@ const Related = (props) => {
       <div className='relatedCards' onLoad={()=>{scrollCheck(); sliderSetup()}}>
         {related.ids.length>0 ? related.ids.map((id, i)=>{
           return (<RelatedCard key={i} setProduct={props.setProduct} curProduct={curProduct} productID = {id} isRelated={true} />)}) :
-          <div className='cardWrapper' style={{backgroundColor:'#ccfffd'}}>
+          <div className='cardWrapper' style={{backgroundColor:'gray'}}>
             <div className='addOutfitText'>No Related Items</div>
             <div className='addOutfitIcon' >&#9785;</div>
           </div>}
