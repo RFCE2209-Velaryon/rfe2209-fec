@@ -9,7 +9,7 @@ body {
   margin-right:auto;
   color: black;
   background-color: #eeffff;
-  max-width: 1000px;
+  width: min(1000px, 85vw);
   border: solid 1px black;
   box-shadow: 0px 1px 4px 3px rgb(95, 161, 172);
 }
