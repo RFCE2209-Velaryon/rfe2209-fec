@@ -23,7 +23,7 @@
 }
 
 .questions-list {
-  overflow: scroll;
+  overflow-y: scroll;
   max-height: 72vh;
   margin: 10px;
 }
@@ -33,7 +33,7 @@
 }
 
 .seeMoreAnswers {
-  overflow: scroll;
+  overflow-y: scroll;
   max-height: 44vh;
   flex: 98%;
   margin-right: 10px;

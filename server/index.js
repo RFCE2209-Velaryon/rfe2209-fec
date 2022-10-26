@@ -30,7 +30,10 @@ app.get('/qa/questions', (req, res) => {
       count: Number(req.query.count)
     }
   })
-    .then(response => res.send(response.data.results))
+    .then(response => {
+      response.data.results = response.data.results.sort((a,b) => {return b.question_helpfulness - a.question_helpfulness || a.question_id - b.question_id})
+      res.send(response.data.results);
+    })
     .catch(error => res.send(error));
 })
 
