@@ -1,11 +1,12 @@
 .thumbnailMain {
 
-  height: 100px;
-  width: 100px;
-  border-radius:100%;
-  border: solid 5px #97d1cf;
+  max-height: 10vh;
+  max-width: 10vw;
+  border-radius:1%;
+  border: solid .25em #97d1cf;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-top: 1vw;
 
 }
 
@@ -19,12 +20,32 @@
 .mainImg {
   height: 100%;
   width: 100%;
-  position: relative;
+  object-fit: contain;
+}
 
+.mainImgWrapper {
+  position: relative;
+  display:flex;
+  min-width:50vw;
 }
 
 .galleryWrapper {
   width: 65vw;
   height: 85vh;
   display:flex;
+  background-color: black;
+  position: relative;
+}
+
+.productDetailWrapper {
+display: flex;
+}
+
+.detailWrapper {
+  width:100%;
+  min-width: 20vw;
+}
+
+.infoWrapper {
+  position: relative;
 }

@@ -8,6 +8,7 @@ const Gallery = (props) => {
   let [currentImage, setCurrentImage] = useState(0);
   let [currentPhotos, setCurrentPhotos] = useState({photos: []});
   useEffect(()=>{
+    setCurrentImage(0);
     getProductStyle(props.product.id).then(res=> {
       console.log(res);
       setCurrentPhotos({photos: res.data.results[0].photos});

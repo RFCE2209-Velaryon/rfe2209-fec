@@ -17,6 +17,7 @@ const Outfit = (props) => {
   let [needsScrolling, setNeedsScrolling] = useState(false);
   let [needsScrollRight, setNeedsScrollRight] = useState(false);
   let [needsScrollLeft, setNeedsScrollLeft] = useState(false);
+  let [imgSrc, setImgSrc] = useState('https://st.depositphotos.com/1987177/3470/v/450/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg')
 
   useEffect(()=> {
     if(document.cookie) {
@@ -137,6 +138,24 @@ const Outfit = (props) => {
   let stopDragging = (e) => {
     mouseDown = false;
     scrollCheck()
+  }
+
+  let getProductStyle = () => {
+    return axios({
+      method: 'get',
+      url: '/related',
+      params: {api:apiurl+'products/'+props.productID+'/styles'}
+    })
+  }
+
+  let getImgSrc = () => {
+    return getProductStyle().then(styleData=> {
+      if (styleData.data.results[0].photos[0].url) {
+        return styleData.data.results[0].photos[0].url;
+      } else {
+        return 'https://st.depositphotos.com/1987177/3470/v/450/depositphotos_34700099-stock-illustration-no-photo-available-or-missing.jpg'
+      }
+    });
   }
 
   window.addEventListener("resize", ()=>{
