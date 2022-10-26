@@ -5,7 +5,7 @@
   height: 300px;
   margin: 5px;
   background-color:'white';
-  box-shadow: 0px 1px 4px 3px rgb(156, 156, 156);
+  box-shadow: 0px 1px 4px 3px rgb(95, 161, 172);
 }
 
 .relative {
@@ -28,6 +28,14 @@
   height: 100%;
   width: 100%;
   object-fit: contain;
+}
+
+.cardDetail {
+  padding-left: 5px;
+}
+
+.cardDetailWrapper {
+  background-color: white;
 }
 
 .stars {
