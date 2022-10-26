@@ -31,7 +31,6 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
       var test;
       getQs(prodID, 1, 4*30)
         .then((response) => {
-          console.log(response.data);
           if (response.data !== []) {
             response.data.forEach((item) => {
               if (storage.length !== 4) {
@@ -65,7 +64,6 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
       var test;
       getQs(prodID, 1, (totalQs*30))
         .then((response) => {
-          console.log(response.data);
           if (response.data !== []) {
             response.data.forEach((item) => {
               if (storage.length !== totalQs) {
@@ -99,7 +97,6 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
     var test;
     getQs(prodID, 1, (totalQs+2)*30)
       .then((response) => {
-        console.log(response.data);
         if (response.data !== []) {
           response.data.forEach((item) => {
             if (storage.length !== (totalQs+2)) {

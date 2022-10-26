@@ -3,13 +3,13 @@ import axios from "axios";
 import './qANDaStyles.css';
 
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
-const AnswerModal = ({prodName, qBody, qID, setAModal, refreshQ, setRefreshQ}) => {
+const AnswerModal = ({prodName, qBody, qID, setAModal, refreshQ, setRefreshQ, atotal, setAtotal}) => {
   const [answer, setAnswer] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [images, setImages] = useState([]);
-  const [imageURLs, setImageURLs] = useState([]);
   const [imagesButton, setImagesButton] = useState(true);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     if (images.length === 5) {
@@ -17,56 +17,48 @@ const AnswerModal = ({prodName, qBody, qID, setAModal, refreshQ, setRefreshQ}) =
     }
   }, [images]);
 
-  // const base64 = (file) => {
-  //   let reader = new FileReader();
-  //   reader.readAsDataURL(file)
-  //     .then((response) => {console.log(response)})
-  //     .catch((error) => {console.log(error)});
-  // };
-
   const handleImages = (file) => {
-    // console.log(file.toBase64);
-    // base64(file);
-    // imagekit.upload({
-    //   file: base64,
-    //   fileName: `${file.name}`,
-    // })
-    //   .then((response) => {
-    //     console.log(response)
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   })
-    setImages([...images, file]);
-    // var imageURL = imagekit.url({
-    //   path: "/default-image.jpg", //filename
-    //   urlEndpoint: "https://ik.imagekit.io/dchong0123/",
-    //   transformation: [{
-    //     "height": "300",
-    //     "width": "400"
-    //   }]
-    // });
-    setImageURLs([...imageURLs, URL.createObjectURL(file)]);
+    function getBase64(file) {
+      return new Promise((res, rej) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => res(reader.result);
+        reader.onerror = (err) => rej(err);
+      });
+    }
+    getBase64(file)
+      .then((response) => {
+        return axios.post('/images', {
+          file: response,
+          filename: file.name
+        })
+          .then((response) => {
+            setImages([...images, response.data]);
+          })
+          .catch((error) => {
+            console.log(error);
+            if (!imageError) {
+              setImageError(true);
+            }
+          })
+      })
+      .catch((error) => {
+        console.log(error);
+        setImageError(true);
+      });
   };
-
-  const AddAnswer = () => {
-    return axios.post('/qa/questions/answers', {
-      qid: qID,
-      body: answer,
-      name: nickname,
-      email: email,
-      photos: imageURLs
-    })
-  }
 
   const handleSubmit = () => {
     var valid = false;
-    if (answer !== '' && nickname !== '' && email !== '' && /\S+@\S+\.\S+/.test(email)) {
+    if (answer !== '' && nickname !== '' && email !== '' && /\S+@\S+\.\S+/.test(email) && !imageError) {
       valid = true;
     }
     if (valid) {
       AddAnswer()
         .then((response) => {
+          if (atotal < 2) {
+            setAtotal(atotal+1);
+          }
           setRefreshQ(!refreshQ);
           setAModal(false);
         })
@@ -85,9 +77,22 @@ const AnswerModal = ({prodName, qBody, qID, setAModal, refreshQ, setRefreshQ}) =
       if (email === '' || !(/\S+@\S+\.\S+/.test(email))) {
         missing.push('Email');
       }
+      if (imageError) {
+        missing.push('Photos');
+      }
       return(alert(`You must enter the following: ${missing.map((item) => ` ${item}`)}`))
     }
   };
+
+  const AddAnswer = () => {
+    return axios.post('/qa/questions/answers', {
+      qid: qID,
+      body: answer,
+      name: nickname,
+      email: email,
+      photos: images
+    })
+  }
 
   return(
     <div className="q-modal">
@@ -118,16 +123,10 @@ const AnswerModal = ({prodName, qBody, qID, setAModal, refreshQ, setRefreshQ}) =
                 handleImages(e.target.files[0]);
               }}
             />}
-            {images.length !== 0 && images.map((file) =>
+            {images.length !== 0 && images.map((url, index) =>
               {return(
-                  <div key={file.name}>
-                    <img alt={file.name} width="250px" src={URL.createObjectURL(file)} />
-                    {/*
-                    1. convert uploaded file to base64
-                    2. create account on image kit
-                    3. make api call to image kit to get url from base64
-                    4. make api call to add answer
-                     */}
+                  <div key={index}>
+                    <img width="250px" src={url} />
                   </div>
                 )
               }

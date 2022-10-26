@@ -1,5 +1,6 @@
 const axios = require('axios');
 const API_KEY = require('../api.js');
+const imagekit = require('../imagekit.js');
 axios.defaults.headers.common['Authorization'] = API_KEY;
 
 const path = require("path")
@@ -8,7 +9,6 @@ const express = require("express"); // npm installed
 const relatedParser = require('./relatedParser.js');
 const qnaParser = require('./qnaParser.js');
 const reviewsParser = require('./reviewsParser.js');
-
 
 const app = express();
 
@@ -45,7 +45,10 @@ app.get('/qa/questions/answers', (req, res) => {
       count: Number(req.query.count)
     }
   })
-    .then(response => res.send(response.data.results))
+    .then(response => {
+      response.data.results = response.data.results.sort((a,b) => {return b.helpfulness - a.helpfulness || a.answer_id - b.answer_id})
+      res.send(response.data.results);
+    })
     .catch(error => res.send(error));
 });
 
@@ -61,8 +64,52 @@ app.post('/qa/questions', (req, res) => {
     .catch(error => res.send(error));
 });
 
+//ADD IMAGE
+app.post('/images', (req, res) => {
+  imagekit.upload({
+    file: req.body.file,
+    fileName: req.body.filename
+  })
+    .then((response) => {
+      res.send(response.thumbnailUrl);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+})
+
 //ADD ANSWER
 app.post('/qa/questions/answers', (req, res) => {
+  // 1. convert uploaded file to base64
+  // 2. make api call to image kit to get url from base64
+  // 3. make api call to add answer
+  // const base64 = (file) => {
+  //   let reader = new FileReader();
+  //   reader.readAsDataURL(file)
+  //     .then((response) => {console.log(response)})
+  //     .catch((error) => {console.log(error)});
+  // };
+  // console.log(file.toBase64);
+    // base64(file);
+    // imagekit.upload({
+    //   file: base64,
+    //   fileName: `${file.name}`,
+    // })
+    //   .then((response) => {
+    //     console.log(response)
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   })
+
+    // var imageURL = imagekit.url({
+    //   path: "/default-image.jpg", //filename
+    //   urlEndpoint: "https://ik.imagekit.io/dchong0123/",
+    //   transformation: [{
+    //     "height": "300",
+    //     "width": "400"
+    //   }]
+    // });
   return axios.post(`${apiurl}qa/questions/${req.body.qid}/answers`, {
     body: req.body.body,
     name: req.body.name,
