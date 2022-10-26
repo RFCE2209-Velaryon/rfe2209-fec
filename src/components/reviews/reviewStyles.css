@@ -39,7 +39,7 @@
 }
 
 .review {
-  width: 50vw;
+  width: min(55vw, 647px);
   margin: 10px;
 }
 
