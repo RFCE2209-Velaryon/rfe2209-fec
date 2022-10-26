@@ -74,22 +74,24 @@ const RelatedCard = (props) => {
   let getProductData = (id) => {
     return axios({
       method: 'get',
-      url: apiurl+'products/'+id
+      url: '/related',
+      params: {api:apiurl+'products/'+id}
     })
   }
 
   let getProductStyle = (id) => {
     return axios({
       method: 'get',
-      url: apiurl+'products/'+id+'/styles'
+      url: '/related',
+      params: {api:apiurl+'products/'+id+'/styles'}
     })
   }
 
   let getProductStars = (id) => {
     return axios({
       method: 'get',
-      url: apiurl+'reviews/meta',
-      params: {product_id: id}
+      url: '/related',
+      params: {api:apiurl+'reviews/meta', param:{product_id: id}}
     })
   }
   let setStars = (starData) => {

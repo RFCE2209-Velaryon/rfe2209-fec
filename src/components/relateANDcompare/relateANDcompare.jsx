@@ -36,8 +36,9 @@ const Related = (props) => {
   let getProductData = (id) => {
     return axios({
       method: 'get',
-      url: apiurl+'products/'+id
-    })
+      url: '/related',
+      params: {api:apiurl+'products/'+id}
+    });
   }
 
   let relatedHandler = (id) => {
@@ -56,7 +57,8 @@ const Related = (props) => {
   let getRelated = (id) => {
     return axios({
       method: 'get',
-      url: apiurl+'products/'+id+'/related'
+      url: '/related',
+      params: {api:apiurl+'products/'+id+'/related'}
     });
   }
 

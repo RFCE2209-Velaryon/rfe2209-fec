@@ -32,7 +32,7 @@ const Gallery = (props) => {
       </div>
       <div className='thumbnailWrapper'>
         {currentPhotos.photos.length ? currentPhotos.photos.map((photo,i)=>{
-          return (<img key={i} onClick={(e)=>{setCurrentImage(i)}} thumbID={i} className='thumbnailMain' src={photo.thumbnail_url}></img>)
+          return (<img key={i} onClick={(e)=>{setCurrentImage(i)}} className='thumbnailMain' src={photo.thumbnail_url}></img>)
         }) : null}
       </div>
 
