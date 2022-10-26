@@ -1,15 +1,49 @@
 .ratingsAndReviews {
   display: flex;
   max-height: 100vh;
+  width: 90vw;
 }
 
 .leftReviews, .rightReviews {
   border: solid 1px black;
+  padding:5px;
+}
+
+.leftReviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .reviewList {
-  overflow: scroll;
-  max-height: 90vh;
+  overflow-y: scroll;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reviewList > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reviewList::-webkit-scrollbar {
+  display: none;
+}
+
+.review {
+  width: 50vw;
+  margin: 10px;
+}
+
+.reviewSeperator {
+  width: 80%;
+  height: 1px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: #000;
 }
 
 .averageRating {
@@ -110,6 +144,7 @@
   display: flex;
   gap: 6px;
   height: 80px;
+  margin: 10px;
 }
 /* DropDown Menu Styling */
 .dropdown {
@@ -157,11 +192,17 @@
   transform: rotate(90deg);
 }
 
+.ratingBreakdownList {
+  width: 100%;
+}
+
 .ratingBreakdown {
   display: flex;
   align-items: center;
   height: 40px;
   justify-content: space-around;
+  width: 100%;
+  gap: 6px;
 }
 
 .ratingBreakdownLabel {
@@ -189,7 +230,7 @@
   display: flex;
   align-items: center;
   background-color: #e0e0e0;
-  border-radius: 100%;
+  border-radius: 15px;
   padding: 4px;
 }
 
@@ -236,9 +277,87 @@ input[type=range]::-webkit-slider-runnable-track  {
   justify-content: space-between;
 }
 
+.rangeLabelContainer div {
+  font-size: .8rem;
+}
+
+.characteristicBreakdownList > div {
+  margin-top: 15px;
+}
+
 .rightReviewsContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+}
+
+.bottomRightButtons {
+  display: flex;
+  gap: 8px;
+  height: 5vh;
+}
+
+.bottomRightButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  margin: 8px;
+  padding: 0px 8px;
+}
+
+.addAReviewForm {
+  position: fixed;
+  /* fill the screen */
+  height: 100vh;
+  width: 100vw;
+  /* center/create background */
+  left: 0;
+  top: 0;
+  background-color: rgba(100, 100, 100, 0.852);
+  /* center image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+
+  overflow-y: scroll;
+}
+
+.reviewFormButton {
+  height: 5vmin;
+  padding: 5px;
+  background-color: rgb(36, 36, 36);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3vmin;
+  color: #f4f4f4;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.reviewRow {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 50px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+}
+
+#reviewSummary {
+  width: 35vw;
+}
+
+#reviewBody {
+  width: 40vw;
+  height: 100px;
 }

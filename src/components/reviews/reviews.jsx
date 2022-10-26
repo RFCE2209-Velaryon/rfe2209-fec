@@ -13,6 +13,7 @@ import DropDown from './DropDown.jsx';
 import StarRating from './StarRating.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import Characteristic from './Characteristic.jsx';
+import AddAReview from './AddAReview.jsx';
 
 const Reviews = ({product}) => {
   const [reviews, setReviews] = React.useState('');
@@ -22,6 +23,7 @@ const Reviews = ({product}) => {
   const [characteristics, setCharacteristics] = React.useState(null);
   const [recommended, setRecommended] = React.useState(null);
   const [filters, setFilters] = React.useState({1: false, 2: false, 3: false, 4: false, 5: false});
+  const [addingAReview, setAddingAReview] = React.useState(false);
 
   //console.log(`product from reviews component: ${JSON.stringify(product)}`);
 
@@ -41,8 +43,8 @@ const Reviews = ({product}) => {
           API.getReviews(1, totalReviews, sort, product.id)
             .then((reviews) => {
               setReviews(reviews.data.results);
-              console.log(`metadata retrieved: ${JSON.stringify(metaData.data)}`)
-              console.log(`reviews retrieved: ${JSON.stringify(reviews.data.results)}`);
+              console.log(`metadata retrieved: ${JSON.stringify(metaData.data.characteristics)}`)
+              //console.log(`reviews retrieved: ${JSON.stringify(reviews.data.results)}`);
             })
             .catch((err) => {
               console.log(`error from API.getReviews: ${err}`);
@@ -134,11 +136,15 @@ const Reviews = ({product}) => {
             </div>
             <ReviewList reviews={getShownReviews()}/>
           </div>
-          {(reviewsShown < getAvailableReviews().length) && <div className='bottomRightButtons'onClick={addReviews}>More Reviews</div>}
+          <div className='bottomRightButtons'>
+            {(reviewsShown < getAvailableReviews().length) && <div className='bottomRightButton'onClick={addReviews}>More Reviews</div>}
+            <div className='bottomRightButton' onClick={() => setAddingAReview(true)}>Add a Review +</div>
+          </div>
         </div>
         }
         {/* add review button */}
       </div>
+      {addingAReview && <AddAReview product={product} characteristics={characteristics} setAddingAReview={setAddingAReview}/>}
     </div>
   )
 };
