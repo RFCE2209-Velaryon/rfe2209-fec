@@ -1,9 +1,45 @@
 import React from 'react';
+import axios from 'axios';
 
 import StarRating from './StarRating.jsx';
 
-const AddAReview = ({product, setAddingAReview, characteristics}) => {
+const AddAReview = ({getReviews, product, setAddingAReview, characteristics}) => {
   const [review, setReview] = React.useState({name: '', body: '', recommend: false, summary: '', Overall: 0, email: ''});
+  const [images, setImages] = React.useState([]);
+  const [imagesButton, setImagesButton] = React.useState(true);
+  const [imageError, setImageError] = React.useState(false);
+
+  const handleImages = (file) => {
+    function getBase64(file) {
+      return new Promise((res, rej) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => res(reader.result);
+        reader.onerror = (err) => rej(err);
+      });
+    }
+    getBase64(file)
+      .then((response) => {
+        return axios.post('/images', {
+          file: response,
+          filename: file.name
+        })
+          .then((response) => {
+            console.log(response.data);
+            setImages([...images, response.data]);
+          })
+          .catch((error) => {
+            console.log(error);
+            if (!imageError) {
+              setImageError(true);
+            }
+          })
+      })
+      .catch((error) => {
+        console.log(error);
+        setImageError(true);
+      });
+  };
 
   React.useEffect(() => {
     let temp = {};
@@ -50,23 +86,47 @@ const AddAReview = ({product, setAddingAReview, characteristics}) => {
 
   function handleSubmit () {
     // check to make sure inputs are all valid
+    if(review.body.length >= 50 && review.body.length <=1000
+      && review.summary.length > 0 && review.summary.length <= 60
+      && review.name.length > 0 && review.email !== '' && /\S+@\S+\.\S+/.test(review.email)
+      && !imageError) {
+        addReview();
+        setAddingAReview(false);
+        getReviews();
+      } else {
+        var missing = [];
+        if(review.summary === '' || review.summary.length > 60) {
+          missing.push('Summary');
+        }
+        if(review.body.length < 50 || review.body.length > 1000) {
+          missing.push('Body');
+        }
+        if (review.email === '' || !(/\S+@\S+\.\S+/.test(review.email))) {
+          missing.push('Email');
+        }
+        if (imageError) {
+          missing.push('Photos');
+        }
+        return(alert(`You must enter the following: ${missing.map((item) => ` ${item}`)}`))
+      }
+  }
 
-    // check that email is formatted correctly
-    // check that body is the correct size
-    // check that summary is the right size
-    // check that all ratings have a star
-
+  function addReview() {
     let temp = {};
     Object.keys(characteristics).forEach(characteristic => {
       temp[characteristics[characteristic].id] = review[characteristic];
     });
-
-    console.log(`/reviews/?product_id=${product.id}&rating=${review.Overall}&summary=${review.summary}&body=${review.body}&recommend=${review.recommend}&name=${review.name}&email=${review.email}&photos=${'TODO'}&characteristics=${JSON.stringify(temp)}`);
-    // axios({
-    //   method: 'post',
-    //   url: `/reviews/?product_id=${product.id}&rating=${review.Overall}&summary=${review.summary}&body=${review.body}&recommend=${review.recommend}&name=${review.name}&email=${}&photos=${}&characteristics=${}`
-    // });
-    //setAddingAReview(false);
+    return axios.post('/reviews', {
+      product_id: product.id,
+      rating: review.Overall,
+      summary: review.summary,
+      body: review.body,
+      recommend: review.recommend,
+      name: review.name,
+      email: review.email,
+      photos: images,
+      characteristics: temp
+    });
   }
 
   return (
@@ -100,7 +160,24 @@ const AddAReview = ({product, setAddingAReview, characteristics}) => {
           <input onChange={handleChange} type='textarea' id='reviewBody' placeholder='Why did you like the product or not?'></input>
           <div>{(250 - review.body.length) > 0 ? (250 - review.body.length): 0}</div>
         </div>
-        <div>0-5 images</div>
+        <div className='reviewRow'>
+            {`Upload Your Photos (optional) `}
+            {imagesButton && <input type="file" accept="image/png, image/jpeg"
+              onChange={(e) => {
+                handleImages(e.target.files[0]);
+              }}
+            />}
+        </div>
+        <div className='reviewRow'>
+          {images.length !== 0 && images.map((url, index) =>
+              {return(
+                  <div key={index}>
+                    <img width="250px" src={url} />
+                  </div>
+                )
+              }
+            )}
+        </div>
         <div className='reviewRow'>
           <h4>Username</h4>
           <input onChange={handleChange} type='text' id='reviewName' placeholder='Johnson11'></input>
