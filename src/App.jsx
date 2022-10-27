@@ -1,11 +1,9 @@
 import React from 'react';
 import $ from 'jquery';
 
-import Product from './components/productDetail/productDetail.jsx';
 import QuestionsAndAnswers from './components/Q&A/qna.jsx';
 import Related from './components/relateANDcompare/relateANDcompare.jsx';
 import Reviews from './components/reviews/reviews.jsx';
-import Products from './components/productDetail/productDetail.jsx';
 import ProductDetail from './components/productDetailAttempt/productDetail.jsx'
 import getProduct from './lib/getProduct.js';
 
