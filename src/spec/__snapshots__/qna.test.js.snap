@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="main"
+>
+  <h1
+    className="title"
+  >
+    Questions & Answers
+  </h1>
+  <form
+    className="searchbar"
+  >
+    <input
+      className="searchInput"
+      onChange={[Function]}
+      placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
+      type="text"
+    />
+    <div>
+      <i />
+    </div>
+  </form>
+  <div
+    className="questions-list"
+  />
+  <div
+    className="footer"
+  >
+    <button
+      className="buttons"
+      onClick={[Function]}
+    >
+      ADD A QUESTION +
+    </button>
+  </div>
+</div>
+`;

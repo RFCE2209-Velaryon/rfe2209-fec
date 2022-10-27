@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div
+    className="productDetailWrapper"
+  >
+    <div
+      className="detailWrapper"
+    />
+  </div>
+  <h1>
+    Related Items
+  </h1>
+  <div
+    className="relatedCards"
+    onLoad={[Function]}
+  >
+    <div
+      className="cardWrapper"
+      style={
+        {
+          "backgroundColor": "#ccfffd",
+        }
+      }
+    >
+      <div
+        className="addOutfitText"
+      >
+        No Related Items
+      </div>
+      <div
+        className="addOutfitIcon"
+      >
+        ☹
+      </div>
+    </div>
+  </div>
+  <div
+    className="ratingsAndReviews"
+  >
+    <div
+      className="leftReviews"
+    >
+      <h2>
+        Ratings & Reviews
+      </h2>
+      <div
+        className="filters"
+      />
+    </div>
+    <div
+      className="rightReviews"
+    />
+  </div>
+</div>
+`;
