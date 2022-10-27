@@ -7,73 +7,75 @@ import './qANDaStyles.css';
 
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const Questions = ({question, refreshQ, setRefreshQ, prodName}) => {
-  const [AModal, setAModal] = useState(false);
-  const [atotal, setAtotal] = useState(question[3]);
-  const [Qhelp, setQHelp] = useState(false);
-  const [Qreport, setQReport] = useState(false);
-  const [seeMore, setSeeMore] = useState(false);
-  const [moreAnswers, setMoreAnswers] = useState(true);
+  if (question) {
+    const [AModal, setAModal] = useState(false);
+    const [atotal, setAtotal] = useState(question[3]);
+    const [Qhelp, setQHelp] = useState(false);
+    const [Qreport, setQReport] = useState(false);
+    const [seeMore, setSeeMore] = useState(false);
+    const [moreAnswers, setMoreAnswers] = useState(true);
 
-  useEffect(() => {}, [atotal])
+    useEffect(() => {}, [atotal])
 
-  const QhelpHandler = (qid) => {
-    return axios.put('/qa/questions/helpful', null, {
-      params: {
-        qid: qid
-      }
-    })
-      .then((response) => {
-        setQHelp(!Qhelp);
-        setRefreshQ(!refreshQ);
+    const QhelpHandler = (qid) => {
+      return axios.put('/qa/questions/helpful', null, {
+        params: {
+          qid: qid
+        }
       })
-      .catch((err) => {
-        console.log('error in QhelpHandler');
-      });
-  };
+        .then((response) => {
+          setQHelp(!Qhelp);
+          setRefreshQ(!refreshQ);
+        })
+        .catch((err) => {
+          console.log('error in QhelpHandler');
+        });
+    };
 
-  const QreportHandler = (qid) => {
-    return axios.put('/qa/questions/report', null, {
-      params: {
-        qid: qid
-      }
-    })
-      .then((response) => {
-        setQReport(!Qreport);
+    const QreportHandler = (qid) => {
+      return axios.put('/qa/questions/report', null, {
+        params: {
+          qid: qid
+        }
       })
-      .catch((err) => {
-        console.log('error in reportHandler');
-      })
-  };
+        .then((response) => {
+          setQReport(!Qreport);
+        })
+        .catch((err) => {
+          console.log('error in reportHandler');
+        })
+    };
 
-  const toggleSeeMore = () => {
-    setSeeMore(!seeMore);
+    const toggleSeeMore = () => {
+      setSeeMore(!seeMore);
+    }
+
+    return(
+      <div>
+        <div className="flexDisplay">
+          <div className="flexQ" key={question[0]}>
+            <b>Q: {question[1]}</b>
+          </div>
+          <div className="flexO">
+            {` Helpful? `}
+            {Qhelp ? <u>Yes</u> : <u onClick={() => {QhelpHandler(question[0])}}>Yes</u>}
+            {` (${question[2]}) | `}
+            {Qreport ? <u>Reported</u> : <u onClick={() => {QreportHandler(question[0])}}>Report</u>}
+            {` | `}
+            {<u onClick={() => setAModal(true)}>Add Answer</u>}
+          </div>
+        </div>
+        {AModal && <AnswerModal prodName={prodName} qBody={question[1]} qID={question[0]} setAModal={setAModal} atotal={atotal} setAtotal={setAtotal}/>}
+        <div className="flexDisplay">
+          <div className="flexA">{atotal ? 'A:' : null}</div>
+          <div className="seeMoreAnswers">
+            <Answers qid={question[0]} atotal={atotal} seeMore={seeMore} setMoreAnswers={setMoreAnswers}/>
+            {moreAnswers ? (seeMore ? <u onClick={() => toggleSeeMore()}>Collapse answers</u> : <u onClick={() => {toggleSeeMore()}}>See more answers</u>) : null}
+          </div>
+        </div>
+      </div>
+    )
   }
-
-  return(
-    <div>
-      <div className="flexDisplay">
-        <div className="flexQ" key={question[0]}>
-          <b>Q: {question[1]}</b>
-        </div>
-        <div className="flexO">
-          {` Helpful? `}
-          {Qhelp ? <u>Yes</u> : <u onClick={() => {QhelpHandler(question[0])}}>Yes</u>}
-          {` (${question[2]}) | `}
-          {Qreport ? <u>Reported</u> : <u onClick={() => {QreportHandler(question[0])}}>Report</u>}
-          {` | `}
-          {<u onClick={() => setAModal(true)}>Add Answer</u>}
-        </div>
-      </div>
-      {AModal && <AnswerModal prodName={prodName} qBody={question[1]} qID={question[0]} setAModal={setAModal} atotal={atotal} setAtotal={setAtotal}/>}
-      <div className="flexDisplay">
-        <div className="flexA">{atotal ? 'A:' : null}</div>
-        <div className="seeMoreAnswers">
-          <Answers qid={question[0]} atotal={atotal} seeMore={seeMore} setMoreAnswers={setMoreAnswers}/>
-          {moreAnswers ? (seeMore ? <u onClick={() => toggleSeeMore()}>Collapse answers</u> : <u onClick={() => {toggleSeeMore()}}>See more answers</u>) : null}
-        </div>
-      </div>
-    </div>
-  )
 };
 
 export default Questions;

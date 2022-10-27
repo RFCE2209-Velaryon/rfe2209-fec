@@ -3,3 +3,4 @@ src/config.js
 api.js
 dist/bundle.js
 imagekit.js
+src/spec/__snapshots__

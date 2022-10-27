@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">34% </span>
+                <span class="strong">34.69% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/50</span>
+                <span class='fraction'>17/49</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">34% </span>
+                <span class="strong">34.69% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/50</span>
+                <span class='fraction'>17/49</span>
             </div>
         
             
@@ -214,7 +214,9 @@
 <a name='L149'></a><a href='#L149'>149</a>
 <a name='L150'></a><a href='#L150'>150</a>
 <a name='L151'></a><a href='#L151'>151</a>
-<a name='L152'></a><a href='#L152'>152</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -245,6 +247,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -259,7 +263,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -395,7 +399,9 @@ const Reviews = ({product}) =&gt; {
   //console.log(`product from reviews component: ${JSON.stringify(product)}`);
 &nbsp;
   // when product changes,
-  React.useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {
+  React.useEffect(getReviews, [product, sort]);
+&nbsp;
+  function <span class="fstat-no" title="function not covered" >getReviews(</span>) {
 <span class="cstat-no" title="statement not covered" >    if(product.hasOwnProperty('id')){</span>
 <span class="cstat-no" title="statement not covered" >      API.getReviewMeta(product.id)</span>
         .then(<span class="fstat-no" title="function not covered" >(m</span>etaData) =&gt; {
@@ -410,7 +416,7 @@ const Reviews = ({product}) =&gt; {
 <span class="cstat-no" title="statement not covered" >          API.getReviews(1, totalReviews, sort, product.id)</span>
             .then(<span class="fstat-no" title="function not covered" >(r</span>eviews) =&gt; {
 <span class="cstat-no" title="statement not covered" >              setReviews(reviews.data.results);</span>
-<span class="cstat-no" title="statement not covered" >              console.log(`metadata retrieved: ${JSON.stringify(metaData.data.characteristics)}`)</span>
+              //console.log(`metadata retrieved: ${JSON.stringify(metaData.data.characteristics)}`)
               //console.log(`reviews retrieved: ${JSON.stringify(reviews.data.results)}`);
             })
             .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {
@@ -421,7 +427,7 @@ const Reviews = ({product}) =&gt; {
 <span class="cstat-no" title="statement not covered" >          console.log(`error from API.getReviewMeta: ${err}`);</span>
         })
     }
-  }, [product, sort]);
+  }
 &nbsp;
   function <span class="fstat-no" title="function not covered" >addReviews(</span>) {
 <span class="cstat-no" title="statement not covered" >    setReviewsShown(reviewsShown + 2);</span>
@@ -511,7 +517,7 @@ const Reviews = ({product}) =&gt; {
         }
         {/* add review button */}
       &lt;/div&gt;
-      {addingAReview &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;AddAReview product={product} characteristics={characteristics} setAddingAReview={setAddingAReview}/&gt;}</span>
+      {addingAReview &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;AddAReview getReviews={getReviews} product={product} characteristics={characteristics} setAddingAReview={setAddingAReview}/&gt;}</span>
     &lt;/div&gt;
   )
 };
@@ -523,7 +529,7 @@ export default Reviews;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-27T16:04:12.371Z
+                at 2022-10-27T16:29:06.028Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.52% </span>
+                <span class="strong">13.63% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/21</span>
+                <span class='fraction'>3/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">10% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>1/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">9.09% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>1/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.52% </span>
+                <span class="strong">13.63% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/21</span>
+                <span class='fraction'>3/22</span>
             </div>
         
             
@@ -128,13 +128,16 @@
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
 <a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -187,6 +190,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -199,62 +203,64 @@ import './qANDaStyles.css';
 &nbsp;
 &nbsp;
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
-const Answer = <span class="fstat-no" title="function not covered" >({</span>answer, refresh, setRefresh}) =&gt; {
-  var months = <span class="cstat-no" title="statement not covered" >["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];</span>
-  var date = <span class="cstat-no" title="statement not covered" >answer[5].slice(0, 10).split('-');</span>
-<span class="cstat-no" title="statement not covered" >  date[1] = months[Number(date[1])-1];</span>
-  var date = <span class="cstat-no" title="statement not covered" >`${date[1]} ${date[2]}, ${date[0]}`;</span>
+const Answer = ({answer, refresh, setRefresh}) =&gt; {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (answer) {
+    var months = <span class="cstat-no" title="statement not covered" >["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];</span>
+    var date = <span class="cstat-no" title="statement not covered" >answer[5].slice(0, 10).split('-');</span>
+<span class="cstat-no" title="statement not covered" >    date[1] = months[Number(date[1])-1];</span>
+    var date = <span class="cstat-no" title="statement not covered" >`${date[1]} ${date[2]}, ${date[0]}`;</span>
 &nbsp;
-  const [help, setHelp] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-  const [report, setReport] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+    const [help, setHelp] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+    const [report, setReport] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
 &nbsp;
-  const helpHandler = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(a</span>id) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    return axios.put('/qa/answers/helpful', null, {</span>
-      params: {
-        aid: aid
-      }
-    })
-      .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
-<span class="cstat-no" title="statement not covered" >        setHelp(!help);</span>
+    const helpHandler = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(a</span>id) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      return axios.put('/qa/answers/helpful', null, {</span>
+        params: {
+          aid: aid
+        }
       })
-      .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
-<span class="cstat-no" title="statement not covered" >        setRefresh(!refresh);</span>
-      })
-      .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {
-<span class="cstat-no" title="statement not covered" >        console.log('error in helpHandler');</span>
-      });
-  };
+        .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
+<span class="cstat-no" title="statement not covered" >          setHelp(!help);</span>
+        })
+        .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
+<span class="cstat-no" title="statement not covered" >          setRefresh(!refresh);</span>
+        })
+        .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {
+<span class="cstat-no" title="statement not covered" >          console.log('error in helpHandler');</span>
+        });
+    };
 &nbsp;
-  const reportHandler = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(a</span>id) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    return axios.put('/qa/answers/report', null, {</span>
-      params: {
-        aid: aid
-      }
-    })
-      .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
-<span class="cstat-no" title="statement not covered" >        setReport(!report);</span>
+    const reportHandler = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(a</span>id) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      return axios.put('/qa/answers/report', null, {</span>
+        params: {
+          aid: aid
+        }
       })
-      .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {
-<span class="cstat-no" title="statement not covered" >        console.log('error in reportHandler');</span>
-      })
-  };
+        .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
+<span class="cstat-no" title="statement not covered" >          setReport(!report);</span>
+        })
+        .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {
+<span class="cstat-no" title="statement not covered" >          console.log('error in reportHandler');</span>
+        })
+    };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return(</span>
-    &lt;div className="answers" key={answer[1]}&gt;
-      &lt;div&gt;{answer[2]}&lt;/div&gt;
-      &lt;div&gt;
-        {`by `}
-        {answer[4] === 'Seller' ? &lt;b&gt;{answer[4]}&lt;/b&gt;: answer[4]}
-        {`, ${date} | Helpful? `}
-        {help ? &lt;u&gt;Yes&lt;/u&gt; : &lt;u onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >helpHandler(answer[1])}</span>}&gt;Yes&lt;/u&gt;}
-        {` (${answer[3]}) | `}
-        {report ? &lt;u&gt;Reported&lt;/u&gt; : &lt;u onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >reportHandler(answer[1])}</span>}&gt;Report&lt;/u&gt;}
+<span class="cstat-no" title="statement not covered" >    return(</span>
+      &lt;div className="answers" key={answer[1]}&gt;
+        &lt;div&gt;{answer[2]}&lt;/div&gt;
+        &lt;div&gt;
+          {`by `}
+          {answer[4] === 'Seller' ? &lt;b&gt;{answer[4]}&lt;/b&gt;: answer[4]}
+          {`, ${date} | Helpful? `}
+          {help ? &lt;u&gt;Yes&lt;/u&gt; : &lt;u onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >helpHandler(answer[1])}</span>}&gt;Yes&lt;/u&gt;}
+          {` (${answer[3]}) | `}
+          {report ? &lt;u&gt;Reported&lt;/u&gt; : &lt;u onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >reportHandler(answer[1])}</span>}&gt;Report&lt;/u&gt;}
+        &lt;/div&gt;
+        &lt;span className = "flexDisplay"&gt;
+          {answer[6] ? answer[6].map(<span class="fstat-no" title="function not covered" >(i</span>mage, index) =&gt; {<span class="cstat-no" title="statement not covered" >return (&lt;img className = "images" key={index} src={image} width="125" height="100"/&gt;)}</span>) : null}
+        &lt;/span&gt;
       &lt;/div&gt;
-      &lt;span className = "flexDisplay"&gt;
-        {answer[6] ? answer[6].map(<span class="fstat-no" title="function not covered" >(i</span>mage, index) =&gt; {<span class="cstat-no" title="statement not covered" >return (&lt;img className = "images" key={index} src={image} width="125" height="100"/&gt;)}</span>) : null}
-      &lt;/span&gt;
-    &lt;/div&gt;
-  )
+    )
+  }
 };
 &nbsp;
 export default Answer;
@@ -265,7 +271,7 @@ export default Answer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-27T16:04:12.371Z
+                at 2022-10-27T16:29:06.028Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

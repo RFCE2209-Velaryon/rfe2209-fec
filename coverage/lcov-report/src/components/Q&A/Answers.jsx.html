@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">7.69% </span>
+                <span class="strong">42.3% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/26</span>
+                <span class='fraction'>11/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">10% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>1/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>3/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">7.69% </span>
+                <span class="strong">42.3% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/26</span>
+                <span class='fraction'>11/26</span>
             </div>
         
             
@@ -134,37 +134,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -172,6 +166,12 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -180,7 +180,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -196,12 +196,12 @@ import Answer from "./Answer.jsx"
 import "./qANDaStyles.css";
 &nbsp;
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
-const Answers = <span class="fstat-no" title="function not covered" >({</span>qid, atotal, seeMore, setMoreAnswers}) =&gt; {
-  const [answers, setAnswers] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
-  const [refresh, setRefresh] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+const Answers = ({qid, atotal, seeMore, setMoreAnswers}) =&gt; {
+  const [answers, setAnswers] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 &nbsp;
-  const getAs = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(q</span>ID, pageCount, aCount) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    return axios.get('/qa/questions/answers', {</span>
+  const getAs = (qID, pageCount, aCount) =&gt; {
+    return axios.get('/qa/questions/answers', {
       params: {
         qid: qID,
         page: pageCount,
@@ -210,12 +210,12 @@ const Answers = <span class="fstat-no" title="function not covered" >({</span>qi
     })
   };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-    var storage = <span class="cstat-no" title="statement not covered" >[];</span>
-<span class="cstat-no" title="statement not covered" >    if (atotal &lt;= 2) {</span>
+  useEffect(() =&gt; {
+    var storage = [];
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (atotal &lt;= 2) {
 <span class="cstat-no" title="statement not covered" >      setMoreAnswers(false);</span>
     }
-<span class="cstat-no" title="statement not covered" >    getAs(qid, 1, atotal)</span>
+    getAs(qid, 1, atotal)
     .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
 <span class="cstat-no" title="statement not covered" >      response.data.forEach(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        if (item.photos !== []) {</span>
@@ -243,7 +243,7 @@ const Answers = <span class="fstat-no" title="function not covered" >({</span>qi
     .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; <span class="cstat-no" title="statement not covered" >console.log(err))</span>;
   }, [qid, refresh, seeMore]);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return(</span>
+  return(
     &lt;div&gt;
       {answers.map(<span class="fstat-no" title="function not covered" >(a</span>nswer) =&gt;
 <span class="cstat-no" title="statement not covered" >        &lt;Answer key={answer[1]} answer={answer} refresh={refresh} setRefresh={setRefresh}/&gt;</span>
@@ -259,7 +259,7 @@ export default Answers;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-27T16:04:12.371Z
+                at 2022-10-27T16:29:06.028Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

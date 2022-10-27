@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">7.69% </span>
+                <span class="strong">11.11% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/26</span>
+                <span class='fraction'>3/27</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">7.14% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>1/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">7.14% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>1/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8% </span>
+                <span class="strong">11.53% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/25</span>
+                <span class='fraction'>3/26</span>
             </div>
         
             
@@ -141,7 +141,9 @@
 <a name='L76'></a><a href='#L76'>76</a>
 <a name='L77'></a><a href='#L77'>77</a>
 <a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -150,6 +152,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -213,6 +216,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -227,74 +231,76 @@ import './qANDaStyles.css';
 &nbsp;
 &nbsp;
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
-const Questions = <span class="fstat-no" title="function not covered" >({</span>question, refreshQ, setRefreshQ, prodName}) =&gt; {
-  const [AModal, setAModal] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-  const [atotal, setAtotal] = <span class="cstat-no" title="statement not covered" >useState(question[3]);</span>
-  const [Qhelp, setQHelp] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-  const [Qreport, setQReport] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-  const [seeMore, setSeeMore] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-  const [moreAnswers, setMoreAnswers] = <span class="cstat-no" title="statement not covered" >useState(true);</span>
+const Questions = ({question, refreshQ, setRefreshQ, prodName}) =&gt; {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (question) {
+    const [AModal, setAModal] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+    const [atotal, setAtotal] = <span class="cstat-no" title="statement not covered" >useState(question[3]);</span>
+    const [Qhelp, setQHelp] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+    const [Qreport, setQReport] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+    const [seeMore, setSeeMore] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+    const [moreAnswers, setMoreAnswers] = <span class="cstat-no" title="statement not covered" >useState(true);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {}, [atotal])</span>
+<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {}, [atotal])</span>
 &nbsp;
-  const QhelpHandler = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(q</span>id) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    return axios.put('/qa/questions/helpful', null, {</span>
-      params: {
-        qid: qid
-      }
-    })
-      .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
-<span class="cstat-no" title="statement not covered" >        setQHelp(!Qhelp);</span>
-<span class="cstat-no" title="statement not covered" >        setRefreshQ(!refreshQ);</span>
+    const QhelpHandler = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(q</span>id) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      return axios.put('/qa/questions/helpful', null, {</span>
+        params: {
+          qid: qid
+        }
       })
-      .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {
-<span class="cstat-no" title="statement not covered" >        console.log('error in QhelpHandler');</span>
-      });
-  };
+        .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
+<span class="cstat-no" title="statement not covered" >          setQHelp(!Qhelp);</span>
+<span class="cstat-no" title="statement not covered" >          setRefreshQ(!refreshQ);</span>
+        })
+        .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {
+<span class="cstat-no" title="statement not covered" >          console.log('error in QhelpHandler');</span>
+        });
+    };
 &nbsp;
-  const QreportHandler = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(q</span>id) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    return axios.put('/qa/questions/report', null, {</span>
-      params: {
-        qid: qid
-      }
-    })
-      .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
-<span class="cstat-no" title="statement not covered" >        setQReport(!Qreport);</span>
+    const QreportHandler = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(q</span>id) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      return axios.put('/qa/questions/report', null, {</span>
+        params: {
+          qid: qid
+        }
       })
-      .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {
-<span class="cstat-no" title="statement not covered" >        console.log('error in reportHandler');</span>
-      })
-  };
+        .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
+<span class="cstat-no" title="statement not covered" >          setQReport(!Qreport);</span>
+        })
+        .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {
+<span class="cstat-no" title="statement not covered" >          console.log('error in reportHandler');</span>
+        })
+    };
 &nbsp;
-  const toggleSeeMore = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    setSeeMore(!seeMore);</span>
+    const toggleSeeMore = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      setSeeMore(!seeMore);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return(</span>
+      &lt;div&gt;
+        &lt;div className="flexDisplay"&gt;
+          &lt;div className="flexQ" key={question[0]}&gt;
+            &lt;b&gt;Q: {question[1]}&lt;/b&gt;
+          &lt;/div&gt;
+          &lt;div className="flexO"&gt;
+            {` Helpful? `}
+            {Qhelp ? &lt;u&gt;Yes&lt;/u&gt; : &lt;u onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >QhelpHandler(question[0])}</span>}&gt;Yes&lt;/u&gt;}
+            {` (${question[2]}) | `}
+            {Qreport ? &lt;u&gt;Reported&lt;/u&gt; : &lt;u onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >QreportHandler(question[0])}</span>}&gt;Report&lt;/u&gt;}
+            {` | `}
+            {&lt;u onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setAModal(true)}</span>&gt;Add Answer&lt;/u&gt;}
+          &lt;/div&gt;
+        &lt;/div&gt;
+        {AModal &amp;&amp; &lt;AnswerModal prodName={prodName} qBody={question[1]} qID={question[0]} setAModal={setAModal} atotal={atotal} setAtotal={setAtotal}/&gt;}
+        &lt;div className="flexDisplay"&gt;
+          &lt;div className="flexA"&gt;{atotal ? 'A:' : null}&lt;/div&gt;
+          &lt;div className="seeMoreAnswers"&gt;
+            &lt;Answers qid={question[0]} atotal={atotal} seeMore={seeMore} setMoreAnswers={setMoreAnswers}/&gt;
+            {moreAnswers ? (seeMore ? &lt;u onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >toggleSeeMore()}</span>&gt;Collapse answers&lt;/u&gt; : &lt;u onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >toggleSeeMore()}</span>}&gt;See more answers&lt;/u&gt;) : null}
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    )
   }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  return(</span>
-    &lt;div&gt;
-      &lt;div className="flexDisplay"&gt;
-        &lt;div className="flexQ" key={question[0]}&gt;
-          &lt;b&gt;Q: {question[1]}&lt;/b&gt;
-        &lt;/div&gt;
-        &lt;div className="flexO"&gt;
-          {` Helpful? `}
-          {Qhelp ? &lt;u&gt;Yes&lt;/u&gt; : &lt;u onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >QhelpHandler(question[0])}</span>}&gt;Yes&lt;/u&gt;}
-          {` (${question[2]}) | `}
-          {Qreport ? &lt;u&gt;Reported&lt;/u&gt; : &lt;u onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >QreportHandler(question[0])}</span>}&gt;Report&lt;/u&gt;}
-          {` | `}
-          {&lt;u onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setAModal(true)}</span>&gt;Add Answer&lt;/u&gt;}
-        &lt;/div&gt;
-      &lt;/div&gt;
-      {AModal &amp;&amp; &lt;AnswerModal prodName={prodName} qBody={question[1]} qID={question[0]} setAModal={setAModal} atotal={atotal} setAtotal={setAtotal}/&gt;}
-      &lt;div className="flexDisplay"&gt;
-        &lt;div className="flexA"&gt;{atotal ? 'A:' : null}&lt;/div&gt;
-        &lt;div className="seeMoreAnswers"&gt;
-          &lt;Answers qid={question[0]} atotal={atotal} seeMore={seeMore} setMoreAnswers={setMoreAnswers}/&gt;
-          {moreAnswers ? (seeMore ? &lt;u onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >toggleSeeMore()}</span>&gt;Collapse answers&lt;/u&gt; : &lt;u onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >toggleSeeMore()}</span>}&gt;See more answers&lt;/u&gt;) : null}
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  )
 };
 &nbsp;
 export default Questions;</pre></td></tr></table></pre>
@@ -304,7 +310,7 @@ export default Questions;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-27T16:04:12.371Z
+                at 2022-10-27T16:29:06.028Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
