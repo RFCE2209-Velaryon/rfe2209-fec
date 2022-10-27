@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1666882744354" clover="3.2.0">
-  <project timestamp="1666882744354" name="All files">
-    <metrics statements="774" coveredstatements="115" conditionals="285" coveredconditionals="21" methods="282" coveredmethods="10" elements="1341" coveredelements="146" complexity="0" loc="774" ncloc="774" packages="7" files="33" classes="33"/>
+<coverage generated="1666886652544" clover="3.2.0">
+  <project timestamp="1666886652544" name="All files">
+    <metrics statements="774" coveredstatements="108" conditionals="285" coveredconditionals="20" methods="282" coveredmethods="9" elements="1341" coveredelements="137" complexity="0" loc="774" ncloc="774" packages="7" files="33" classes="33"/>
     <package name="src">
       <metrics statements="8" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="5" coveredmethods="1"/>
       <file name="App.jsx" path="/Users/dianachong/HR/rfe2209-fec/src/App.jsx">
@@ -280,10 +280,10 @@
       </file>
     </package>
     <package name="src.components.productDetail">
-      <metrics statements="85" coveredstatements="12" conditionals="30" coveredconditionals="1" methods="32" coveredmethods="1"/>
+      <metrics statements="85" coveredstatements="5" conditionals="30" coveredconditionals="0" methods="32" coveredmethods="0"/>
       <file name="currentSelectedStyle.jsx" path="/Users/dianachong/HR/rfe2209-fec/src/components/productDetail/currentSelectedStyle.jsx">
         <metrics statements="15" coveredstatements="1" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="8" count="2" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
@@ -301,7 +301,7 @@
       </file>
       <file name="imageGallery.jsx" path="/Users/dianachong/HR/rfe2209-fec/src/components/productDetail/imageGallery.jsx">
         <metrics statements="24" coveredstatements="1" conditionals="8" coveredconditionals="0" methods="8" coveredmethods="0"/>
-        <line num="7" count="2" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
@@ -328,7 +328,7 @@
       </file>
       <file name="imageThumbNail.jsx" path="/Users/dianachong/HR/rfe2209-fec/src/components/productDetail/imageThumbNail.jsx">
         <metrics statements="17" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="7" coveredmethods="0"/>
-        <line num="6" count="2" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -347,24 +347,24 @@
         <line num="50" count="0" type="stmt"/>
       </file>
       <file name="productDetail.jsx" path="/Users/dianachong/HR/rfe2209-fec/src/components/productDetail/productDetail.jsx">
-        <metrics statements="13" coveredstatements="8" conditionals="10" coveredconditionals="1" methods="5" coveredmethods="1"/>
-        <line num="13" count="2" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
+        <metrics statements="13" coveredstatements="1" conditionals="10" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="26" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
       </file>
       <file name="stylesButtons.jsx" path="/Users/dianachong/HR/rfe2209-fec/src/components/productDetail/stylesButtons.jsx">
         <metrics statements="16" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="7" count="2" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>

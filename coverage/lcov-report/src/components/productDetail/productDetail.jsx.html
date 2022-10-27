@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.53% </span>
+                <span class="strong">7.69% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/13</span>
+                <span class='fraction'>1/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">10% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/10</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/5</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.53% </span>
+                <span class="strong">7.69% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/13</span>
+                <span class='fraction'>1/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -124,31 +124,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -173,18 +173,18 @@ import "./stylesProduct.css"
 &nbsp;
 &nbsp;
 &nbsp;
-const Product = ({prodID, prod}) =&gt; {
-const [item, setItem] = useState([])
-const [allProds, setAllProds] = useState([])
-const [image, setImage] = useState('')
-const [didClick, setDidClick] = useState(true)
+const Product = <span class="fstat-no" title="function not covered" >({</span>prodID, prod}) =&gt; {
+const [item, setItem] = <span class="cstat-no" title="statement not covered" >useState([])</span>
+const [allProds, setAllProds] = <span class="cstat-no" title="statement not covered" >useState([])</span>
+const [image, setImage] = <span class="cstat-no" title="statement not covered" >useState('')</span>
+const [didClick, setDidClick] = <span class="cstat-no" title="statement not covered" >useState(true)</span>
 &nbsp;
 &nbsp;
-  const getItem = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+  const getItem = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >   return  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${prodID}/styles`)</span>
   }
 &nbsp;
-  useEffect(<span class="fstat-no" title="function not covered" >()</span>=&gt;{
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span>=&gt;{</span>
 <span class="cstat-no" title="statement not covered" >    if(prodID){</span>
 <span class="cstat-no" title="statement not covered" >      getItem().then(<span class="fstat-no" title="function not covered" >(r</span>esponse)=&gt;{</span>
 <span class="cstat-no" title="statement not covered" >        setItem(response.data.results)</span>
@@ -197,9 +197,9 @@ const [didClick, setDidClick] = useState(true)
 &nbsp;
 &nbsp;
 &nbsp;
-  return(
+<span class="cstat-no" title="statement not covered" >  return(</span>
     &lt;section  className="container"&gt;
-    {item[0] &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;ImageGallery items={item[0]}image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick}/&gt;}</span>
+    {item[0] &amp;&amp; &lt;ImageGallery items={item[0]}image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick}/&gt;}
     &lt;h2&gt;Product Sloagan: {prod.slogan}&lt;/h2&gt;
     &lt;h2&gt;Description&lt;/h2&gt;
     &lt;h4&gt;{prod.description}&lt;/h4&gt;
@@ -217,7 +217,7 @@ export default Product;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-27T14:59:04.218Z
+                at 2022-10-27T16:04:12.371Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
