@@ -3,4 +3,5 @@ src/config.js
 api.js
 dist/bundle.js
 imagekit.js
-src/spec/__snapshots__
+coverage/
+src/spec/__snapshots__/
