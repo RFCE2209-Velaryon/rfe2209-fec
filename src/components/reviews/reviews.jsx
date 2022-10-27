@@ -28,7 +28,9 @@ const Reviews = ({product}) => {
   //console.log(`product from reviews component: ${JSON.stringify(product)}`);
 
   // when product changes,
-  React.useEffect(() => {
+  React.useEffect(getReviews, [product, sort]);
+
+  function getReviews() {
     if(product.hasOwnProperty('id')){
       API.getReviewMeta(product.id)
         .then((metaData) => {
@@ -43,7 +45,7 @@ const Reviews = ({product}) => {
           API.getReviews(1, totalReviews, sort, product.id)
             .then((reviews) => {
               setReviews(reviews.data.results);
-              console.log(`metadata retrieved: ${JSON.stringify(metaData.data.characteristics)}`)
+              //console.log(`metadata retrieved: ${JSON.stringify(metaData.data.characteristics)}`)
               //console.log(`reviews retrieved: ${JSON.stringify(reviews.data.results)}`);
             })
             .catch((err) => {
@@ -54,7 +56,7 @@ const Reviews = ({product}) => {
           console.log(`error from API.getReviewMeta: ${err}`);
         })
     }
-  }, [product, sort]);
+  }
 
   function addReviews() {
     setReviewsShown(reviewsShown + 2);
@@ -144,7 +146,7 @@ const Reviews = ({product}) => {
         }
         {/* add review button */}
       </div>
-      {addingAReview && <AddAReview product={product} characteristics={characteristics} setAddingAReview={setAddingAReview}/>}
+      {addingAReview && <AddAReview getReviews={getReviews} product={product} characteristics={characteristics} setAddingAReview={setAddingAReview}/>}
     </div>
   )
 };
