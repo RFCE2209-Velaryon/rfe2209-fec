@@ -6,9 +6,13 @@ const SearchBar = ({questions, setFiltered}) => {
   useEffect(() => {
     if (search.length >= 3) {
       var results = questions.filter((q) => q[1].toLowerCase().includes(search.toLowerCase()));
-      setFiltered(results);
+      if (setFiltered) {
+        setFiltered(results);
+      }
     } else {
-      setFiltered(questions);
+      if (setFiltered) {
+        setFiltered(questions);
+      }
     }
   }, [questions, search]);
   return(
