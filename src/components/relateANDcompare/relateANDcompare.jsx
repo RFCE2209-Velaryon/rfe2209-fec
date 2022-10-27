@@ -123,7 +123,7 @@ const Related = (props) => {
     },300);
   });
   return(
-    <>
+    <div className='relateWrapper' data-testid='testRelateComponent'>
       <h1>Related Items</h1>
       {needsScrollLeft ? (
         <div className='scrollLeft relative'>
@@ -143,8 +143,8 @@ const Related = (props) => {
             <div className='addOutfitIcon' >&#9785;</div>
           </div>}
       </div>
-      {props.product.id ? <Outfit setProduct={props.setProduct} productID={props.product.id}/> : null}
-    </>
+      {(props.product && props.product.id) ? <Outfit setProduct={props.setProduct} productID={props.product.id}/> : null}
+    </div>
   )
 };
 
