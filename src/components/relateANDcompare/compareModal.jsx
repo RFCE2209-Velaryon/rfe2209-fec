@@ -6,6 +6,8 @@ const CompareModal = (props) => {
 
 
   return (
+    <>
+    {props.product ?
     <div onClick={()=>props.onClick()} className='modalWrapper'>
       <div className='modalContent'>
         <div className='relative'>
@@ -32,7 +34,8 @@ const CompareModal = (props) => {
           </tbody>
         </table>
       </div>
-    </div>
+    </div> : null}
+    </>
   );
 }
 

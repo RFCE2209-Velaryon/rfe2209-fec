@@ -167,6 +167,7 @@ const Outfit = (props) => {
   });
   return(
     <>
+
       <h1>Your Outfit</h1>
       {needsScrollLeft ? (
         <div className='scrollLeft relative'>

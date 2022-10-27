@@ -19,7 +19,7 @@ const Related = (props) => {
   let [needsScrollLeft, setNeedsScrollLeft] = useState(false);
 
   useEffect(()=>{
-    if(props.product.id) {
+    if(props.product && props.product.id) {
       relatedHandler(props.product.id);
     } else {
       getProduct().then(res => {
