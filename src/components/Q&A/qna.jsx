@@ -64,7 +64,6 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
       var test;
       getQs(prodID, 1, (totalQs*30))
         .then((response) => {
-          console.log('i refreshed');
           if (response.data !== []) {
             response.data.forEach((item) => {
               if (storage.length !== totalQs) {
@@ -120,7 +119,7 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
     <div className="main">
       <h1 className="title">Questions & Answers</h1>
       <SearchBar questions={questions} setFiltered={setFiltered}/>
-      <div className="questions-list">
+      <div className="questions-list" data-testid = "questions">
         {filtered.length > 0 ? filtered.map((question, index)=>
           <div className="questions" key={index}>
             <Questions key={question[0]} question={question} refreshQ={refreshQ} setRefreshQ={setRefreshQ} prodName={prodName}/>

@@ -69,7 +69,7 @@ const Questions = ({question, refreshQ, setRefreshQ, prodName}) => {
         <div className="flexDisplay">
           <div className="flexA">{atotal ? 'A:' : null}</div>
           <div className="seeMoreAnswers">
-            <Answers qid={question[0]} atotal={atotal} seeMore={seeMore} setMoreAnswers={setMoreAnswers}/>
+            {question[0] && <Answers qid={question[0]} atotal={atotal} seeMore={seeMore} setMoreAnswers={setMoreAnswers}/>}
             {moreAnswers ? (seeMore ? <u onClick={() => toggleSeeMore()}>Collapse answers</u> : <u onClick={() => {toggleSeeMore()}}>See more answers</u>) : null}
           </div>
         </div>
