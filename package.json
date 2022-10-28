@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/RFCE2209-Velaryon/rfe2209-fec#readme",
   "dependencies": {
+    "@testing-library/dom": "^8.19.0",
+    "@testing-library/react": "^13.4.0",
     "axios": "^1.1.2",
     "concurrently": "^7.4.0",
     "date-fns": "^2.29.3",
