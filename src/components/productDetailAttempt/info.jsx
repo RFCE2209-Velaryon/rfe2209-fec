@@ -4,9 +4,9 @@ const {useState, useEffect} = React;
 const Info = (props) => {
   return (
     <div className='infoWrapper'>
-      <div className='infoDetail'>{props.product.name}</div>
-      <div className='infoDetail'>{props.product.category}</div>
-      <div className='infoDetail'>${props.product.default_price}</div>
+      <div className='infoDetailCategory'>Category: {props.product.category}</div>
+      <div className='infoDetailName'>{props.product.name}</div>
+      <div className='infoDetailPrice'>${props.product.default_price}</div>
     </div>
   );
 }

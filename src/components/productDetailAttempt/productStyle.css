@@ -1,12 +1,13 @@
 .thumbnailMain {
-
-  max-height: 10vh;
-  max-width: 10vw;
+  display:block;
+  width: 100px;
+  height: 100px;
   border-radius:1%;
   border: solid .25em #97d1cf;
-  justify-content: space-between;
   flex-wrap: wrap;
-  margin-top: 1vw;
+  margin-top: .5vh;
+  margin-bottom: .5vh;
+  cursor: pointer;
 
 }
 
@@ -14,7 +15,36 @@
   position: absolute;
   left: 2vw;
   max-height: 85vh;
-  overflow-y: hidden;
+  overflow-y: scroll;
+}
+
+.thumbnailWrapper::-webkit-scrollbar {
+  width: 0;
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.thumbnailWrapper {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.styleThumbnail {
+  width: min(75px, 5vw);
+  height: min(75px, 5vw);
+  border-radius:100%;
+  border: solid .25em #97d1cf;
+  flex-wrap: wrap;
+  margin-top: .5vh;
+  margin-bottom: .5vh;
+  cursor: pointer;
+  position: relative;
+}
+
+.styleThumbnailWrapper {
+  width: 250px;
 }
 
 .mainImg {
@@ -26,7 +56,7 @@
 .mainImgWrapper {
   position: relative;
   display:flex;
-  min-width:50vw;
+  width: min(700px, 50vw);
 }
 
 .galleryWrapper {
@@ -44,8 +74,29 @@ display: flex;
 .detailWrapper {
   width:100%;
   min-width: 20vw;
+  padding-left: 1vw;
 }
 
 .infoWrapper {
   position: relative;
+  height: 30vh;
 }
+
+.infoDetailCategory {
+  position: relative;
+  color:teal;
+  font-size: 1.25rem;
+  margin-top: 2vh;
+}
+.infoDetailName {
+  position: relative;
+  color:#2088ff;
+  font-size: 2rem;
+  margin-top: 2vh;
+}
+.infoDetailPrice {
+  margin-top: 2vh;
+}
+
+
+
