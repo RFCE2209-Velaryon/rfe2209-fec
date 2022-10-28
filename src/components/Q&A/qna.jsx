@@ -12,7 +12,7 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
   const [totalQs, setTotalQs] = useState(4);
   const [showButton, setShowButton] = useState(false);
   const [questions, setQuestions] = useState([]);
-  const [filtered, setFiltered] = useState([]);
+  const [filtered, setFiltered] = useState(questions);
   const [refreshQ, setRefreshQ] = useState(false);
 
   const getQs = (prodID, pageCount, qCount) => {
@@ -54,7 +54,6 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
           setTotalQs(storage.length);
           setQuestions(storage);
         })
-        .catch((error) => console.log('error at getQs:', error));
     }
   }, [prodID]);
 
@@ -87,7 +86,6 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
           setTotalQs(storage.length);
           setQuestions(storage);
         })
-        .catch((error) => console.log('error at getQs:', error));
     }
   }, [refreshQ]);
 
@@ -108,9 +106,11 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
             }
           });
         }
-        var newQs = storage.slice(totalQs);
-        setQuestions([...questions, ...newQs]);
-        setTotalQs(storage.length);
+        if (storage) {
+          var newQs = storage.slice(totalQs);
+          setQuestions([...questions, ...newQs]);
+          setTotalQs(storage.length);
+        }
         setRefreshQ(!refreshQ);
       });
   };
@@ -119,9 +119,9 @@ const QuestionsAndAnswers = ({prodID, prodName}) => {
     <div className="main">
       <h1 className="title">Questions & Answers</h1>
       <SearchBar questions={questions} setFiltered={setFiltered}/>
-      <div className="questions-list" data-testid = "questions">
+      <div className="questions-list">
         {filtered.length > 0 ? filtered.map((question, index)=>
-          <div className="questions" key={index}>
+          <div className="questions" key={index} data-testid = "questions">
             <Questions key={question[0]} question={question} refreshQ={refreshQ} setRefreshQ={setRefreshQ} prodName={prodName}/>
           </div>
         ) : null}

@@ -29,9 +29,11 @@ const Answers = ({qid, atotal, seeMore, setMoreAnswers}) => {
       response.data.forEach((item) => {
         if (item.photos !== []) {
           var images = [];
-          item.photos.forEach((photo) => {
-            images.push(photo.url);
-          })
+          if (item.photos) {
+            item.photos.forEach((photo) => {
+              images.push(photo.url);
+            })
+          }
           if (item.answerer_name === 'Seller') {
             storage.unshift([qid, item.answer_id, item.body, item.helpfulness, item.answerer_name, item.date, images]);
           } else {
