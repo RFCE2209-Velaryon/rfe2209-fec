@@ -1,6 +1,7 @@
 import React from 'react';
 
 const RatingBreakdown = ({ratings, filters, setFilters}) => {
+
   function getRatingsOfMostCommonRating() {
     let largest = 0;
     for(const key in ratings) {
