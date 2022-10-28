@@ -1,3 +1,7 @@
+.relateWrapper {
+  width: min(1000px, 85vw);
+}
+
 .cardWrapper {
   border: 1px solid black;
   border-radius: 1.5%;

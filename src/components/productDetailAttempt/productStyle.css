@@ -84,7 +84,7 @@
 
 .productDetailWrapper {
 display: flex;
-margin-top: 75px;
+width: min(1000px, 85vw);
 }
 
 .detailWrapper {
