@@ -35,7 +35,6 @@ const ProductDetail = (props) => {
   return (
 
     <div className='productDetailWrapper'>
-      <div className='myHeader'><img className ='headerImg' src='https://drive.google.com/uc?export=view&id=1IJ5xjs3u30HpVBDZckc0uE9A7_nJP0Zf'></img></div>
       {props.product.id ? <Gallery product ={props.product} currentImage={currentImage} currentPhotos={currentPhotos} setCurrentImage={setCurrentImage}/> : null}
       <div className='detailWrapper'>
         {props.product.id ? <Info product = {props.product} /> : null}

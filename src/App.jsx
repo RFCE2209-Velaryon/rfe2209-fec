@@ -31,7 +31,8 @@ function App () {
   return (
     <div className='problemDiv'>
       <div className="header">
-        <h1>Header</h1>
+        <img className='headerImg' src='https://drive.google.com/uc?export=view&id=1IJ5xjs3u30HpVBDZckc0uE9A7_nJP0Zf'></img>
+        <h1 className='headerText'>VAP</h1>
       </div>
       <ProductDetail product ={product}/>
       <Related product = {product} setProduct={setProduct}/>
