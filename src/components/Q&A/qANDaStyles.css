@@ -28,6 +28,10 @@
   margin: 10px;
 }
 
+.questions-list::-webkit-scrollbar {
+  display: none;
+}
+
 .questions {
   margin-bottom: 20px;
 }
@@ -38,6 +42,10 @@
   flex: 98%;
   margin-right: 10px;
   margin-left: 10px;
+}
+
+.seeMoreAnswers::-webkit-scrollbar {
+  display: none;
 }
 
 .answersList {
