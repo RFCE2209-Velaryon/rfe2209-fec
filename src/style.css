@@ -12,6 +12,7 @@
   background-color: teal;
   z-index: 100;
   margin: 0px;
+  font-size: 1rem;
 }
 .headerImg {
   position: relative;
