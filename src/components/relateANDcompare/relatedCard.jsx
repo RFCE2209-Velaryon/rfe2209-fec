@@ -71,6 +71,10 @@ const RelatedCard = (props) => {
     })
   },[props.productID]);
 
+  useEffect(()=> {
+    console.log('modal: ', modal);
+  },[modal]);
+
   let getProductData = (id) => {
     return axios({
       method: 'get',
