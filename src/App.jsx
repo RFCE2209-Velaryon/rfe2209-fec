@@ -32,7 +32,7 @@ function App () {
     <div>
       <ProductDetail product ={product}/>
       <Related product = {product} setProduct={setProduct}/>
-      {product.id && <QuestionsAndAnswers prodID={product.id} prodName={product.name}/>}
+      <QuestionsAndAnswers prodID={product.id} prodName={product.name}/>
       <Reviews product={product}/>
     </div>
   )
