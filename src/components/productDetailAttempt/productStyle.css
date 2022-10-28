@@ -1,3 +1,18 @@
+.myHeader {
+  width: min(1000px, 85vw);
+  height:75px;
+  position: fixed;
+  display:block;
+  top:0;
+  background-color: blue;
+  z-index: 100;
+}
+
+.headerImg {
+  width: 75px;
+  height: 75px;
+}
+
 .thumbnailMain {
   display:block;
   width: 100px;
@@ -69,6 +84,7 @@
 
 .productDetailWrapper {
 display: flex;
+width: min(1000px, 85vw);
 }
 
 .detailWrapper {
