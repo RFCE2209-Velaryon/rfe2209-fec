@@ -2,8 +2,7 @@
   width: min(1000px, 80vw);
 }
 .title, .footer {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px;
 }
 
 .searchbar {
@@ -25,7 +24,7 @@
 
 .questions-list {
   overflow-y: scroll;
-  max-height: 72vh;
+  max-height: 65vh;
   margin: 10px;
 }
 
