@@ -68,7 +68,6 @@
 }
 
 .productDetailWrapper {
-  margin-top: 75px;
 position: relative;
 display: flex;
 width: min(1000px, 85vw);
