@@ -11,7 +11,7 @@ const Gallery = (props) => {
       </div>
       <div className='thumbnailWrapper'>
         {props.currentPhotos.photos.length ? props.currentPhotos.photos.map((photo,i)=>{
-          return (<img key={i} onClick={(e)=>{props.setCurrentImage(i)}} className='thumbnailMain' style={{border: props.currentImage === i ? 'solid .25em #20c0ff':''}}src={photo.thumbnail_url}></img>)
+          return (<img key={i} onClick={(e)=>{props.setCurrentImage(i)}} className='thumbnailMain' style={{border: props.currentImage === i ? 'solid .25em #2088ff':''}}src={photo.thumbnail_url}></img>)
         }) : null}
       </div>
 
