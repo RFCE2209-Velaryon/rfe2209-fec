@@ -7,7 +7,7 @@ const CompareModal = (props) => {
 
   return (
     <>
-    {props.product ?
+    {props.curProduct ?
     <div onClick={()=>props.onClick()} className='modalWrapper'>
       <div className='modalContent'>
         <div className='relative'>
