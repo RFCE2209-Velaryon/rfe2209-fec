@@ -29,7 +29,10 @@ function App () {
   }, [product]);
 
   return (
-    <div>
+    <div className='problemDiv'>
+      <div className="header">
+        <h1>Header</h1>
+      </div>
       <ProductDetail product ={product}/>
       <Related product = {product} setProduct={setProduct}/>
       <QuestionsAndAnswers prodID={product.id} prodName={product.name}/>

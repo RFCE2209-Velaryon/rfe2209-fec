@@ -3,15 +3,28 @@
   padding: 0;
 }
 
-body {
-  margin: inherit;
-  margin-left:auto;
-  margin-right:auto;
+.header {
+  width: 100vw;
+  height: 70px;
+  margin: 0px;
+}
+.app {
   color: black;
-  background-color: #eeffff;
-  width: min(1000px, 85vw);
+  background-color: #EEFFFF;
   border: solid 1px black;
   box-shadow: 0px 1px 4px 3px rgb(95, 161, 172);
+}
+body {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  margin: 0px;
+}
+
+.problemDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .stop-scrolling {
