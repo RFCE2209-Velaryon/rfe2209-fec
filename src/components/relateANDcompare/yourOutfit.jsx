@@ -88,13 +88,13 @@ const Outfit = (props) => {
   }
 
   let scroll = (scrollAmount) => {
-    let cardsCarousel = document.getElementsByClassName('outfitCards')[0];
+    let cardsCarousel = document.getElementsByClassName('outfitCards')[1];
     cardsCarousel.scrollLeft += scrollAmount;
     arrowCheck(cardsCarousel);
   }
 
   let scrollCheck = () => {
-    let cardsCarousel = document.getElementsByClassName('outfitCards')[0];
+    let cardsCarousel = document.getElementsByClassName('outfitCards')[1];
     if (cardsCarousel.scrollWidth > cardsCarousel.clientWidth) {
       setNeedsScrolling(true);
       arrowCheck(cardsCarousel);
@@ -117,7 +117,7 @@ const Outfit = (props) => {
   }
 
   let sliderSetup = () => {
-    slider = document.getElementsByClassName('outfitCards')[0];
+    slider = document.getElementsByClassName('outfitCards')[1];
     slider.addEventListener('mousemove', (e)=> {
       e.preventDefault();
       if(!mouseDown) {return;}
@@ -178,12 +178,14 @@ const Outfit = (props) => {
           <button className='scrollBtn right' onClick = {(e)=>{scroll(scollNumber)}}>&#62;</button>
         </div>
       ): null}
-      <div className='outfitCards' onLoad={()=>{scrollCheck(); sliderSetup();}}>
+      <div className='outfitCards'>
         <div className='cardWrapper' style={{backgroundColor:'#ccfffd'}} onClick={(e)=> {setOutfitIDs(props.productID)}}>
           <div className='addOutfitText'>Add to Outfit</div>
           <div className='addOutfitIcon' >&#43;</div>
         </div>
+        <div className='outfitCards' onLoad={()=>{scrollCheck(); sliderSetup();}}>
         {outfitID.ids ? (outfitID.ids.map((id, i)=>{return (<RelatedCard key={i} setProduct={props.setProduct} removeOutfitID={removeOutfitID} cardKey={i} curProduct={curProduct} productID = {id} isRelated={false} />)})) : <div>outfitID not found</div>}
+        </div>
       </div>
     </>
   )
