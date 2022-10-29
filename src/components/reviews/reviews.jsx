@@ -4,9 +4,7 @@ import axios from 'axios';
 // Styles
 import './reviewStyles.css';
 // Link to API functions
-import API_KEY from '../../config.js';
 import API from './API.js';
-axios.defaults.headers.common['Authorization'] = API_KEY;
 // Subcomponent Imports
 import ReviewList from './ReviewList.jsx';
 import DropDown from './DropDown.jsx';
