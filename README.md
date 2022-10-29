@@ -65,3 +65,11 @@ Rename & Fill in API Keys within each of the following:
 1. api.example.js  ->  api.js
 1. imagekit.example.js  ->  imagekit.js
 1. src/config.example.js -> src/config.js
+
+imagekit sample API key:
+1. Receive values from imagekit developer settings tool
+var imagekit = new ImageKit({
+  publicKey: "public_#################=",
+  privateKey: "private_###################=",
+  urlEndpoint: "https://ik.imagekit.io/id"
+});
