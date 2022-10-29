@@ -52,9 +52,9 @@ const Answer = ({answer, refresh, setRefresh}) => {
           {`by `}
           {answer[4] === 'Seller' ? <b>{answer[4]}</b>: answer[4]}
           {`, ${date} | Helpful? `}
-          {help ? <u>Yes</u> : <u onClick={() => {helpHandler(answer[1])}}>Yes</u>}
+          {help ? <u>Yes</u> : <u onClick={() => {helpHandler(answer[1])}} className='clickable'>Yes</u>}
           {` (${answer[3]}) | `}
-          {report ? <u>Reported</u> : <u onClick={() => {reportHandler(answer[1])}}>Report</u>}
+          {report ? <u>Reported</u> : <u onClick={() => {reportHandler(answer[1])}} className='clickable'>Report</u>}
         </div>
         <span className = "flexDisplay">
           {answer[6] ? answer[6].map((image, index) => {return (<img className = "images" key={index} src={image} width="125" height="100"/>)}) : null}

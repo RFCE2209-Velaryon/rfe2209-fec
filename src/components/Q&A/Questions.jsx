@@ -58,11 +58,11 @@ const Questions = ({question, refreshQ, setRefreshQ, prodName}) => {
           </div>
           <div className="flexO">
             {` Helpful? `}
-            {Qhelp ? <u>Yes</u> : <u onClick={() => {QhelpHandler(question[0])}}>Yes</u>}
+            {Qhelp ? <u>Yes</u> : <u onClick={() => {QhelpHandler(question[0])}} className='clickable'>Yes</u>}
             {` (${question[2]}) | `}
-            {Qreport ? <u>Reported</u> : <u onClick={() => {QreportHandler(question[0])}}>Report</u>}
+            {Qreport ? <u>Reported</u> : <u onClick={() => {QreportHandler(question[0])}} className='clickable'>Report</u>}
             {` | `}
-            {<u onClick={() => setAModal(true)}>Add Answer</u>}
+            {<u onClick={() => setAModal(true)} className='clickable'>Add Answer</u>}
           </div>
         </div>
         {AModal && <AnswerModal prodName={prodName} qBody={question[1]} qID={question[0]} setAModal={setAModal} atotal={atotal} setAtotal={setAtotal}/>}
@@ -70,7 +70,7 @@ const Questions = ({question, refreshQ, setRefreshQ, prodName}) => {
           <div className="flexA">{atotal ? 'A:' : null}</div>
           <div className="seeMoreAnswers">
             {question[0] && <Answers qid={question[0]} atotal={atotal} seeMore={seeMore} setMoreAnswers={setMoreAnswers}/>}
-            {moreAnswers ? (seeMore ? <u onClick={() => toggleSeeMore()}>Collapse answers</u> : <u onClick={() => {toggleSeeMore()}}>See more answers</u>) : null}
+            {moreAnswers ? (seeMore ? <u onClick={() => toggleSeeMore()} className='clickable'>Collapse answers</u> : <u onClick={() => {toggleSeeMore()}} className='clickable'>See more answers</u>) : null}
           </div>
         </div>
       </div>
