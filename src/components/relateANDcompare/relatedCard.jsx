@@ -43,8 +43,8 @@ const RelatedCard = (props) => {
 
               }
               <div onClick={(e)=> {changeProduct()}}>
-                <div className='cardImgWrapper'>
-                  <img className='cardImg' src={imgSrc()}></img>
+                <div className='cardImgWrapper' style={{backgroundImage: `url(${imgSrc()})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+                  {/* <img className='cardImg' src={imgSrc()}></img> */}
                 </div>
               </div>
               <div className='cardDetailWrapper'>
