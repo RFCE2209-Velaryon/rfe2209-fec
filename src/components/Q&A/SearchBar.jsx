@@ -18,7 +18,6 @@ const SearchBar = ({questions, setFiltered}) => {
   return(
     <form className="searchbar">
       <input className="searchInput" onChange={(e) => setSearch(e.target.value)} type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."></input>
-      <div><i></i></div>
     </form>
   )
 };
