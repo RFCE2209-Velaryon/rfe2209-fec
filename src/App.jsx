@@ -1,10 +1,11 @@
 import React from 'react';
 import $ from 'jquery';
 
+import Product from "./components/productDetail/productDetail.jsx"
 import QuestionsAndAnswers from './components/Q&A/qna.jsx';
 import Related from './components/relateANDcompare/relateANDcompare.jsx';
 import Reviews from './components/reviews/reviews.jsx';
-import ProductDetail from './components/productDetailAttempt/productDetail.jsx'
+// import ProductDetail from './components/productDetailAttempt/productDetail.jsx'
 import getProduct from './lib/getProduct.js';
 
 function App () {
@@ -16,7 +17,7 @@ function App () {
     getProduct()
       .then((response) => {
         setProduct(response.data[0]);
-        //console.log(response.data[0]);
+        console.log(response.data[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -34,7 +35,8 @@ function App () {
         <img className='headerImg' src='https://drive.google.com/uc?export=view&id=1IJ5xjs3u30HpVBDZckc0uE9A7_nJP0Zf'></img>
         <h1 className='headerText'>VAP</h1>
       </div>
-      <ProductDetail product ={product}/>
+      <Product product={product} />
+      {/* <ProductDetail product ={product}/> */}
       <Related product = {product} setProduct={setProduct}/>
       <QuestionsAndAnswers prodID={product.id} prodName={product.name}/>
       <Reviews product={product}/>

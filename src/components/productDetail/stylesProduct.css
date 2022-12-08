@@ -1,0 +1,139 @@
+
+
+.circle-thumbnail {
+    height: 100px;
+    width: 100px;
+    border-radius:100%;
+    border: solid 5px white;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+};
+
+.square-thumbnail {
+  /* height: 100px;
+  width: 100px;
+  border: solid 5px white, */
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: min(1000px, 85vw);
+  height: 85vh;
+  background-color: black;
+  position: relative;
+
+}
+
+
+/* .productDetailWrapper {
+  position: relative;
+  display: flex;
+  width: min(1000px, 85vw);
+  } */
+
+
+.main-image {
+  position: relative;
+  order: 1;
+  height: auto;
+}
+
+
+.carousel-button {
+  position:absolute;
+  justify-content:space-around;
+  Z-index: 2;
+  background: none;
+  border: none;
+  font-size: 3rem;
+  top: 50%;
+  /* left: 15%; */
+  transform: translateY(-50%);
+  color: rgba(255,255,255, .5);
+  border-radius: .25rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  background-color: rgba(0,0,0,.1)
+
+}
+
+.carousel-button:hover,
+.carousel-button:focus {
+  color:white;
+  background-color: rgba(0,0,0,.2);
+}
+
+
+
+.carousel-button:focus {
+  outline: 1px solid black;
+}
+
+.carousel-button.prev {
+  left: 1rem;
+}
+
+.carousel-button.next {
+  right: 1rem;
+}
+
+.thumbnail {
+  position: absolute;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 40px 0 0 0;
+  border-width: 5px solid gray;
+  height: 75%;
+  margin: 0 auto;
+  overflow: scroll;
+}
+
+
+.zoom-button {
+  justify-content:space-around;
+  position: absolute;
+  Z-index: 2;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  left: 34%;
+  color: rgba(49, 16, 16, 0.5);
+  border-radius: .25rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  /* background-color: rgba(0,0,0,.1); */
+  top: 0%;
+
+}
+
+#c-thumbnail{
+  /* order: 3;
+  flex-grow: 4;
+  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px 2em; */
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 10px;
+  padding: 10px;
+  overflow: scroll;
+  padding: 0.5rem;
+
+  }
+
+
+img {
+  display: inline-block;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+}
+
+.select{
+order: 4;
+flex-grow: 4
+};
+
