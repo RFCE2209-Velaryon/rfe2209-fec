@@ -4,17 +4,10 @@
     height: 100px;
     width: 100px;
     border-radius:100%;
-    border: solid 5px white;
+    border: solid 2px gray;
     justify-content: space-between;
     flex-wrap: wrap;
-
 };
-
-.square-thumbnail {
-  /* height: 100px;
-  width: 100px;
-  border: solid 5px white, */
-}
 
 .container {
   display: flex;
@@ -27,12 +20,18 @@
 }
 
 
-/* .productDetailWrapper {
+.productDetailWrapper {
   position: relative;
   display: flex;
   width: min(1000px, 85vw);
-  } */
+  overflow: scroll;
+  }
 
+.mainImgWrapper {
+  position: relative;
+  display:flex;
+  width: min(700px, 50vw);
+}
 
 .main-image {
   position: relative;
@@ -56,7 +55,6 @@
   cursor: pointer;
   padding: 0.5rem;
   background-color: rgba(0,0,0,.1)
-
 }
 
 .carousel-button:hover,
@@ -84,10 +82,23 @@
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 40px 0 0 0;
-  border-width: 5px solid gray;
+  border-width: 5pxs;
   height: 75%;
   margin: 0 auto;
   overflow: scroll;
+}
+
+.thumbnail::-webkit-scrollbar {
+  width: 0;
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.thumbnail{
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 
@@ -98,42 +109,102 @@
   background: none;
   border: none;
   font-size: 2rem;
-  left: 34%;
+  left: 80%;
   color: rgba(49, 16, 16, 0.5);
   border-radius: .25rem;
   cursor: pointer;
   padding: 0.5rem;
-  /* background-color: rgba(0,0,0,.1); */
   top: 0%;
 
 }
 
 #c-thumbnail{
-  /* order: 3;
-  flex-grow: 4;
-  justify-content: space-between;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px 2em; */
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 10px;
   padding: 10px;
   overflow: scroll;
   padding: 0.5rem;
-
+  padding-right: 5px;
+  margin-right: 10px;
   }
 
+  #c-thumbnail::-webkit-scrollbar {
+    width: 0;
+    display: none;
+  }
 
-img {
-  display: inline-block;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
+  /* Hide scrollbar for IE, Edge and Firefox */
+  #c-thumbnail{
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
-.select{
-order: 4;
-flex-grow: 4
-};
+
+  img {
+    display: inline-block;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+  }
+
+  .styleButton {
+    padding-top: 50px;
+   }
+
+  .select{
+  width: 200px;
+  height: 60px;
+   }
+
+  .selectTwo{
+    margin-left: 20px;
+    width: 150px;
+    height: 60px;
+    }
+
+  .selectThree{
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 250px;
+    height: 60px;
+    }
+
+  .selectButton{
+    width: 80px;
+    height: 60px;
+   }
+
+  .productDecriptionlWrapper{
+    position: relative;
+    bottom: 0px;
+    left: 30px;
+   }
+   .detailWrapper {
+    width:100%;
+    min-width: 20vw;
+    padding-left: 1vw;
+
+  }
+ .infoWrapper {
+    height: 30vh;
+  }
+
+  .infoDetailCategory {
+
+    color:teal;
+    font-size: 1.25rem;
+    margin-top: 2vh;
+  }
+  .infoDetailName {
+    color:#2088ff;
+    font-size:4rem;
+    margin-top: 2vh;
+    margin-right: 1vh;
+  }
+  .infoDetailPrice {
+    margin-top: 2vh;
+  }
 

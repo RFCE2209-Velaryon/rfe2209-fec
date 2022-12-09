@@ -6,10 +6,9 @@ import CurrentSelectedStyle from "./currentSelectedStyle.jsx";
 import ItemSelectors from "./stylesButtons.jsx";
 import ImageThumbnail from "./imageThumbNail.jsx";
 import Info from './info.jsx'
-import './productStyle.css'
 import axios from 'axios';
 const apiurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
-import "./stylesProduct.css" //mine
+import "./stylesProduct.css"
 
 
 
@@ -18,10 +17,7 @@ const [item, setItem] = useState([])
 const [allProds, setAllProds] = useState([])
 const [image, setImage] = useState('')
 const [didClick, setDidClick] = useState(true)
-console.log(item, image)
-
-
-
+const [didHover, setDidHover] = useState(true)
 
 
   useEffect(()=>{
@@ -29,7 +25,6 @@ console.log(item, image)
       getProductStyle(product.id).then((response)=>{
         setItem(response.data.results)
         setImage(response.data.results[0].photos[0].url)
-        console.log('yeah')
       })
       .catch((err)=>{
         console.log(err)
@@ -37,33 +32,26 @@ console.log(item, image)
     }
   }, [product])
 
-
-
-
   let getProductStyle = (id) => {
-// return  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`)
-
-  return axios({
-      method: 'get',
-      url: apiurl+'products/'+id+'/styles'
-    })
+ return  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`)
   }
 
-
-
-
-
   return(
+    <div>
     <section  className='productDetailWrapper'>
     {item[0] && <ImageGallery items={item[0]}image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick} product={product}/>}
-    {item[0] && <ImageThumbnail items={item[0]} image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick}/>}
+    {item[0] && <ImageThumbnail items={item[0]} image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick} didHover={didHover} setDidHover={setDidHover}/>}
     <div className='detailWrapper'>
-    {item[0] && <Info product = {product} /> }
-    {item[0] && <CurrentSelectedStyle items={item[0]} image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick} product={product}/>}
+    {item[0] && <Info product = {product} items={item[0]} /> }
+    {item[0] && <CurrentSelectedStyle items={item[0]} image={image} setImage={setImage} didClick={didClick} setDidClick={setDidClick} product={product} didClick={didHover} setDidHover={setDidHover}/>}
     {item[0] && <ItemSelectors items={item[0]}  product={product}/>}
     </div>
-
     </section>
+     <div className="productDecriptionlWrapper">
+     <h1>PRODUCT DECRIPTION</h1>
+     <p>{product.description}</p>
+  </div>
+  </div>
   )
 };
 

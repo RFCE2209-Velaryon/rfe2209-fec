@@ -1,34 +1,21 @@
 import React from "react";
 import {useState, useEffect} from "react"
 
-
-
-
-
 const ImageGallery = ({items, image, setImage, didClick, setDidClick, product}) => {
 const [imageArray, setImageArray] = useState([])
 const [nextImage, setNextImage] = useState(0)
 const [zoom, setZoom] = useState(false)
 const [magnifiy, setMagnify] = useState({width: '600px'})
-console.log (image)
-
-// const display = ()=> {
-//   if(image === ""){
-//     setImage(items.photos[0].url)
-//   }
-//    if (image !== "") {
-//     setImage(items.photos[0].url)
-//   }
-//  };
-
-
-
 const isZoomed = () => {
   if(zoom === false){
     setMagnify({width: '600px'})
     setZoom(true)
   } else if (zoom === true){
-    setMagnify({width: '1500px'})
+    setMagnify({backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: '100vw',
+    height: '100vh'})
     setZoom(false)
   }
 }
@@ -62,7 +49,6 @@ let previousImageButtonHandler  = () => {
 
 useEffect(()=>{
   getPictures()
-  // display()
 },[product])
 
 

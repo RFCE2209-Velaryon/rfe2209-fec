@@ -36,7 +36,6 @@ function App () {
         <h1 className='headerText'>VAP</h1>
       </div>
       <Product product={product} />
-      {/* <ProductDetail product ={product}/> */}
       <Related product = {product} setProduct={setProduct}/>
       <QuestionsAndAnswers prodID={product.id} prodName={product.name}/>
       <Reviews product={product}/>

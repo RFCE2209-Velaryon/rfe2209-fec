@@ -13,26 +13,9 @@ const [style, setStyle] = useState({})
     setStyle( {border: highlight})
  }
 
-
-
-
 const isHighlight = () => {
   setHiglight("5px solid #555")
 }
-
-//  const displayThumb = ()=> {
-//   if(image.split('').length === 0){
-//     setImage(items.photos[0].url)
-//   }
-
-
-//  }
-
-
- useEffect(()=>{
-  // displayThumb()
- },[])
-
 
   const styles = {
       height: 100,
@@ -42,19 +25,16 @@ const isHighlight = () => {
       border: highlight
   };
 
-
   return(
     <div className="thumbnail">
          {items.photos.map((item)=>{
           return  <ul key={item.url} >
-              <img  src={item.url}  style={{border: image === item.url ? "4px solid green" : "4px solid gray"}}  onClick={()=>(
+              <img  src={item.url}  style={{border: image === item.url ? "4px solid green" : "2px solid gray"}}  onClick={()=>(
             setImage(item.url), setDidClick(true)
           )}/>
-
           </ul>
     })}
     </div>
-
   )
 };
 
